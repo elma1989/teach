@@ -4,5 +4,6 @@
 .. toctree::
    :maxdepth: 2
    :caption: Inhalt:
-
+   :hidden: 
+   
    database-model
