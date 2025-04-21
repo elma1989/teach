@@ -4,7 +4,7 @@ import os
 FKON = 'PRAGMA foreign_keys = ON'
 DBPATH = '../teach.db'
 
-from .data import Data
+from .data import Data, DataObject
 
 def indb():
     """
