@@ -1,6 +1,8 @@
 Paket: database
 ################
 
+.. autofunction:: database.indb
+
 UML-Klassendiagramm
 ====================
 

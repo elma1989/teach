@@ -1,9 +1,10 @@
 from sqlite3 import Error
-from .data import Data
 import os
 
 FKON = 'PRAGMA foreign_keys = ON'
 DBPATH = '../teach.db'
+
+from .data import Data
 
 def indb():
     """
@@ -22,6 +23,9 @@ def indb():
         with open(TABLEPATH, 'r') as f:
             sql = f.read()
 
-        try: data.c.executescript(sql)
+        try:
+            data.connect()
+            if data.con:
+                data.con.executescript(sql)
         except Error as e: print(e)
         finally: data.close()

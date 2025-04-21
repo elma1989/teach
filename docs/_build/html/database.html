@@ -48,6 +48,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="database-model.html">Datenbankmodell</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Paket: database</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#database.indb"><code class="docutils literal notranslate"><span class="pre">indb()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#uml-klassendiagramm">UML-Klassendiagramm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-data">Module: data</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#database.Data"><code class="docutils literal notranslate"><span class="pre">Data</span></code></a><ul>
@@ -90,6 +91,17 @@
              
   <section id="paket-database">
 <h1>Paket: database<a class="headerlink" href="#paket-database" title="Link to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="database.indb">
+<span class="sig-prename descclassname"><span class="pre">database.</span></span><span class="sig-name descname"><span class="pre">indb</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.indb" title="Link to this definition"></a></dt>
+<dd><p>Initialisiert die Datenbank.</p>
+<div class="admonition important">
+<p class="admonition-title">Wichtig</p>
+<p>Die gasamte Datenbank wird dabei durch eine neue ersetzt. 
+Diese Funktion wird auch in Pytests verwendet. Sobald reale Daten existieren, sollten keine Pytests mehr durchgführt werden.</p>
+</div>
+</dd></dl>
+
 <section id="uml-klassendiagramm">
 <h2>UML-Klassendiagramm<a class="headerlink" href="#uml-klassendiagramm" title="Link to this heading"></a></h2>
 <img alt="_images/database.png" src="_images/database.png" />
@@ -99,7 +111,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="database.Data">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">database.</span></span><span class="sig-name descname"><span class="pre">Data</span></span><a class="headerlink" href="#database.Data" title="Link to this definition"></a></dt>
-<dd><p>Stellt eine Datenbankverbindung zur Verfügung</p>
+<dd><p>Stellt eine Datenbankverbindung zur Verfügung.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="database.Data.c">
 <em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">c</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Cursor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#database.Data.c" title="Link to this definition"></a></dt>
