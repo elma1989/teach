@@ -42,3 +42,13 @@ class Data:
             if self.con:
                 self.con.close()
                 self.__con = None
+
+    def close(self) -> None:
+        """
+        Trennt die Datenbankverbindung wieder.
+        """
+        if self.con and self.c:
+            self.c.close()
+            self.con.close()
+            self.__c = None
+            self.__con = None
