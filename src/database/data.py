@@ -4,7 +4,7 @@ class Data:
     """
     Stellt eine Datenbankverbindung zur Verfügung
     """
-    DBPATH:str = '../teach.db'
+    __DBPATH:str = '../teach.db'
 
     def __init__(self) -> None:
         self.__con:Connection|None = None
@@ -29,3 +29,16 @@ class Data:
         :return: **None**, wenn dieser noch nicht gesetzt ist
         """
         return self.__c
+    
+    def connect(self) -> None:
+        """
+        Stellt eine Verbindung zur Datenbank her.
+        """
+        try:
+            self.__con = connect(self.__DBPATH)
+            if self.con: self.__c = self.con.cursor()
+        except Error as e: 
+            print(e)
+            if self.con:
+                self.con.close()
+                self.__con = None
