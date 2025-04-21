@@ -13,3 +13,7 @@ CREATE TABLE teacher_subject(
     sub_abr CHAR(3) NOT NULL REFERENCES subject(sub_abr),
     PRIMARY KEY (teach_id, sub_abr)
 );
+CREATE TABLE grade(
+    grd_name VARCHAR(20) NOT NULL PRIMARY KEY,
+    teach_id INTEGER NOT NULL REFERENCES teacher(teach_id)
+);
