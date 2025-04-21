@@ -1,11 +1,9 @@
 from sqlite3 import connect, Connection, Cursor
-from database import Error
+from database import Error, DBPATH
 class Data:
     """
-    Stellt eine Datenbankverbindung zur Verfügung
+    Stellt eine Datenbankverbindung zur Verfügung.
     """
-    __DBPATH:str = '../teach.db'
-
     def __init__(self) -> None:
         self.__con:Connection|None = None
         self.__c:Cursor|None = None
@@ -35,7 +33,7 @@ class Data:
         Stellt eine Verbindung zur Datenbank her.
         """
         try:
-            self.__con = connect(self.__DBPATH)
+            self.__con = connect(DBPATH)
             if self.con: self.__c = self.con.cursor()
         except Error as e: 
             print(e)
