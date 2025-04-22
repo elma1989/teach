@@ -48,6 +48,8 @@ class Subject(DataObject):
         sql:str = 'SELECT * FROM subject WHERE sub_abr = ?'
         success:bool = False
 
+        if len(self.abr) == 0: return False
+
         try:
             self.connect()
             if self.con and self.c:
@@ -58,3 +60,33 @@ class Subject(DataObject):
         finally: self.close()
 
         return success
+
+    def add(self) -> int:
+        """
+        Fügt ein neues Fach zur Datenbank hinzu.
+
+        :return:
+             | 0 - erfolgreich
+             | 1 - Ungrültige Daten
+             | 3 - Fach bereits vorhanden
+        """
+        sql:str = 'INSERT INTO subject VALUES(?,?)'
+        success:bool = False
+
+        if len(self.abr) == 0 or len(self.name) == 0: return 1
+
+        try:
+            self.connect()
+            if self.con and self.c:
+                self.c.execute(sql, (self.abr, self.name))
+                success = True
+        except Error as e: print(e)
+        finally: self.close()
+
+        return 0 if success else 3
+    
+    def remove(self) -> int:
+        return 1
+    
+    def to_dict(self) -> dict[str,str]:
+        return {}

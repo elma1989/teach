@@ -79,6 +79,7 @@ class DataObject(Data, ABC):
              | 1 - Daten sind nicht Validiert oder nicht im gültigen Format
              | 2 - Beziehende Referenzen sind nicht vorhanden
              | 3 - Objekt existiert bereits
+             | 4 - Datenbankfehler
         """
         pass
 
@@ -91,6 +92,7 @@ class DataObject(Data, ABC):
             | 0 - erfolgreich
             | 1 - Objekt ist nicht Vorhanden
             | 2 - Objekt kann nicht gelöscht werden, da noch Referenzen vorhanden sind
+            | 4 - Datenbankfehler
         """
         pass
 
