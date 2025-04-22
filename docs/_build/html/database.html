@@ -58,6 +58,32 @@
 <li class="toctree-l4"><a class="reference internal" href="#database.Data.connect"><code class="docutils literal notranslate"><span class="pre">Data.connect()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#database.DataObject"><code class="docutils literal notranslate"><span class="pre">DataObject</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#database.DataObject.add"><code class="docutils literal notranslate"><span class="pre">DataObject.add()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.DataObject.exists"><code class="docutils literal notranslate"><span class="pre">DataObject.exists()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.DataObject.remove"><code class="docutils literal notranslate"><span class="pre">DataObject.remove()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.DataObject.to_dict"><code class="docutils literal notranslate"><span class="pre">DataObject.to_dict()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-subject">Module: subject</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#database.Subject"><code class="docutils literal notranslate"><span class="pre">Subject</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#database.Subject.abr"><code class="docutils literal notranslate"><span class="pre">Subject.abr</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Subject.add"><code class="docutils literal notranslate"><span class="pre">Subject.add()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Subject.exists"><code class="docutils literal notranslate"><span class="pre">Subject.exists()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Subject.name"><code class="docutils literal notranslate"><span class="pre">Subject.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Subject.remove"><code class="docutils literal notranslate"><span class="pre">Subject.remove()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Subject.to_dict"><code class="docutils literal notranslate"><span class="pre">Subject.to_dict()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-school">Module: School</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#database.School"><code class="docutils literal notranslate"><span class="pre">School</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#database.School.subjects"><code class="docutils literal notranslate"><span class="pre">School.subjects</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -158,6 +184,204 @@ Diese Funktion wird auch in Pytests verwendet. Sobald reale Daten existieren, so
 <dl class="field-list simple">
 <dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="database.DataObject">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">database.</span></span><span class="sig-name descname"><span class="pre">DataObject</span></span><a class="headerlink" href="#database.DataObject" title="Link to this definition"></a></dt>
+<dd><p>Repräsentiert eine Datenbankentität.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="database.DataObject.add">
+<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.DataObject.add" title="Link to this definition"></a></dt>
+<dd><p>Fügt ein neues Objekt zur Datenbank hinzu.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p><div class="line-block">
+<div class="line">0 - erfolgreich</div>
+<div class="line">1 - Daten sind nicht Validiert oder nicht im gültigen Format</div>
+<div class="line">2 - Beziehende Referenzen sind nicht vorhanden</div>
+<div class="line">3 - Objekt existiert bereits</div>
+<div class="line">4 - Datenbankfehler</div>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.DataObject.exists">
+<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">exists</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.DataObject.exists" title="Link to this definition"></a></dt>
+<dd><p>Prüft, ob das aktuelle Objekt exitiert.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>True</strong>, wenn das Objekt bereits vorhanden ist</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.DataObject.remove">
+<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.DataObject.remove" title="Link to this definition"></a></dt>
+<dd><p>Löscht das akuelle Objekt aus der Datenbank.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p><div class="line-block">
+<div class="line">0 - erfolgreich</div>
+<div class="line">1 - Objekt ist nicht Vorhanden</div>
+<div class="line">2 - Objekt kann nicht gelöscht werden, da noch Referenzen vorhanden sind</div>
+<div class="line">4 - Datenbankfehler</div>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.DataObject.to_dict">
+<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.DataObject.to_dict" title="Link to this definition"></a></dt>
+<dd><p>Liefert die Attibute des Objektes für das Frontend.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]</span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p>Daten als Wörterbuch</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-subject">
+<h2>Module: subject<a class="headerlink" href="#module-subject" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="database.Subject">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">database.</span></span><span class="sig-name descname"><span class="pre">Subject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">abr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.Subject" title="Link to this definition"></a></dt>
+<dd><p>Repräsentiert ein Unterichtsfach.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameter<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>abr</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Abkürzung in der Datenbank (3 Buchstaben)</p></li>
+<li><p><strong>name</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Langbezeichnung (muss mit Großbuchstaben beginnen)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="database.Subject.abr">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">abr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#database.Subject.abr" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Liefert die Abkürzung in der Datenbank</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Subject.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.Subject.add" title="Link to this definition"></a></dt>
+<dd><p>Fügt ein neues Fach zur Datenbank hinzu.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p><div class="line-block">
+<div class="line">0 - erfolgreich</div>
+<div class="line">1 - Ungrültige Daten</div>
+<div class="line">3 - Fach bereits vorhanden</div>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Subject.exists">
+<span class="sig-name descname"><span class="pre">exists</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.Subject.exists" title="Link to this definition"></a></dt>
+<dd><p>Prüft, ob das Unterrichtfach bereits existiert.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>True</strong>, wenn das Fach bereits vorhanden ist</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="database.Subject.name">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#database.Subject.name" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Liefert die Langbezeichnung des Faches</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Subject.remove">
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.Subject.remove" title="Link to this definition"></a></dt>
+<dd><p>Löscht das akuelle Objekt aus der Datenbank.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p><div class="line-block">
+<div class="line">0 - erfolgreich</div>
+<div class="line">1 - Objekt ist nicht Vorhanden</div>
+<div class="line">2 - Objekt kann nicht gelöscht werden, da noch Referenzen vorhanden sind</div>
+<div class="line">4 - Datenbankfehler</div>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Subject.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.Subject.to_dict" title="Link to this definition"></a></dt>
+<dd><p>Liefert die Attibute des Objektes für das Frontend.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p>Daten als Wörterbuch</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-school">
+<h2>Module: School<a class="headerlink" href="#module-school" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="database.School">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">database.</span></span><span class="sig-name descname"><span class="pre">School</span></span><a class="headerlink" href="#database.School" title="Link to this definition"></a></dt>
+<dd><p>Dient zur Verwaltung von Daten.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="database.School.subjects">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">subjects</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#database.Subject" title="database.subject.Subject"><span class="pre">Subject</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#database.School.subjects" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Liefert die aktuelle Fachliste</p>
 </dd>
 </dl>
 </dd></dl>

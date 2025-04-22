@@ -28,3 +28,12 @@ def test_subject_add():
     assert deu.add() == 0
     assert deu.exists()
     assert school.subjects == [deu, mat]
+
+def test_subject_to_dict():
+    mat = Subject('mat')
+    test = {
+        'abr':'MAT',
+        'name':'Mathematik'
+    }
+
+    assert mat.to_dict() == test

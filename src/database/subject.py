@@ -102,4 +102,7 @@ class Subject(DataObject):
         return 1
     
     def to_dict(self) -> dict[str,str]:
-        return {}
+        return {
+            'abr':self.abr,
+            'name':self.name
+        }
