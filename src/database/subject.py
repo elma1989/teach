@@ -8,9 +8,11 @@ class Subject(DataObject):
     :param abr: Abkürzung in der Datenbank (3 Buchstaben)
     :param name: Langbezeichnung (muss mit Großbuchstaben beginnen)
     """
-    def __init__(self, abr:str, name:str):
+    def __init__(self, abr:str, name:str=''):
         self.__abr:str = ''
         self.__name:str = ''
+
+        sql:str = 'SELECT sub_name FROM subject WHERE sub_abr = ?'
 
         re_abr:str = r'[A-Za-z]+'
         re_name:str = r'[A-Z][a-z]+'
@@ -21,7 +23,17 @@ class Subject(DataObject):
         if (match_abr) and len(match_abr[0]) == 3:
             self.__abr = match_abr[0].upper()
 
-        if (match_name): self.__name = name
+        if len(name) > 0:
+            if (match_name): self.__name = name
+        else:
+            try:
+                self.connect()
+                if self.con and self.c:
+                    self.c.execute(sql, (self.abr,))
+                    res = self.c.fetchone()
+                    if res: self.__name = res[0]
+            except Error as e: print(e)
+            finally: self.close()
 
     @property
     def abr(self) -> str:
@@ -79,6 +91,7 @@ class Subject(DataObject):
             self.connect()
             if self.con and self.c:
                 self.c.execute(sql, (self.abr, self.name))
+                self.con.commit()
                 success = True
         except Error as e: print(e)
         finally: self.close()
