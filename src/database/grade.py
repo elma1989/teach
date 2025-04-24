@@ -102,3 +102,35 @@ class Grade(DataObject):
         finally: self.close()
 
         return success
+
+    def add(self) -> int:
+        """
+        Legt eine neue Klasse an.
+
+        :return:
+             | 0 - Erfolgreich
+             | 2 - Der Klassenleiter existiert nicht
+             | 3 - Klasse bereits vorhanden
+        """
+        sql:str = 'INSERT INTO grade VALUES(?,?)'
+        success:bool = False
+
+        if not isinstance(self.leader, Teacher) or not self.leader.exists(): return 2
+
+        try:
+            self.connect()
+            if self.con and self.c:
+                self.c.execute(FKON)
+                self.c.execute(sql,(self.name, self.leader.id))
+                self.con.commit()
+                success = True
+        except Error as e: print(e)
+        finally: self.close()
+
+        return 0 if success else 3
+
+    def remove(self) -> int:
+        return 1
+    
+    def to_dict(self) -> dict[str,str]:
+        return {}
