@@ -96,3 +96,16 @@ class Person(DataObject):
     def __eq__(self, other) -> bool:
         if not isinstance(other, Person): return False
         return self.fname == other.fname and self.lname == other.lname and self.birth_date == other.birth_date
+    
+    def to_dict(self) -> dict[str,str|int]:
+        """
+        Liefet die Daten einer Person zur Verarbeitung im Frontend.
+
+        :return: Personendaten
+        """
+        return {
+            'id': self.id,
+            'fname': self.fname,
+            'lname': self.lname,
+            'birthDate': self.db_birth
+        }
