@@ -1,4 +1,4 @@
-from database import Data, Error, Subject, Teacher
+from database import Data, Error, Subject, Teacher, Grade
 
 class School(Data):
     """
@@ -7,6 +7,7 @@ class School(Data):
     def __init__(self) -> None:
         self.__subjects: list[Subject]
         self.__teachers: list[Teacher]
+        self.__grades: list[Grade]
 
     @property
     def subjects(self) -> list[Subject]:
@@ -26,6 +27,9 @@ class School(Data):
     
     @property
     def teachers(self) -> list[Teacher]:
+        '''
+        :getter: Liefert eine Liste aller aktiver Lehrer.
+        '''
         sql:str = 'SELECT * FROM teacher ORDER BY teach_last_name, teach_first_name'
 
         try:
@@ -38,6 +42,24 @@ class School(Data):
         finally: self.close()
 
         return self.__teachers
+    
+    @property
+    def grades(self) -> list[Grade]:
+        ''':getter: liefert eine Liste aller Klassen'''
+        sql:str = """SELECT g.grd_name, t.teach_first_name, t.teach_last_name, t.teach_birth_date, t.teach_id
+            FROM grade g JOIN teacher t ON g.teach_id = t.teach_id
+            ORDER BY g.grd_name"""
+        
+        try:
+            self.connect()
+            if self.con and self.c:
+                self.c.execute(sql)
+                res = self.c.fetchall()
+                self.__grades = [Grade(row[0], Teacher(row[1],row[2],row[3],row[4])) for row in res]
+        except Error as e: print(e)
+        finally: self.close()
+
+        return self.__grades
     
     def getTeacher(self, id:int) -> Teacher|None:
         """
