@@ -86,12 +86,25 @@
 <li class="toctree-l4"><a class="reference internal" href="#database.Person.fname"><code class="docutils literal notranslate"><span class="pre">Person.fname</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#database.Person.id"><code class="docutils literal notranslate"><span class="pre">Person.id</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#database.Person.lname"><code class="docutils literal notranslate"><span class="pre">Person.lname</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Person.to_dict"><code class="docutils literal notranslate"><span class="pre">Person.to_dict()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#modul-teacher">Modul: teacher</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#database.Teacher"><code class="docutils literal notranslate"><span class="pre">Teacher</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#database.Teacher.add"><code class="docutils literal notranslate"><span class="pre">Teacher.add()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Teacher.add_subject"><code class="docutils literal notranslate"><span class="pre">Teacher.add_subject()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Teacher.exists"><code class="docutils literal notranslate"><span class="pre">Teacher.exists()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Teacher.remove"><code class="docutils literal notranslate"><span class="pre">Teacher.remove()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Teacher.subjects"><code class="docutils literal notranslate"><span class="pre">Teacher.subjects</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#modul-school">Modul: school</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#database.School"><code class="docutils literal notranslate"><span class="pre">School</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#database.School.getTeacher"><code class="docutils literal notranslate"><span class="pre">School.getTeacher()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#database.School.subjects"><code class="docutils literal notranslate"><span class="pre">School.subjects</span></code></a></li>
 </ul>
 </li>
@@ -393,6 +406,7 @@ Diese Funktion wird auch in Pytests verwendet. Sobald reale Daten existieren, so
 <li><p><strong>fname</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Vorname der Person</p></li>
 <li><p><strong>lname</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Nachname der Person</p></li>
 <li><p><strong>birth_date</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Geburtdatum (JJJJ-MM-TT)</p></li>
+<li><p><strong>id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – ID der Person (Standard: 0)</p></li>
 </ul>
 </dd>
 </dl>
@@ -460,6 +474,125 @@ Diese Funktion wird auch in Pytests verwendet. Sobald reale Daten existieren, so
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Person.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.Person.to_dict" title="Link to this definition"></a></dt>
+<dd><p>Liefet die Daten einer Person zur Verarbeitung im Frontend.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]</span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p>Personendaten</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="modul-teacher">
+<h2>Modul: teacher<a class="headerlink" href="#modul-teacher" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="database.Teacher">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">database.</span></span><span class="sig-name descname"><span class="pre">Teacher</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">birth_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.Teacher" title="Link to this definition"></a></dt>
+<dd><p>Repräsentiert einen Lehrer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameter<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fname</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Vorname des Lehrers</p></li>
+<li><p><strong>lname</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Nachnmame des Leherers</p></li>
+<li><p><strong>brith_date</strong> – Geburtsdatum (JJJJ-MM-TT) des Lehrers</p></li>
+<li><p><strong>id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – ID des Lehrers (Standard: 0)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Teacher.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.Teacher.add" title="Link to this definition"></a></dt>
+<dd><p>Fügt einen Lehrer zur Datenbank hinzu.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p><div class="line-block">
+<div class="line">0 - Erfolgreich</div>
+<div class="line">1 - Daten ungültig</div>
+<div class="line">3 - Lehrer bereits vorhanden</div>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Teacher.add_subject">
+<span class="sig-name descname"><span class="pre">add_subject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sub</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.Teacher.add_subject" title="Link to this definition"></a></dt>
+<dd><p>Fügt dem Leher ein neues Fach hinzu.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameter<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sub</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#database.Subject" title="database.subject.Subject"><code class="xref py py-class docutils literal notranslate"><span class="pre">Subject</span></code></a></span>) – zu hinzufügendes Fach</p>
+</dd>
+<dt class="field-even">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+</dd>
+<dt class="field-odd">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-odd"><p><div class="line-block">
+<div class="line">0 - Erfolreich</div>
+<div class="line">1 - Fach nicht gefunden</div>
+<div class="line">2 - Fach bereits vorhanden</div>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Teacher.exists">
+<span class="sig-name descname"><span class="pre">exists</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.Teacher.exists" title="Link to this definition"></a></dt>
+<dd><p>Prüft, ob ein Lehrer bereits vorhanden ist.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>True</strong>, wenn der Lehrer bereits vorhanden ist</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Teacher.remove">
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.Teacher.remove" title="Link to this definition"></a></dt>
+<dd><p>Löscht das akuelle Objekt aus der Datenbank.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p><div class="line-block">
+<div class="line">0 - erfolgreich</div>
+<div class="line">1 - Objekt ist nicht Vorhanden</div>
+<div class="line">2 - Objekt kann nicht gelöscht werden, da noch Referenzen vorhanden sind</div>
+<div class="line">4 - Datenbankfehler</div>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="database.Teacher.subjects">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">subjects</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#database.Subject" title="database.subject.Subject"><span class="pre">Subject</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#database.Teacher.subjects" title="Link to this definition"></a></dt>
+<dd><p>Liefert alle Fächer eines Lehrers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Fächerliste</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </section>
@@ -469,6 +602,23 @@ Diese Funktion wird auch in Pytests verwendet. Sobald reale Daten existieren, so
 <dt class="sig sig-object py" id="database.School">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">database.</span></span><span class="sig-name descname"><span class="pre">School</span></span><a class="headerlink" href="#database.School" title="Link to this definition"></a></dt>
 <dd><p>Dient zur Verwaltung von Daten.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="database.School.getTeacher">
+<span class="sig-name descname"><span class="pre">getTeacher</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.School.getTeacher" title="Link to this definition"></a></dt>
+<dd><p>Sucht einen Lehrer in der Datenbank.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameter<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – ID des Lehrers</p>
+</dd>
+<dt class="field-even">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#database.Teacher" title="database.teacher.Teacher"><code class="xref py py-class docutils literal notranslate"><span class="pre">Teacher</span></code></a> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+<dt class="field-odd">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Instanz des Lehrers, <strong>None</strong>, wenn kein Lehrer gefunden wurde</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py property">
 <dt class="sig sig-object py" id="database.School.subjects">
 <em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">subjects</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#database.Subject" title="database.subject.Subject"><span class="pre">Subject</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#database.School.subjects" title="Link to this definition"></a></dt>

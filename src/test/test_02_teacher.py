@@ -1,4 +1,4 @@
-from database import Teacher, School
+from database import Teacher, School, Subject
 
 def test_teacher_add():
     fail1 = Teacher('john','Doe','1990-01-01')
@@ -27,3 +27,23 @@ def test_teacher_add():
     assert maxm.exists()
     assert school.teachers == [john, maxm]
     assert school.getTeacher(2) == maxm
+
+    assert not school.getTeacher(3)
+
+def test_teacher_add_subject():
+    school = School()
+    john = school.getTeacher(1)
+    print(john)
+    print(john.subjects)
+    eng = Subject('eng')
+    mat = Subject('mat')
+    deu = Subject('deu')
+
+    assert john.subjects == []
+    assert john.add_subject(eng) == 1
+    assert john.add_subject(mat) == 0
+    assert john.subjects == [mat]
+    assert john.add_subject(mat) == 2
+    assert john.subjects == [mat]
+    assert john.add_subject(deu) == 0
+    assert john.subjects == [deu, mat]

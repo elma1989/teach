@@ -29,6 +29,12 @@ Modul: pserson
 .. autoclass:: database.Person
     :members:
 
+Modul: teacher
+==============
+
+.. autoclass:: database.Teacher
+    :members:
+
 Modul: school
 ==============
 

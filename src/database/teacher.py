@@ -1,4 +1,4 @@
-from database import Person, Error, Subject
+from database import Person, Error, Subject, FKON
 
 class Teacher(Person):
     """
@@ -25,6 +25,7 @@ class Teacher(Person):
             except Error as e: print(e)
             finally: self.close()
 
+    @property
     def subjects(self) -> list[Subject]:
         """
         Liefert alle Fächer eines Lehrers.
@@ -32,7 +33,7 @@ class Teacher(Person):
         :return: Fächerliste
         """
         sql:str = """SELECT s.sub_abr, s.sub_name
-            FROM subject s JOIN teacher_subject ts ON t.sub_abr = ts.sub_abr
+            FROM subject s JOIN teacher_subject ts ON s.sub_abr = ts.sub_abr
             WHERE ts.teach_id = ?
             ORDER BY s.sub_abr"""
         
@@ -105,3 +106,30 @@ class Teacher(Person):
     
     def remove(self) -> int:
         return 1
+    
+    def add_subject(self, sub:Subject) -> int:
+        """
+        Fügt dem Leher ein neues Fach hinzu.
+
+        :param sub: zu hinzufügendes Fach
+        :return: 
+             | 0 - Erfolreich
+             | 1 - Fach nicht gefunden
+             | 2 - Fach bereits vorhanden
+        """
+        sql:str = 'INSERT INTO teacher_subject VALUES(?,?)'
+        success:bool = False
+
+        if not isinstance(sub,Subject) or not sub.exists(): return  1
+
+        try:
+            self.connect()
+            if self.con and self.c:
+                self.c.execute(FKON)
+                self.c.execute(sql,(self.id, sub.abr))
+                self.con.commit()
+                success = True
+        except Error as e: print(e)
+        finally: self.close()
+
+        return 0 if success else 2
