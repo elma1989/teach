@@ -9,8 +9,10 @@ class Person(DataObject):
     :param fname: Vorname der Person
     :param lname: Nachname der Person
     :param birth_date: Geburtdatum (JJJJ-MM-TT)
+    :param id: ID der Person (Standard: 0)
     """
     def __init__(self, fname:str, lname:str, birth_date:str, id:int = 0) -> None:
+        super().__init__()
         self.__id = id
         self.__fname:str = ''
         self.__lname:str = ''

@@ -7,6 +7,7 @@ DBPATH = '../teach.db'
 from .data import Data, DataObject
 from .subject import Subject
 from .person import Person
+from .teacher import Teacher
 from .school import School
 
 def indb():
