@@ -51,3 +51,34 @@ class Grade(DataObject):
                 self.con.commit()
         except Error as e: print(e)
         finally: self.close()
+
+    @property
+    def leader(self) -> Teacher|None:
+        """
+        Verwaltet den Klassenleiter.
+
+        :getter: Liefert den Klassenleiter
+        :setter: Legt den Klassenleiter fest
+        """
+        return self.__leader
+    
+    @leader.setter
+    def leader(self, leader:Teacher) -> None:
+        sql:str = 'UPDATE grade SET teach_id = ? WHERE grd_name = ?'
+
+        if isinstance(leader, Teacher) and leader.exists():
+            try:
+                self.connect()
+                if self.con and self.c:
+                    self.c.execute(FKON)
+                    self.c.execute(sql,(leader.id, self.name))
+                    self.con.commit()
+                    self.__leader = leader
+            except Error as e: print(e)
+            finally: self.close()
+
+    def __repr__(self) -> str: return self.name
+
+    def __eq__(self, other) -> bool:
+        if not isinstance(other, Grade): return False
+        return self.name == other.name
