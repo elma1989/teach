@@ -82,3 +82,23 @@ class Grade(DataObject):
     def __eq__(self, other) -> bool:
         if not isinstance(other, Grade): return False
         return self.name == other.name
+
+    def exists(self) -> bool:
+        """
+        Prüft, ob eine Klasse existiert.
+
+        :return: **True**, wenn die Klasse bereits existiert
+        """
+        sql:str = 'SELECT * FROM grade WEHRE grd_name = ?'
+        success:bool = False
+
+        try:
+            self.connect()
+            if self.con and self.c:
+                self.c.execute(sql, (self.name,))
+                res = self.c.fetchone()
+                if res: success = True
+        except Error as e: print(e)
+        finally: self.close()
+
+        return success
