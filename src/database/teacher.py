@@ -55,14 +55,14 @@ class Teacher(Person):
 
         :return: **True**, wenn der Lehrer bereits vorhanden ist
         """
-        sql:str = """SELECT * FROM teacher WHERE
-            teach_first_name = ? AND teach_last_name = ? teach_birth_date = ?"""
+        sql:str = """SELECT * FROM teacher
+            WHERE teach_first_name = ? AND teach_last_name = ? AND teach_birth_date = ?"""
         success:bool = False
 
         try:
             self.connect()
             if self.con and self.c:
-                self.c.execute(sql,(self.fname, self.lname, self.fname))
+                self.c.execute(sql,(self.fname, self.lname, self.db_birth))
                 res = self.c.fetchone()
                 if res: success = True
         except Error as e: print(e)
@@ -93,10 +93,10 @@ class Teacher(Person):
             self.connect()
             if self.con and self.c:
                 self.c.execute(sql[0], (self.fname, self.lname, self.db_birth))
+                self.con.commit()
                 self.c.execute(sql[1], (self.fname, self.lname, self.db_birth))
                 res = self.c.fetchone()
-                if res: self.id = res[0]
-                self.con.commit()
+                if res: self.id = int(res[0])
                 success = True
         except Error as e: print(e)
         finally: self.close()

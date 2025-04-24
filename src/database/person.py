@@ -18,7 +18,7 @@ class Person(DataObject):
         self.__lname:str = ''
         self.__birth_date:datetime|None = None
 
-        rename:str = r'[A-Z][a-z] ?-?'
+        rename:str = r'[A-Z][a-z]+ ?-?'
 
         fnames:list[str]|None = re.findall(rename, fname)
         lnames:list[str]|None = re.findall(rename, lname)
@@ -46,7 +46,7 @@ class Person(DataObject):
     
     @id.setter
     def id(self, id:int) -> None:
-        if type(id) == 'int' and id > 0:
+        if id > 0:
             self.__id = id
 
     @property

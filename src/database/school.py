@@ -38,3 +38,24 @@ class School(Data):
         finally: self.close()
 
         return self.__teachers
+    
+    def getTeacher(self, id:int) -> Teacher|None:
+        """
+        Sucht einen Lehrer in der Datenbank.
+
+        :param id: ID des Lehrers
+        :return: Instanz des Lehrers, **None**, wenn kein Lehrer gefunden wurde
+        """
+        teacher:Teacher|None = None
+        sql:str = 'SELECT * FROM teacher WHERE teach_id = ?'
+
+        try:
+            self.connect()
+            if self.con and self.c:
+                self.c.execute(sql, (id,))
+                res = self.c.fetchone()
+                if res: teacher = Teacher(res[1], res[2], res[3], res[0])
+        except Error as e: print(e)
+        finally: self.close()
+
+        return teacher

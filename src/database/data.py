@@ -58,7 +58,7 @@ class DataObject(Data, ABC):
     Repräsentiert eine Datenbankentität.
     """
     def __init__(self):
-        Data.__init__()
+        Data.__init__(self)
 
     @abstractmethod
     def exists(self) -> bool: 
