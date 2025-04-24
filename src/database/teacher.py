@@ -55,18 +55,50 @@ class Teacher(Person):
 
         :return: **True**, wenn der Lehrer bereits vorhanden ist
         """
-        sql:str = 'SELECT * FROM techer WHERE teach_id = ?'
+        sql:str = """SELECT * FROM teacher WHERE
+            teach_first_name = ? AND teach_last_name = ? teach_birth_date = ?"""
         success:bool = False
-
-        if self.id == 0: return False
 
         try:
             self.connect()
             if self.con and self.c:
-                self.c.execute(sql,(self.id,))
+                self.c.execute(sql,(self.fname, self.lname, self.fname))
                 res = self.c.fetchone()
                 if res: success = True
         except Error as e: print(e)
         finally: self.close()
 
         return success
+
+    def add(self) -> int:
+        """
+        Fügt einen Lehrer zur Datenbank hinzu.
+
+        :return:
+             | 0 - Erfolgreich
+             | 1 - Daten ungültig
+             | 3 - Lehrer bereits vorhanden
+        """
+        sql:list[str] = [
+            'INSERT INTO teacher VALUES(NULL,?,?,?)',
+            """SELECT teach_id FROM teacher
+                WHERE teach_first_name = ? AND teach_last_name = ? AND teach_birth_date = ?"""
+        ]
+        success:bool = False
+
+        if len(self.fname) == 0 or len(self.lname) == 0 or not self.birth_date: return 1
+        if self.exists(): return 3
+        
+        try:
+            self.connect()
+            if self.con and self.c:
+                self.c.execute(sql[0], self.fname, self.lname, self.db_birth)
+                self.c.execute(sql[1], self.fname, self.lname, self.db_birth)
+                res = self.c.fetchone()
+                if res: self.id = res[0]
+                self.con.commit()
+                success = True
+        except Error as e: print(e)
+        finally: self.close()
+
+        return 0 if success else 1
