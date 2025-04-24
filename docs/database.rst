@@ -8,7 +8,7 @@ UML-Klassendiagramm
 
 .. image:: img/database.png
 
-Module: data
+Modul: data
 =============
 
 .. autoclass:: database.Data
@@ -17,13 +17,19 @@ Module: data
 .. autoclass:: database.DataObject
     :members:
 
-Module: subject
-================
+Modul: subject
+===============
 
 .. autoclass:: database.Subject
     :members:
 
-Module: school
+Modul: pserson
+==============
+
+.. autoclass:: database.Person
+    :members:
+
+Modul: school
 ==============
 
 .. autoclass:: database.School

@@ -50,7 +50,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Paket: database</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#database.indb"><code class="docutils literal notranslate"><span class="pre">indb()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#uml-klassendiagramm">UML-Klassendiagramm</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-data">Module: data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#modul-data">Modul: data</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#database.Data"><code class="docutils literal notranslate"><span class="pre">Data</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#database.Data.c"><code class="docutils literal notranslate"><span class="pre">Data.c</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#database.Data.close"><code class="docutils literal notranslate"><span class="pre">Data.close()</span></code></a></li>
@@ -67,7 +67,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-subject">Module: subject</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#modul-subject">Modul: subject</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#database.Subject"><code class="docutils literal notranslate"><span class="pre">Subject</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#database.Subject.abr"><code class="docutils literal notranslate"><span class="pre">Subject.abr</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#database.Subject.add"><code class="docutils literal notranslate"><span class="pre">Subject.add()</span></code></a></li>
@@ -79,7 +79,18 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-school">Module: School</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#modul-pserson">Modul: pserson</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#database.Person"><code class="docutils literal notranslate"><span class="pre">Person</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#database.Person.birth_date"><code class="docutils literal notranslate"><span class="pre">Person.birth_date</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Person.db_birth"><code class="docutils literal notranslate"><span class="pre">Person.db_birth</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Person.fname"><code class="docutils literal notranslate"><span class="pre">Person.fname</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Person.id"><code class="docutils literal notranslate"><span class="pre">Person.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Person.lname"><code class="docutils literal notranslate"><span class="pre">Person.lname</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#modul-school">Modul: school</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#database.School"><code class="docutils literal notranslate"><span class="pre">School</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#database.School.subjects"><code class="docutils literal notranslate"><span class="pre">School.subjects</span></code></a></li>
 </ul>
@@ -132,8 +143,8 @@ Diese Funktion wird auch in Pytests verwendet. Sobald reale Daten existieren, so
 <h2>UML-Klassendiagramm<a class="headerlink" href="#uml-klassendiagramm" title="Link to this heading"></a></h2>
 <img alt="_images/database.png" src="_images/database.png" />
 </section>
-<section id="module-data">
-<h2>Module: data<a class="headerlink" href="#module-data" title="Link to this heading"></a></h2>
+<section id="modul-data">
+<h2>Modul: data<a class="headerlink" href="#modul-data" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="database.Data">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">database.</span></span><span class="sig-name descname"><span class="pre">Data</span></span><a class="headerlink" href="#database.Data" title="Link to this definition"></a></dt>
@@ -266,8 +277,8 @@ Diese Funktion wird auch in Pytests verwendet. Sobald reale Daten existieren, so
 </dd></dl>
 
 </section>
-<section id="module-subject">
-<h2>Module: subject<a class="headerlink" href="#module-subject" title="Link to this heading"></a></h2>
+<section id="modul-subject">
+<h2>Modul: subject<a class="headerlink" href="#modul-subject" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="database.Subject">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">database.</span></span><span class="sig-name descname"><span class="pre">Subject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">abr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.Subject" title="Link to this definition"></a></dt>
@@ -370,8 +381,90 @@ Diese Funktion wird auch in Pytests verwendet. Sobald reale Daten existieren, so
 </dd></dl>
 
 </section>
-<section id="module-school">
-<h2>Module: School<a class="headerlink" href="#module-school" title="Link to this heading"></a></h2>
+<section id="modul-pserson">
+<h2>Modul: pserson<a class="headerlink" href="#modul-pserson" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="database.Person">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">database.</span></span><span class="sig-name descname"><span class="pre">Person</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">birth_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.Person" title="Link to this definition"></a></dt>
+<dd><p>Repräsentiert eine Person.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameter<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fname</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Vorname der Person</p></li>
+<li><p><strong>lname</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Nachname der Person</p></li>
+<li><p><strong>birth_date</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Geburtdatum (JJJJ-MM-TT)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="database.Person.birth_date">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">birth_date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">datetime</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#database.Person.birth_date" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Liefert das Geburtsdatum der Person</p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p>Geburtdatum als datetime-Objekt, <strong>None</strong>, wenn im Konstruktor das Geburtdatum nicht im korrekten Format angegeben wurde</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="database.Person.db_birth">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">db_birth</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#database.Person.db_birth" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Liefert das Geburtdatum einer Person</p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p>Geburtdatum (JJJJ-MM-TT) einer Person</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="database.Person.fname">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fname</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#database.Person.fname" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Liefert den Vornamen der Person</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="database.Person.id">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#database.Person.id" title="Link to this definition"></a></dt>
+<dd><p>Verwaltet die Personen-ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Gibt den gespeicherten Wert der ID zurück</p>
+</dd>
+<dt class="field-even">Setter<span class="colon">:</span></dt>
+<dd class="field-even"><p>Setzt die ID wenn diese bei Erstellung noch nicht bekannt war und in der Datenbank gesucht worden ist</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="database.Person.lname">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lname</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#database.Person.lname" title="Link to this definition"></a></dt>
+<dd><p>Verwaltet den Familiennamen einer Person</p>
+<dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Liefert den Familienname</p>
+</dd>
+<dt class="field-even">Setter<span class="colon">:</span></dt>
+<dd class="field-even"><p>Ändert den Familienname</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="modul-school">
+<h2>Modul: school<a class="headerlink" href="#modul-school" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="database.School">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">database.</span></span><span class="sig-name descname"><span class="pre">School</span></span><a class="headerlink" href="#database.School" title="Link to this definition"></a></dt>
