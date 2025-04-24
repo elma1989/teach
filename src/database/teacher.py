@@ -17,7 +17,7 @@ class Teacher(Person):
         
         if self.id == 0:
             try:
-                self.connct()
+                self.connect()
                 if self.con and self.c:
                     self.c.execute(sql, (self.fname, self.lname, self.db_birth))
                     res = self.c.fetchone()
@@ -92,8 +92,8 @@ class Teacher(Person):
         try:
             self.connect()
             if self.con and self.c:
-                self.c.execute(sql[0], self.fname, self.lname, self.db_birth)
-                self.c.execute(sql[1], self.fname, self.lname, self.db_birth)
+                self.c.execute(sql[0], (self.fname, self.lname, self.db_birth))
+                self.c.execute(sql[1], (self.fname, self.lname, self.db_birth))
                 res = self.c.fetchone()
                 if res: self.id = res[0]
                 self.con.commit()
@@ -102,3 +102,6 @@ class Teacher(Person):
         finally: self.close()
 
         return 0 if success else 1
+    
+    def remove(self) -> int:
+        return 1

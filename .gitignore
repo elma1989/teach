@@ -2,3 +2,4 @@ env
 src/database/__pycache__
 teach.db
 src/__pycache__
+src/test/__pycache__
