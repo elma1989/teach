@@ -23,7 +23,7 @@ Modul: subject
 .. autoclass:: database.Subject
     :members:
 
-Modul: pserson
+Modul: person
 ==============
 
 .. autoclass:: database.Person

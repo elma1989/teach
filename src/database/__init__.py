@@ -8,6 +8,7 @@ from .data import Data, DataObject
 from .subject import Subject
 from .person import Person
 from .teacher import Teacher
+from .grade import Grade
 from .school import School
 
 def indb():
