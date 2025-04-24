@@ -48,3 +48,25 @@ class Teacher(Person):
         finally: self.close()
 
         return self.__subjects
+    
+    def exists(self) -> bool:
+        """
+        Prüft, ob ein Lehrer bereits vorhanden ist.
+
+        :return: **True**, wenn der Lehrer bereits vorhanden ist
+        """
+        sql:str = 'SELECT * FROM techer WHERE teach_id = ?'
+        success:bool = False
+
+        if self.id == 0: return False
+
+        try:
+            self.connect()
+            if self.con and self.c:
+                self.c.execute(sql,(self.id,))
+                res = self.c.fetchone()
+                if res: success = True
+        except Error as e: print(e)
+        finally: self.close()
+
+        return success
