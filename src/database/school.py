@@ -60,6 +60,29 @@ class School(Data):
         finally: self.close()
 
         return self.__grades
+
+    def grades_of(self,leader:Teacher) -> list[Grade]:
+        """
+        Zeigt alle Klassen eines Lehrers
+
+        :param leader: Instanz des Klassenleiters
+        :return: Klassenliste alphabetischer Ordnung
+        """
+        grades:list[Grade] = []
+        sql:str = 'SELECT grd_name FROM grade WHERE teach_id = ? ORDER BY grd_name'
+
+        if not isinstance(leader,Teacher) or not leader.exists(): return []
+
+        try:
+            self.connect()
+            if self.con and self.c:
+                self.c.execute(sql, (leader.id,))
+                res = self.c.fetchall()
+                grades = [Grade(row[0], leader) for row in res]
+        except Error as e: print(e)
+        finally: self.close()
+
+        return grades
     
     def getTeacher(self, id:int) -> Teacher|None:
         """

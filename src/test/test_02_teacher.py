@@ -33,8 +33,7 @@ def test_teacher_add():
 def test_teacher_add_subject():
     school = School()
     john = school.getTeacher(1)
-    print(john)
-    print(john.subjects)
+    maxm = school.getTeacher(2)
     eng = Subject('eng')
     mat = Subject('mat')
     deu = Subject('deu')
@@ -47,3 +46,7 @@ def test_teacher_add_subject():
     assert john.subjects == [mat]
     assert john.add_subject(deu) == 0
     assert john.subjects == [deu, mat]
+
+    assert maxm.add_subject(mat) == 0
+    assert maxm.add_subject(deu) == 0
+    assert maxm.subjects == [deu, mat]

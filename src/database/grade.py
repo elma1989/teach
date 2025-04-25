@@ -13,7 +13,7 @@ class Grade(DataObject):
     def __init__(self, name:str, leader:Teacher|None = None) -> None:
         super().__init__()
         self.__name:str = name
-        self.__leader:Teacher|None = None
+        self.__leader:Teacher|None = leader if isinstance(leader, Teacher) else None
         sql:str = """SELECT t.teach_first_name, t.teach_last_name, t.teach_birth_date, t.teach_id
             FROM teacher.t JOIN grade g
             WHERE g.grd_name = ?"""
