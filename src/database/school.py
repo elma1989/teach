@@ -1,4 +1,4 @@
-from database import Data, Error, Subject, Teacher, Grade
+from database import Data, Error, Subject, Teacher, Grade, Student
 
 class School(Data):
     """
@@ -83,6 +83,45 @@ class School(Data):
         finally: self.close()
 
         return grades
+    
+    def students(self, grade:Grade|None) -> list[Student]|None:
+        """
+        Liefert eine Liste von Schülern aus einer Klasse.
+
+        :param grade: Klasse aus der die Schüler stammen, wird **None** übergeben, wird nach Schülern ohne Klassenzuordnung gesucht
+        :return: Liste mit Schülern aus der Klasse, kann die Klasse nicht gefunden werden, wird **None** zurückgegen
+        """
+        students:list[Student] = []
+        sql:list[str] = [
+            """SELECT std_frist_name, std_last_name, std_birth_date, std_id
+                FROM student WHERE grd_name = ? ORDER BY std_last_name, std_first_name""",
+            """SELECT std_frist_name, std_last_name, std_birth_date, std_id
+                FROM student WHERE grd_name IS NULL ORDER BY std_last_name, std_first_name"""
+        ]
+
+        if isinstance(grade, Grade):
+            if not grade.exists(): return None
+            try:
+                self.connect()
+                if self.con and self.c:
+                    self.c.execute(sql[0], (grade.name,))
+                    res = self.c.fetchall()
+                    students = [Student(row[0], row[1], row[2], row[3]) for row in res]
+            except Error as e: print(e)
+            finally: self.close()
+
+        if not grade:
+            try:
+                self.connect()
+                if self.con and self.c:
+                    self.c.execute(sql[1])
+                    res = self.c.fetchall()
+                    students = [Student(row[0], row[1], row[2], row[3]) for row in res]
+            except Error as e: print(e)
+            finally: self.close()
+
+        return students
+
     
     def getTeacher(self, id:int) -> Teacher|None:
         """

@@ -18,7 +18,7 @@ class Person(DataObject):
         self.__lname:str = ''
         self.__birth_date:datetime|None = None
 
-        rename:str = r'[A-Z][a-z]+ ?-?'
+        rename:str = r'[A-ZÄÖU][a-zäöuß]+ ?-?'
 
         fnames:list[str]|None = re.findall(rename, fname)
         lnames:list[str]|None = re.findall(rename, lname)
