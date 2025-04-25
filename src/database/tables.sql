@@ -18,9 +18,10 @@ CREATE TABLE grade(
     teach_id INTEGER NOT NULL REFERENCES teacher(teach_id)
 );
 CREATE TABLE student(
-    std_id INTEGER NOT NULL PRIMARY KEY,
+    std_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     std_first_name VARCHAR(20) NOT NULL,
     std_last_name VARCHAR(20) NOT NULL,
+    std_birth_date DATE NOT NULL,
     grd_name VARCHAR(20) REFERENCES grade(grd_name) ON UPDATE CASCADE ON DELETE SET NULL
 );
 CREATE TABLE course(

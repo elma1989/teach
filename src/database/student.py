@@ -74,3 +74,40 @@ class Student(Person):
         finally: self.close()
 
         return success
+
+    def add(self) -> int:
+        """
+        Fügt einen neuen Schüler in die Datenbank ein.
+
+        :return:
+             | 0 - Erfolgreich
+             | 1 - Ungültige Daten
+             | 3 - Schüler bereits vorhanden
+        """
+        sql:list[str] = [
+            'INSERT INTO student VALUES(NULL,?,?,?,NULL)',
+            """SELECT std_id FROM student
+                WHERE std_first_name = ? AND std_last_name = ? AND std_birth_date = ?"""
+        ]
+        success:bool = False
+
+        if len(self.fname) == 0 or len(self.lname) == 0 or not self.birth_date: return 1
+        if self.exists(): return 3
+
+        try:
+            self.connect()
+            if self.con and self.c:
+                self.c.execute(sql[0],(self.fname, self.lname, self.db_birth))
+                self.con.commit()
+                self.c.execute(sql[1], (self.fname, self.lname, self.db_birth))
+                res = self.c.fetchone()
+                if res: self.id = res[0]
+                success = True
+        except Error as e: print(e)
+        finally: self.close()
+
+        return 0 if success else 1
+    
+    def remove(self) -> int:
+        return 1
+    
