@@ -27,3 +27,29 @@ class Student(Person):
                         self.__grade = Grade(res[1])
             except Error as e: print(e)
             finally: self.close()
+
+    @property
+    def grade(self) -> Grade|None:
+        """
+        Verwaltet die Klasse des Schülers.
+
+        :getter: Liefert die Klasse
+        :setter: Legt die Klasse fest
+        :return: **None**, wenn dem Schüler keine Klasse zugewiesen ist
+        """
+        return self.__grade
+    
+    @grade.setter
+    def grade(self, grade:Grade):
+        sql:str = 'UPDATE student SET grd_name = ? WHERE std_id = ?'
+
+        if isinstance(grade, Grade):
+            try:
+                self.connect()
+                if self.con and self.c:
+                    self.c.execute(FKON)
+                    self.c.execute(sql,(grade.name, self.id))
+                    self.con.commit()
+                    self.__grade = grade
+            except Error as e: print(e)
+            finally: self.close()
