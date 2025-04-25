@@ -53,3 +53,24 @@ class Student(Person):
                     self.__grade = grade
             except Error as e: print(e)
             finally: self.close()
+
+    def exists(self) -> bool:
+        """
+        Prüft, ob ein Schüler bereits existiert.
+
+        :return: **True**, wenn der Schüler bereits vorhanden ist
+        """
+        sql:str = """SELECT * FROM student
+            WHERE std_first_name = ? AND std_last_name = ? AND std_birth_date = ?"""
+        success:bool = False
+
+        try:
+            self.connect()
+            if self.con and self.c:
+                self.c.execute(sql, (self.fname, self.lname, self.db_birth))
+                res = self.c.fetchone()
+                if res: success = True
+        except Error as e: print(e)
+        finally: self.close()
+
+        return success
