@@ -23,7 +23,7 @@ Modul: subject
 .. autoclass:: database.Subject
     :members:
 
-Modul: pserson
+Modul: person
 ==============
 
 .. autoclass:: database.Person
@@ -33,6 +33,12 @@ Modul: teacher
 ==============
 
 .. autoclass:: database.Teacher
+    :members:
+
+Modul: grade
+============
+
+.. autoclass:: database.Grade
     :members:
 
 Modul: school

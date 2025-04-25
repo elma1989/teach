@@ -35,6 +35,12 @@ Modul: teacher
 .. autoclass:: database.Teacher
     :members:
 
+Modul: grade
+============
+
+.. autoclass:: database.Grade
+    :members:
+
 Modul: school
 ==============
 
