@@ -94,3 +94,30 @@ class Course(DataObject):
         finally: self.close()
 
         return success
+    
+    def add(self) -> int:
+        """
+        Fügt einen neuen Kurs in die Datenbank ein.
+
+        :return:
+             | 0 - Erfolgreich
+             | 1 - Nicht Korrekte Datenstruktur
+             | 2 - Leiter oder Fach existieren nicht
+             | 3 - Kurs ist bereits vorhanden
+        """
+        sql:str = 'INSERT INTO course VAULES(?,?,?)'
+        success:bool = False
+
+        if not isinstance(self.leader, Teacher) or not isinstance(self.subject, Subject): return 1
+        if not self.leader.exists() or not self.subject.exists(): return 2
+
+        try:
+            self.connect()
+            if self.con and self.c:
+                self.c.execute(sql,(self.name, self.leader.id, self.subject.abr))
+                self.con.commit()
+                success = True
+        except Error as e: print(e)
+        finally: self.close()
+
+        return 0 if success else 3
