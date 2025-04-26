@@ -68,3 +68,29 @@ class Course(DataObject):
     def subject(self) -> Subject|None:
         ''':getter: Liefert das Fach des Kurses'''
         return self.__subject
+
+    def __repr__(self) -> str: return self.name
+
+    def __eq__(self,other) -> bool:
+        if not  isinstance(other, Course): return False
+        return self.name == other.name
+
+    def exists(self) -> bool:
+        """
+        Prüft, ob der Kurs bereits vorhanden ist.
+
+        :return: **True**, wenn der Kurs bereits vorhanden ist
+        """
+        sql:str = 'SELECT * FROM course WHERE crs_name = ?'
+        success:bool = False
+
+        try:
+            self.connect()
+            if self.con and self.c:
+                self.c.execute(sql,(self.name,))
+                res = self.c.fetchone()
+                if res: success = True
+        except Error as e: print(e)
+        finally: self.close()
+
+        return success
