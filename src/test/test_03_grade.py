@@ -11,16 +11,21 @@ def test_grade_add():
     grd10a = Grade('10a', john)
 
     assert grd08a.add() == 2
+    assert not grd08a.exists()
     
     assert school.grades == []
     assert school.grades_of(maxm) == []
+    assert not grd09a.exists()
     assert grd09a.add() == 0
     assert grd09a.add() == 3
+    assert grd09a.exists()
     assert school.grades_of(maxm) == [grd09a]
     assert school.grades == [grd09a]
 
     assert school.grades_of(john) == []
+    assert not grd10a.exists()
     assert grd10a.add() == 0
+    assert grd10a.exists()
     assert school.grades_of(john) == [grd10a]
     assert school.grades == [grd09a, grd10a]
 

@@ -8,7 +8,7 @@ class Student(Person):
     :param lname:  Nachname des Schülers
     :param birth_date: Geburtsdatum (JJJJ-MM-TT) des Schülers
     :param id: ID des Schülers (Standard: 0)
-    :param grade: Instaz der zugeörigen Klasse (Standard: None)
+    :ivar grade: Instaz der zugeörigen Klasse (Standard: None)
     """
     def __init__(self,fname:str,lname:str,birth_date:str, id:int=0):
         super().__init__(fname, lname, birth_date, id)

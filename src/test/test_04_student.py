@@ -38,3 +38,15 @@ def test_student_grade():
     lotte.grade = cls10a
     assert lotte.grade == cls10a
     assert school.students(cls10a) == [carl, lotte]
+
+def test_student_to_dict():
+    school = School()
+    carl = school.getStudent(1)
+    test = {
+        'id':1,
+        'fname':'Carl Friedrich',
+        'lname':'Gauß',
+        'birthDate': '1777-04-30'
+    }
+
+    assert carl.to_dict() == test
