@@ -10,23 +10,9 @@ class Student(Person):
     :param id: ID des Schülers (Standard: 0)
     :param grade: Instaz der zugeörigen Klasse (Standard: None)
     """
-    def __init__(self,fname:str,lname:str,birth_date:str, id:int=0, grade:Grade|None = None):
+    def __init__(self,fname:str,lname:str,birth_date:str, id:int=0):
         super().__init__(fname, lname, birth_date, id)
-        self.__grade = grade if isinstance(grade, Grade) and grade.exists() else None
-        sql:str = """SELECT std_id, grd_name FROM student
-            WHERE std_first_name = ? AND std_last_name = ? AND std_birth_date = ?"""
-        
-        if not grade or id == 0:
-            try:
-                self.connect()
-                if self.con and self.c:
-                    self.c.execute(sql, (self.fname, self.lname, self.db_birth))
-                    res = self.c.fetchone()
-                    if res:
-                        self.id = res[0]
-                        self.__grade = Grade(res[1])
-            except Error as e: print(e)
-            finally: self.close()
+        self.__grade:Grade|None = None
 
     @property
     def grade(self) -> Grade|None:
@@ -37,13 +23,25 @@ class Student(Person):
         :setter: Legt die Klasse fest
         :return: **None**, wenn dem Schüler keine Klasse zugewiesen ist
         """
+        sql:str = 'SELECT grd_name FROM student WHERE std_id = ?'
+        self.__grade = None
+
+        try:
+            self.connect()
+            if self.con and self.c:
+                self.c.execute(sql, (self.id,))
+                res = self.c.fetchone()
+                if res and res[0]: self.__grade = Grade(res[0])
+        except Error as e: print(e)
+        finally: self.close()
+
         return self.__grade
     
     @grade.setter
     def grade(self, grade:Grade):
-        sql:str = 'UPDATE student SET grd_name = ? WHERE std_id = ?'
+        sql:str = "UPDATE student SET grd_name = ? WHERE std_id = ?"
 
-        if isinstance(grade, Grade):
+        if isinstance(grade, Grade) and grade.exists():
             try:
                 self.connect()
                 if self.con and self.c:

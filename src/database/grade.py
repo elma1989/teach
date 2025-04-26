@@ -90,7 +90,7 @@ class Grade(DataObject):
 
         :return: **True**, wenn die Klasse bereits existiert
         """
-        sql:str = 'SELECT * FROM grade WEHRE grd_name = ?'
+        sql:str = 'SELECT * FROM grade WHERE grd_name = ?'
         success:bool = False
 
         try:

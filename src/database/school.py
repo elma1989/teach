@@ -61,6 +61,27 @@ class School(Data):
 
         return self.__grades
 
+    def getTeacher(self, id:int) -> Teacher|None:
+        """
+        Sucht einen Lehrer in der Datenbank.
+
+        :param id: ID des Lehrers
+        :return: Instanz des Lehrers, **None**, wenn kein Lehrer gefunden wurde
+        """
+        teacher:Teacher|None = None
+        sql:str = 'SELECT * FROM teacher WHERE teach_id = ?'
+
+        try:
+            self.connect()
+            if self.con and self.c:
+                self.c.execute(sql, (id,))
+                res = self.c.fetchone()
+                if res: teacher = Teacher(res[1], res[2], res[3], res[0])
+        except Error as e: print(e)
+        finally: self.close()
+
+        return teacher
+
     def grades_of(self,leader:Teacher) -> list[Grade]:
         """
         Zeigt alle Klassen eines Lehrers
@@ -84,6 +105,28 @@ class School(Data):
 
         return grades
     
+    def getStudent(self, id:int) -> Student|None:
+        """
+        Sucht einen Schüler anhand der ID.
+
+        :param id: ID des Schülers
+        :return: Instanz des Schülers, **None**, wenn der Schüler nicht gefunden wurde
+        """
+        student:Student|None = None
+        sql:str = """SELECT std_first_name, std_last_name, std_birth_date, std_id 
+            FROM student WHERE std_id = ?"""
+
+        try:
+            self.connect()
+            if self.con and self.c:
+                self.c.execute(sql,(id,))
+                res = self.c.fetchone()
+                if res: student = Student(res[0], res[1], res[2], res[3])
+        except Error as e: print(e)
+        finally: self.close()
+
+        return student
+    
     def students(self, grade:Grade|None) -> list[Student]|None:
         """
         Liefert eine Liste von Schülern aus einer Klasse.
@@ -93,9 +136,9 @@ class School(Data):
         """
         students:list[Student] = []
         sql:list[str] = [
-            """SELECT std_frist_name, std_last_name, std_birth_date, std_id
+            """SELECT std_first_name, std_last_name, std_birth_date, std_id
                 FROM student WHERE grd_name = ? ORDER BY std_last_name, std_first_name""",
-            """SELECT std_frist_name, std_last_name, std_birth_date, std_id
+            """SELECT std_first_name, std_last_name, std_birth_date, std_id
                 FROM student WHERE grd_name IS NULL ORDER BY std_last_name, std_first_name"""
         ]
 
@@ -121,25 +164,3 @@ class School(Data):
             finally: self.close()
 
         return students
-
-    
-    def getTeacher(self, id:int) -> Teacher|None:
-        """
-        Sucht einen Lehrer in der Datenbank.
-
-        :param id: ID des Lehrers
-        :return: Instanz des Lehrers, **None**, wenn kein Lehrer gefunden wurde
-        """
-        teacher:Teacher|None = None
-        sql:str = 'SELECT * FROM teacher WHERE teach_id = ?'
-
-        try:
-            self.connect()
-            if self.con and self.c:
-                self.c.execute(sql, (id,))
-                res = self.c.fetchone()
-                if res: teacher = Teacher(res[1], res[2], res[3], res[0])
-        except Error as e: print(e)
-        finally: self.close()
-
-        return teacher
