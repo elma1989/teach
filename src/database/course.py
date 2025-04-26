@@ -8,7 +8,7 @@ class Course(DataObject):
     :param leader: Lehrerinstanz des Klassenleiters (Standard: None)
     :param subject: Instanz des Faches (Standard: None)
     """
-    def __init__(self, name:str, leader:Teacher|None=None, subject:Subject|None=None):
+    def __init__(self, name:str, leader:Teacher|None=None, subject:Subject|None=None) -> None:
         self.__name = name
         self.__leader:Teacher|None = None
         self.__subject:Subject|None = None 
@@ -31,3 +31,40 @@ class Course(DataObject):
                         self.__subject = Subject(res[4], res[5])
             except Error as e: print(e)
             finally: self.close()
+
+    @property
+    def name(self) -> str:
+        """
+        :getter: Liefet den Namen des Kurses
+        """
+        return self.__name
+
+    @property
+    def leader(self) -> Teacher|None:
+        """
+        Verwaltet den Kursleiter.
+
+        :getter: Liefert den Kursleiter
+        :setter: Wechselt den Kursleiter
+        """
+        return self.__leader
+
+    @leader.setter
+    def leader(self,leader:Teacher) -> None:
+        sql:str = 'UPDATE course SET teach_id = ? WHERE crs_name = ?'
+
+        if isinstance(leader, Teacher):
+            try:
+                self.connect()
+                if self.con and self.c:
+                    self.c.execute(FKON)
+                    self.c.execute(sql,(leader.id, self.name))
+                    self.con.commit()
+                    self.__leader = leader
+            except Error as e: print(e)
+            finally: self.close()
+    
+    @property
+    def subject(self) -> Subject|None:
+        ''':getter: Liefert das Fach des Kurses'''
+        return self.__subject
