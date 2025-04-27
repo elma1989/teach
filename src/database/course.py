@@ -1,5 +1,5 @@
 from typing import Any
-from database import DataObject, Teacher, Subject, Error, FKON
+from database import DataObject, Teacher, Subject, Student, Error, FKON
 
 class Course(DataObject):
     """
@@ -8,11 +8,13 @@ class Course(DataObject):
     :param name: Kursname
     :param leader: Lehrerinstanz des Klassenleiters (Standard: None)
     :param subject: Instanz des Faches (Standard: None)
+    :ivar students: Mitgliederlieste
     """
     def __init__(self, name:str, leader:Teacher|None=None, subject:Subject|None=None) -> None:
         self.__name = name
         self.__leader:Teacher|None = None
         self.__subject:Subject|None = None 
+        self.__students:list[Student] = []
         sql:str = """SELECT t.teach_first_name, t.teach_last_name, t.teach_birth_date, t.teach_id, s.sub_abr, s.sub_name
             FROM course c JOIN teacher t ON c.teach_id = t.teach_id
             JOIN subject s ON c.sub_abr = s.sub_abr
@@ -69,6 +71,24 @@ class Course(DataObject):
     def subject(self) -> Subject|None:
         ''':getter: Liefert das Fach des Kurses'''
         return self.__subject
+
+    @property
+    def students(self) -> list[Student]:
+        ''':getter: Liefert alle Kursteilnehmer alphbetischer Ordnung'''
+        sql:str = """SELECT s.std_frist_name s.std_last_name, s.std_birth_date, s.std_id
+            FROM student_course sc JOIN student s ON sc.std_id = s.std_id
+            WHERE sc.crs_name = ? ORDER BY s.std_last_name, s.std_first_name"""
+        
+        try:
+            self.connect()
+            if self.con and self.c:
+                self.c.execute(sql,(self.name))
+                res = self.c.fetchall()
+                self.__students = [Student(row[0], row[1], row[2], row[3]) for row in res]
+        except Error as e: print(e)
+        finally: self.close()
+
+        return self.__students
 
     def __repr__(self) -> str: return self.name
 
