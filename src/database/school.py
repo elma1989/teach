@@ -1,13 +1,14 @@
-from database import Data, Error, Subject, Teacher, Grade, Student
+from database import Data, Error, Subject, Teacher, Grade, Student, Course
 
 class School(Data):
     """
     Dient zur Verwaltung von Daten.
     """
     def __init__(self) -> None:
-        self.__subjects: list[Subject]
-        self.__teachers: list[Teacher]
-        self.__grades: list[Grade]
+        self.__subjects: list[Subject] = []
+        self.__teachers: list[Teacher] = []
+        self.__grades: list[Grade] = []
+        self.__courses: list[Course] = []
 
     @property
     def subjects(self) -> list[Subject]:
@@ -60,6 +61,20 @@ class School(Data):
         finally: self.close()
 
         return self.__grades
+    
+    @property
+    def courses(self) -> list[Course]:
+        sql:str = 'SELECT crs_name FROM course ORDER BY crs_name'
+        try:
+            self.connect()
+            if self.con and self.c:
+                self.c.execute(sql)
+                res = self.c.fetchall()
+                self.__courses = [Course(row[0]) for row in res]
+        except Error as e: print(e)
+        finally: self.close()
+
+        return self.__courses
 
     def getTeacher(self, id:int) -> Teacher|None:
         """
