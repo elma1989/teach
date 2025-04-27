@@ -60,3 +60,14 @@ def test_course_leader():
 
     deu2.leader = john
     assert deu2.leader == john
+
+def test_course_to_dict():
+    mat1 = Course('MAT 1')
+    test = {
+        'name':'MAT 1',
+        'subject':{
+            'abr':'MAT',
+            'name':'Mathematik'
+        }
+    }
+    assert mat1.to_dict() == test

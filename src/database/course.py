@@ -1,3 +1,4 @@
+from typing import Any
 from database import DataObject, Teacher, Subject, Error, FKON
 
 class Course(DataObject):
@@ -124,5 +125,12 @@ class Course(DataObject):
     def remove(self) -> int:
         return 1
     
-    def to_dict(self) -> dict[str,str]:
-        return {}
+    def to_dict(self) -> dict[str,Any]:
+        """
+        Liefert die Kerndaten eines Kurses.
+
+        :return: Wörterbuch des Kurses
+        """    
+        outdict:dict[str,str] = {'name':self.name}
+        if self.subject: outdict['subject'] = self.subject.to_dict()
+        return outdict
