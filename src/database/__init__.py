@@ -11,6 +11,7 @@ from .teacher import Teacher
 from .grade import Grade
 from .student import Student
 from .course import Course
+from .lesson import Lesson
 from .school import School
 
 def indb():
