@@ -10,6 +10,7 @@ from .person import Person
 from .teacher import Teacher
 from .grade import Grade
 from .student import Student
+from .course import Course
 from .school import School
 
 def indb():

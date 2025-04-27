@@ -47,6 +47,12 @@ Modul: grade
 .. autoclass:: database.Grade
     :members:
 
+Modul: course
+=============
+
+.. autoclass:: database.Course
+    :members:
+
 Modul: school
 ==============
 

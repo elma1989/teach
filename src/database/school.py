@@ -64,6 +64,7 @@ class School(Data):
     
     @property
     def courses(self) -> list[Course]:
+        ''':getter: Liefert eine Liste von allen in der Schule angebotenen Kursen'''
         sql:str = 'SELECT crs_name FROM course ORDER BY crs_name'
         try:
             self.connect()
@@ -97,17 +98,17 @@ class School(Data):
 
         return teacher
 
-    def grades_of(self,leader:Teacher) -> list[Grade]:
+    def grades_of(self,leader:Teacher) -> list[Grade]|None:
         """
         Zeigt alle Klassen eines Lehrers
 
         :param leader: Instanz des Klassenleiters
-        :return: Klassenliste alphabetischer Ordnung
+        :return: Klassenliste alphabetischer Ordnung, **None**, wenn der Lehr nicht existiert
         """
         grades:list[Grade] = []
         sql:str = 'SELECT grd_name FROM grade WHERE teach_id = ? ORDER BY grd_name'
 
-        if not isinstance(leader,Teacher) or not leader.exists(): return []
+        if not isinstance(leader,Teacher) or not leader.exists(): return None
 
         try:
             self.connect()
@@ -179,3 +180,27 @@ class School(Data):
             finally: self.close()
 
         return students
+
+    def courses_of(self, leader:Teacher) -> list[Course]|None:
+        """
+        Liefet eine Liste von Kursen eines Lehrers.
+
+        :param leader: Lehrerinstanz, bei der der Lehrer Kursleiter ist.
+        :return: Kursliste mit allen Kursen, bei denen der übergebene Lehrer der Kursleiter ist,
+            **None**, wenn der Lehrer nicht existiert
+        """
+        courses:list[Course] = []
+        sql:str = 'SELECT crs_name FROM course WHERE teach_id = ? ORDER BY crs_name'
+
+        if not isinstance(leader, Teacher) or not leader.exists(): return None
+
+        try:
+            self.connect()
+            if self.con and self.c:
+                self.c.execute(sql,(leader.id,))
+                res = self.c.fetchall()
+                courses = [Course(row[0]) for row in res]
+        except Error as e: print(e)
+        finally: self.close()
+
+        return courses

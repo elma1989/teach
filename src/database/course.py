@@ -53,7 +53,7 @@ class Course(DataObject):
     def leader(self,leader:Teacher) -> None:
         sql:str = 'UPDATE course SET teach_id = ? WHERE crs_name = ?'
 
-        if isinstance(leader, Teacher):
+        if isinstance(leader, Teacher) and self.subject in leader.subjects:
             try:
                 self.connect()
                 if self.con and self.c:
@@ -101,16 +101,15 @@ class Course(DataObject):
 
         :return:
              | 0 - Erfolgreich
-             | 1 - Nicht Korrekte Datenstruktur
              | 2 - Leiter oder Fach existieren nicht
              | 3 - Kurs ist bereits vorhanden
         """
-        sql:str = 'INSERT INTO course VAULES(?,?,?)'
+        sql:str = 'INSERT INTO course VALUES(?,?,?)'
         success:bool = False
 
-        if not isinstance(self.leader, Teacher) or not isinstance(self.subject, Subject): return 1
-        if not self.leader.exists() or not self.subject.exists(): return 2
-
+        if not isinstance(self.leader, Teacher) or not isinstance(self.subject, Subject): return 2
+        if not self.subject.exists() or not self.subject in self.leader.subjects: return 2
+        
         try:
             self.connect()
             if self.con and self.c:
@@ -121,3 +120,9 @@ class Course(DataObject):
         finally: self.close()
 
         return 0 if success else 3
+    
+    def remove(self) -> int:
+        return 1
+    
+    def to_dict(self) -> dict[str,str]:
+        return {}

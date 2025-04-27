@@ -92,7 +92,7 @@ class DataObject(Data, ABC):
             | 0 - erfolgreich
             | 1 - Objekt ist nicht Vorhanden
             | 2 - Objekt kann nicht gelöscht werden, da noch Referenzen vorhanden sind
-            | 4 - Datenbankfehler
+            | 3 - Datenbankfehler
         """
         pass
 
