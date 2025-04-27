@@ -1,4 +1,4 @@
-from database import School, Course, Teacher, Subject
+from database import School, Course, Teacher, Subject, Student
 
 def test_course_add():
     school = School()
@@ -71,3 +71,29 @@ def test_course_to_dict():
         }
     }
     assert mat1.to_dict() == test
+
+def test_course_add_student():
+    school = School()
+    mat1 = Course('MAT 1')
+    deu2 = Course('DEU 2')
+    john = school.getTeacher(1)
+    carl = school.getStudent(1)
+    lotte = school.getStudent(2)
+    ernst = Student('Erst', 'des Lebens', '2010-06-06')
+
+    assert mat1.students == []
+    assert deu2.students == []
+
+    assert deu2.add_student(john) == 1
+    assert mat1.add_student(ernst) == 2
+
+    assert mat1.add_student(carl) == 0
+    assert mat1.add_student(carl) == 3
+    assert mat1.students == [carl]
+    assert mat1.add_student(lotte) == 0
+    assert mat1.students == [carl, lotte]
+
+    assert deu2.add_student(carl) == 0
+    assert deu2.students == [carl]
+    assert deu2.add_student(lotte) == 0
+    assert deu2.students == [carl, lotte]

@@ -75,14 +75,14 @@ class Course(DataObject):
     @property
     def students(self) -> list[Student]:
         ''':getter: Liefert alle Kursteilnehmer alphbetischer Ordnung'''
-        sql:str = """SELECT s.std_frist_name s.std_last_name, s.std_birth_date, s.std_id
+        sql:str = """SELECT s.std_first_name, s.std_last_name, s.std_birth_date, s.std_id
             FROM student_course sc JOIN student s ON sc.std_id = s.std_id
             WHERE sc.crs_name = ? ORDER BY s.std_last_name, s.std_first_name"""
         
         try:
             self.connect()
             if self.con and self.c:
-                self.c.execute(sql,(self.name))
+                self.c.execute(sql,(self.name,))
                 res = self.c.fetchall()
                 self.__students = [Student(row[0], row[1], row[2], row[3]) for row in res]
         except Error as e: print(e)
@@ -154,3 +154,32 @@ class Course(DataObject):
         outdict:dict[str,str] = {'name':self.name}
         if self.subject: outdict['subject'] = self.subject.to_dict()
         return outdict
+    
+    def add_student(self, std:Student) -> int:
+        """
+        Fügt einen Schüler zur Datenbank hinzu.
+
+        :param std: zu hinzufügender Schüler
+        :return:
+             | 0 - Erfolgreich
+             | 1 - Übertragenes Objekt ist kein Schüler
+             | 2 - Schüler ist nicht vorhanden
+             | 3 - Schüler ist bereits in dem Kurs eingetragen
+        """
+        sql:str = 'INSERT INTO student_course VALUES(?,?)'
+        success:bool = False
+
+        if not isinstance(std, Student): return 1
+        if not std.exists(): return 2
+
+        try:
+            self.connect()
+            if self.con and self.c:
+                self.c.execute(FKON)
+                self.c.execute(sql,(std.id, self.name))
+                self.con.commit()
+                success = True
+        except Error as e: print(e)
+        finally: self.close()
+
+        return 0 if success else 3
