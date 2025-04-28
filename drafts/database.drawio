@@ -281,7 +281,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="9JVvJ3Rt9GsTWxerm993-178" value="Lesson" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="313" y="1082" width="200" height="266" as="geometry" />
+          <mxGeometry x="313" y="1082" width="200" height="282" as="geometry" />
         </mxCell>
         <mxCell id="9JVvJ3Rt9GsTWxerm993-179" value="- course: Course|None" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="9JVvJ3Rt9GsTWxerm993-178" vertex="1">
           <mxGeometry y="26" width="200" height="26" as="geometry" />
@@ -301,14 +301,14 @@
         <mxCell id="9JVvJ3Rt9GsTWxerm993-184" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="9JVvJ3Rt9GsTWxerm993-178" vertex="1">
           <mxGeometry y="156" width="200" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="9JVvJ3Rt9GsTWxerm993-185" value="&lt;div&gt;+ Lesson(&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;course: Course,&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;time: str)&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="9JVvJ3Rt9GsTWxerm993-178" vertex="1">
-          <mxGeometry y="164" width="200" height="50" as="geometry" />
+        <mxCell id="9JVvJ3Rt9GsTWxerm993-185" value="&lt;div&gt;+ Lesson(&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;course: Course,&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;time: str,&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;topic:str = &#39;&#39;)&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="9JVvJ3Rt9GsTWxerm993-178" vertex="1">
+          <mxGeometry y="164" width="200" height="66" as="geometry" />
         </mxCell>
         <mxCell id="9JVvJ3Rt9GsTWxerm993-186" value="+ getter / setter" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="9JVvJ3Rt9GsTWxerm993-178" vertex="1">
-          <mxGeometry y="214" width="200" height="26" as="geometry" />
+          <mxGeometry y="230" width="200" height="26" as="geometry" />
         </mxCell>
         <mxCell id="9JVvJ3Rt9GsTWxerm993-187" value="+ add_homework(task:str): bool" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="9JVvJ3Rt9GsTWxerm993-178" vertex="1">
-          <mxGeometry y="240" width="200" height="26" as="geometry" />
+          <mxGeometry y="256" width="200" height="26" as="geometry" />
         </mxCell>
         <mxCell id="9JVvJ3Rt9GsTWxerm993-188" value="" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;" parent="1" source="9JVvJ3Rt9GsTWxerm993-178" target="9JVvJ3Rt9GsTWxerm993-122" edge="1">
           <mxGeometry width="160" relative="1" as="geometry">
