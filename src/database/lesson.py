@@ -8,10 +8,10 @@ class Lesson(DataObject):
     :param course: Zugehöriger Kurs
     :param time: Geplanter Unterrichtsbeginn (JJJJ-TT-MM HH:MM)
     """
-    def __init__(self, course:Course, time:str) -> None:
+    def __init__(self, course:Course, time:str, topic:str = '') -> None:
         self.__course:Course|None = course if isinstance(course, Course) and course.exists() else None
         self.__time:datetime|None = None
-        self.__topic:str = ''
+        self.__topic:str = topic
         self.__homeworks:list[str] = []
         self.__students:list[tuple[Student,bool]] = []
 
@@ -58,5 +58,28 @@ class Lesson(DataObject):
                     self.c.execute(sql,(time, self.course.name, self.db_time))
                     self.con.commit()
                     self.__time = new_time
+            except Error as e: print(e)
+            finally: self.close()
+
+    @property
+    def topic(self) -> str:
+        """
+        Vervaltet das Thema der Stunde.
+
+        :getter: Liefert das Thema
+        :setter: Legt des Thema fest
+        """
+        return self.__topic
+
+    @topic.setter
+    def topic(self, topic) -> None:
+        sql:str = 'UPDATE lesson SET les_topic = ?'
+
+        if self.course and self.time:
+            try:
+                self.connect()
+                if self.con and self.c:
+                    self.c.execute(sql,(topic,))
+                    self.con.commit()
             except Error as e: print(e)
             finally: self.close()
