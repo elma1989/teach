@@ -17,7 +17,7 @@ class Lesson(DataObject):
         self.__students:list[tuple[Student,bool]] = []
 
         try:
-            time = datetime.strptime(time,'%Y-%m-%d %H:%M')
+            self.__time = datetime.strptime(time,'%Y-%m-%d %H:%M')
         except ValueError as e: print(e)
 
     @property
@@ -111,7 +111,7 @@ class Lesson(DataObject):
             WHERE ls.crs_name = ? AND ls.les_time = ?
             ORDER BY s.std_last_name, s.std_first_name"""
         
-        if isinstance(self.course, Course) and self.time:
+        if self.course and self.time:
             try:
                 self.connect()
                 if self.con and self.c:
@@ -124,15 +124,15 @@ class Lesson(DataObject):
         return self.__students
     
     def __repr__(self) -> str:
-        return f'{self.course.name}: {self.db_time}' if isinstance(self.course, Course) and self.time else 'NO DATA'
+        return f'{self.course.name}: {self.db_time}' if self.course and self.time else 'NO DATA'
     
     def __eq__(self,other) -> bool:
         if not isinstance(other, Lesson): return False
-        if not isinstance(self.course, Course) or not self.time: return False
-        if not isinstance(other.course, Course) or not other.time: return False
+        if not self.course or not self.time: return False
+        if not self.course or not other.time: return False
         return self.course == other.course and self.time == other.time
 
-    def exists(self):
+    def exists(self) -> bool:
         """
         Prüft, ob eine Stunde bereits vorhanden ist.
 
@@ -141,7 +141,7 @@ class Lesson(DataObject):
         sql:str= 'SELECT * FROM lessen WHERE crs_name = ? AND les_time = ?'
         success:bool = False
 
-        if not isinstance(self.course, Course) or not self.time: return False
+        if not self.course or not self.time: return False
 
         try:
             self.connect()
@@ -153,3 +153,43 @@ class Lesson(DataObject):
         finally: self.close()
 
         return success
+
+    def add(self) -> int:
+        """
+        Fügt eine Unterrichtstunde zur Datenbank hinzu.
+
+        :return:
+             | 0 - Erfolgreich
+             | 1 - Zeitformat ungültig
+             | 2 - Kurs nicht vorhanden
+             | 3 - Stunde bereits vorhanden
+        """
+
+        if not self.time: return 1
+        if not self.course: return 2
+
+        students:list[tuple] = [(self.course.name, self.db_time, std.id) for std in self.course.students]
+        sql:list[str] = [
+            'INSERT INTO lesson VALUES(?,?,NULL)',
+            'INSERT INTO lesson_student VALUES(?,?,?,NULL)'
+        ]
+        success:bool = False
+
+        try:
+            self.connect()
+            if self.con and self.c:
+                self.c.execute(FKON)
+                self.c.execute(sql[0],(self.course.name, self.db_time))
+                self.c.executemany(sql[1], students)
+                self.con.commit()
+                success = True
+        except Error as e: print(e)
+        finally: self.close()
+
+        return 0 if success else 3
+    
+    def remove(self) -> int:
+        return 1
+    
+    def to_dict(self) -> dict[str,str]:
+        return {}

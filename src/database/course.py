@@ -151,7 +151,7 @@ class Course(DataObject):
 
         :return: Wörterbuch des Kurses
         """    
-        outdict:dict[str,str] = {'name':self.name}
+        outdict:dict[str,Any] = {'name':self.name}
         if self.subject: outdict['subject'] = self.subject.to_dict()
         return outdict
     
