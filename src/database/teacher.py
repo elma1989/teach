@@ -109,7 +109,7 @@ class Teacher(Person):
     
     def add_subject(self, sub:Subject) -> int:
         """
-        Fügt dem Leher ein neues Fach hinzu.
+        Fügt dem Lehrer ein neues Fach hinzu.
 
         :param sub: zu hinzufügendes Fach
         :return: 

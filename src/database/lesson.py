@@ -26,6 +26,14 @@ class Lesson(DataObject):
         return self.__course
     
     @property
+    def db_time(self) -> str:
+        """
+        :getter: Liefert die Datenbankzeit der Stunde
+        :return: Zeit (JJJJ-MM-TT HH:MM)
+        """
+        return self.time.strftime('%Y-%m-%d %H:%M') if self.time else ''
+
+    @property
     def time(self) -> datetime|None:
         """
         Verwaltet den Unterrichtsbegin.
@@ -35,14 +43,6 @@ class Lesson(DataObject):
         :return: datetime-Objekt des Unterrichtsbegins
         """
         return self.__time
-    
-    @property
-    def db_time(self) -> str:
-        """
-        :getter: Liefert die Datenbankzeit der Stunde
-        :return: Zeit (JJJJ-MM-TT HH:MM)
-        """
-        return self.time.strftime('%Y-%m-%d %H:%M') if self.time else ''
     
     @time.setter
     def time(self,time:str) -> None:
@@ -131,3 +131,25 @@ class Lesson(DataObject):
         if not isinstance(self.course, Course) or not self.time: return False
         if not isinstance(other.course, Course) or not other.time: return False
         return self.course == other.course and self.time == other.time
+
+    def exists(self):
+        """
+        Prüft, ob eine Stunde bereits vorhanden ist.
+
+        :return: **True**, wenn die Stunde vorhanden ist
+        """
+        sql:str= 'SELECT * FROM lessen WHERE crs_name = ? AND les_time = ?'
+        success:bool = False
+
+        if not isinstance(self.course, Course) or not self.time: return False
+
+        try:
+            self.connect()
+            if self.con and self.c:
+                self.c.execute(sql, (self.course.name, self.db_time))
+                res = self.c.fetchone()
+                if res: success = True
+        except Error as e: print(e)
+        finally: self.close()
+
+        return success
