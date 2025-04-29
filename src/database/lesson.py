@@ -102,3 +102,32 @@ class Lesson(DataObject):
             finally: self.close()
 
         return self.__homeworks
+    
+    @property
+    def students(self) -> list[tuple[Student,bool]]:
+        ''':getter: Liefert eine Liste der Studenten und dem Anwensenheitsstatus (**True** = anwesend)'''
+        sql:str = """SELECT s.std_first_name, s.std_last_name, s.std_birth_date, s.std_id, ls_student_present
+            FROM student s JOIN lesson_student ls ON s.std_id = ls.std_id
+            WHERE ls.crs_name = ? AND ls.les_time = ?
+            ORDER BY s.std_last_name, s.std_first_name"""
+        
+        if isinstance(self.course, Course) and self.time:
+            try:
+                self.connect()
+                if self.con and self.c:
+                    self.c.execute(sql, (self.course.name, self.db_time))
+                    res = self.c.fetchall()
+                    self.__students = [(Student(row[0], row[1], row[2], row[3]), bool(row[4])) for row in res]
+            except Error as e: print(e)
+            finally: self.close()
+
+        return self.__students
+    
+    def __repr__(self) -> str:
+        return f'{self.course.name}: {self.db_time}' if isinstance(self.course, Course) and self.time else 'NO DATA'
+    
+    def __eq__(self,other) -> bool:
+        if not isinstance(other, Lesson): return False
+        if not isinstance(self.course, Course) or not self.time: return False
+        if not isinstance(other.course, Course) or not other.time: return False
+        return self.course == other.course and self.time == other.time
