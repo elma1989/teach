@@ -110,7 +110,7 @@ class Lesson(DataObject):
         :getter: Liefert eine Liste der Studenten und dem Anwensenheitsstatus
         :return: Eine Liste aus Tupeln mit der Instanz des Schülers und einem boolischen Wert (**True** = anwesend)
         """
-        sql:str = """SELECT s.std_first_name, s.std_last_name, s.std_birth_date, s.std_id, ls_student_present
+        sql:str = """SELECT s.std_first_name, s.std_last_name, s.std_birth_date, s.std_id, ls.les_student_present
             FROM student s JOIN lesson_student ls ON s.std_id = ls.std_id
             WHERE ls.crs_name = ? AND ls.les_time = ?
             ORDER BY s.std_last_name, s.std_first_name"""
@@ -234,3 +234,37 @@ class Lesson(DataObject):
         finally: self.close()
 
         return 0 if success else 2
+
+    def set_present_status(self, presents:list[bool]) -> int:
+        """
+        Spreichert die zutreffenden Anwesenhietsstati ab.
+
+        :param presents: Liste mit Anwesenheitsstati (**True** = anwesend) in identischer Reihenfolge der Liste der Kursteilnehmer
+        :return:
+             | 0 - Erfolgreich
+             | 1 - Übermittelte Liste ist nicht korekt
+             | 2 - Stunde wurde nicht gefunden
+        """
+        sql:str = """UPDATE lesson_student SET les_student_present = ?
+            WHERE crs_name = ? AND les_time = ? AND std_id = ?"""
+        success:bool = False
+        
+        if not self.course or not self.time: return 2
+        if not self.exists(): return 2
+        if len(self.course.students) != len(presents): return 1
+        for case in presents:
+            if type(case) != bool: return 1
+        
+        data:list[tuple] = [(y, self.course.name, self.db_time, x.id) for x,y in zip(self.course.students, presents)]
+
+        try:
+            self.connect()
+            if self.con and self.c:
+                self.c.execute(FKON)
+                self.c.executemany(sql, data)
+                self.con.commit()
+                success = True
+        except Error as e: print(e)
+        finally: self.close()
+
+        return 0 if success else 1

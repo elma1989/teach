@@ -148,6 +148,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#database.Lesson.exists"><code class="docutils literal notranslate"><span class="pre">Lesson.exists()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#database.Lesson.homeworks"><code class="docutils literal notranslate"><span class="pre">Lesson.homeworks</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#database.Lesson.remove"><code class="docutils literal notranslate"><span class="pre">Lesson.remove()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Lesson.set_present_status"><code class="docutils literal notranslate"><span class="pre">Lesson.set_present_status()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#database.Lesson.students"><code class="docutils literal notranslate"><span class="pre">Lesson.students</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#database.Lesson.time"><code class="docutils literal notranslate"><span class="pre">Lesson.time</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#database.Lesson.to_dict"><code class="docutils literal notranslate"><span class="pre">Lesson.to_dict()</span></code></a></li>
@@ -1140,6 +1141,28 @@ z. B. 09a zu beginnen, da eine alphabetische Soritierung bei Klassenlisten vorge
 <div class="line">1 - Objekt ist nicht Vorhanden</div>
 <div class="line">2 - Objekt kann nicht gelöscht werden, da noch Referenzen vorhanden sind</div>
 <div class="line">3 - Datenbankfehler</div>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Lesson.set_present_status">
+<span class="sig-name descname"><span class="pre">set_present_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">presents</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.Lesson.set_present_status" title="Link to this definition"></a></dt>
+<dd><p>Spreichert die zutreffenden Anwesenhietsstati ab.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameter<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>presents</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>]</span>) – Liste mit Anwesenheitsstati (<strong>True</strong> = anwesend) in identischer Reihenfolge der Liste der Kursteilnehmer</p>
+</dd>
+<dt class="field-even">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+</dd>
+<dt class="field-odd">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-odd"><p><div class="line-block">
+<div class="line">0 - Erfolgreich</div>
+<div class="line">1 - Übermittelte Liste ist nicht korekt</div>
+<div class="line">2 - Stunde wurde nicht gefunden</div>
 </div>
 </p>
 </dd>

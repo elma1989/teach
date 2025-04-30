@@ -1,4 +1,4 @@
-from database import School, Lesson, Course
+from database import School, Lesson, Course, Student
 
 def test_lesson_add():
     school = School()
@@ -57,3 +57,21 @@ def test_lessson_add_homework():
     assert les1.homeworks == [task1]
     assert les1.add_homework(task2) == 0
     assert les1.homeworks == [task2, task1]
+
+def test_set_present_status():
+    school = School()
+    carl = school.getStudent(1)
+    lotte = school.getStudent(2)
+    les1 = Lesson(Course('MAT 1'),'2025-04-01 08:00')
+    les2 = Lesson(Course('MAT 1'),'2025-04-01 10:00')
+
+    assert les1.set_present_status([True]) == 1
+    assert les1.set_present_status([1.2,3]) == 1
+    assert les2.set_present_status([True, False]) == 2
+
+    assert les1.set_present_status([True, False]) == 0
+    assert les1.students == [(carl, True), (lotte, False)]
+    assert les1.set_present_status([False, True]) == 0
+    assert les1.students == [(carl, False), (lotte, True)]
+    assert les1.set_present_status([True, True]) == 0
+    assert les1.students == [(carl, True), (lotte, True)]
