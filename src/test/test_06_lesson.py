@@ -40,3 +40,20 @@ def test_lesson_to_dict():
     }
 
     assert les1.to_dict() == test
+
+def test_lessson_add_homework():
+    task1 = 'LGS Lösen'
+    task2 = 'LB. S. 250'
+    mat1 = Course('MAT 1')
+    fail1 = Lesson(Course('ENG 1'), '2025-04-01 08:00')
+    fail2 = Lesson(mat1, '2025-04-01 10:00')
+    les1 = Lesson(mat1, '2025-04-01 08:00')
+
+    assert fail1.add_homework(task1) == 1
+    assert fail2.add_homework(task1) == 1
+
+    assert les1.add_homework(task1) == 0
+    assert les1.add_homework(task1) == 2
+    assert les1.homeworks == [task1]
+    assert les1.add_homework(task2) == 0
+    assert les1.homeworks == [task2, task1]

@@ -90,7 +90,7 @@ class Lesson(DataObject):
     def homeworks(self) -> list[str]:
         ''':getter: Liefert ale zu der Stunde aufgetragenen Hausaufgaben'''
         sql:str = """SELECT les_homework FROM lesson_homework
-            WHERE crs_name = ? AND les_time = ?"""
+            WHERE crs_name = ? AND les_time = ? ORDER BY les_homework"""
         
         if isinstance(self.course, Course) and self.time:
             try:
@@ -106,7 +106,10 @@ class Lesson(DataObject):
     
     @property
     def students(self) -> list[tuple[Student,bool]]:
-        ''':getter: Liefert eine Liste der Studenten und dem Anwensenheitsstatus (**True** = anwesend)'''
+        """
+        :getter: Liefert eine Liste der Studenten und dem Anwensenheitsstatus
+        :return: Eine Liste aus Tupeln mit der Instanz des Schülers und einem boolischen Wert (**True** = anwesend)
+        """
         sql:str = """SELECT s.std_first_name, s.std_last_name, s.std_birth_date, s.std_id, ls_student_present
             FROM student s JOIN lesson_student ls ON s.std_id = ls.std_id
             WHERE ls.crs_name = ? AND ls.les_time = ?
@@ -203,3 +206,31 @@ class Lesson(DataObject):
             'time':self.db_time,
             'topic':self.topic
         }
+
+    def add_homework(self, task:str) -> int:
+        """
+        Legt eine neue Hausaufabe an.
+
+        :param task: Zu erlegigende Aufgabe
+        :return:
+             | 0 - Erfolgreich
+             | 1 - Stunde wurde nicht gefunden
+             | 2 - Hausaufgabe bereits eingetragen
+        """
+        sql:str = 'INSERT INTO lesson_homework VALUES(?,?,?)'
+        success:bool = False
+
+        if not self.course or not self.time: return 1
+        if not self.exists(): return 1
+
+        try:
+            self.connect()
+            if self.con and self.c:
+                self.c.execute(FKON)
+                self.c.execute(sql, (self.course.name, self.db_time, task))
+                self.con.commit()
+                success = True
+        except Error as e: print(e)
+        finally: self.close()
+
+        return 0 if success else 2
