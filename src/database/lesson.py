@@ -31,7 +31,7 @@ class Lesson(DataObject):
         :getter: Liefert die Datenbankzeit der Stunde
         :return: Zeit (JJJJ-MM-TT HH:MM)
         """
-        return self.time.strftime('%Y-%m-%d %H:%M') if self.time else ''
+        return self.time.strftime('%Y-%m-%d %H:%M') if self.time else '-'
 
     @property
     def time(self) -> datetime|None:
@@ -193,4 +193,13 @@ class Lesson(DataObject):
         return 1
     
     def to_dict(self) -> dict[str,str]:
-        return {}
+        """
+        Liefert die Kerndaten einer Stunde für weiter Anfragen
+
+        :return: Wörterbuch der Stunde
+        """
+        return {
+            'course':self.course.name if self.course else '-',
+            'time':self.db_time,
+            'topic':self.topic
+        }

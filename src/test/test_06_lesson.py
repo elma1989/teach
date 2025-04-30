@@ -30,3 +30,13 @@ def test_lesson_topic():
 
     les1.topic = 'Gaußscher Algorithmus'
     assert les1.topic == 'Gaußscher Algorithmus'
+
+def test_lesson_to_dict():
+    les1 = Lesson(Course('MAT 1'),'2025-04-01 08:00')
+    test = {
+        'course':'MAT 1',
+        'time':'2025-04-01 08:00',
+        'topic':''
+    }
+
+    assert les1.to_dict() == test
