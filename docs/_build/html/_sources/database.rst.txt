@@ -53,6 +53,12 @@ Modul: course
 .. autoclass:: database.Course
     :members:
 
+Modul: lesson
+=============
+
+.. autoclass:: database.Lesson
+    :members:
+
 Modul: school
 ==============
 

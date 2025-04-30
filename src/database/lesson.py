@@ -36,10 +36,10 @@ class Lesson(DataObject):
     @property
     def time(self) -> datetime|None:
         """
-        Verwaltet den Unterrichtsbegin.
+        Verwaltet den Unterrichtsbeginn.
 
-        :getter: Liefert den Unterrichtsbegin
-        :setter: Ändert den Unterrichtsbegin (JJJJ-MM-TT HH:MM)
+        :getter: Liefert den Unterrichtsbeginn
+        :setter: Ändert den Unterrichtsbeginn (JJJJ-MM-TT HH:MM)
         :return: datetime-Objekt des Unterrichtsbegins
         """
         return self.__time
@@ -74,14 +74,15 @@ class Lesson(DataObject):
 
     @topic.setter
     def topic(self, topic) -> None:
-        sql:str = 'UPDATE lesson SET les_topic = ?'
+        sql:str = 'UPDATE lesson SET les_topic = ? WHERE crs_name = ? AND les_time = ?'
 
         if self.course and self.time:
             try:
                 self.connect()
                 if self.con and self.c:
-                    self.c.execute(sql,(topic,))
+                    self.c.execute(sql,(topic, self.course.name, self.db_time))
                     self.con.commit()
+                    self.__topic = topic
             except Error as e: print(e)
             finally: self.close()
 
@@ -138,7 +139,7 @@ class Lesson(DataObject):
 
         :return: **True**, wenn die Stunde vorhanden ist
         """
-        sql:str= 'SELECT * FROM lessen WHERE crs_name = ? AND les_time = ?'
+        sql:str= 'SELECT * FROM lesson WHERE crs_name = ? AND les_time = ?'
         success:bool = False
 
         if not self.course or not self.time: return False
@@ -171,7 +172,7 @@ class Lesson(DataObject):
         students:list[tuple] = [(self.course.name, self.db_time, std.id) for std in self.course.students]
         sql:list[str] = [
             'INSERT INTO lesson VALUES(?,?,NULL)',
-            'INSERT INTO lesson_student VALUES(?,?,?,NULL)'
+            'INSERT INTO lesson_student VALUES(?,?,?,false)'
         ]
         success:bool = False
 

@@ -1,4 +1,4 @@
-from database import Data, Error, Subject, Teacher, Grade, Student, Course
+from database import Data, Error, Subject, Teacher, Grade, Student, Course, Lesson
 
 class School(Data):
     """
@@ -204,3 +204,26 @@ class School(Data):
         finally: self.close()
 
         return courses
+
+    def lessons(self, course:Course) -> list[Lesson]|None:
+        """
+        Liefert eine Lieste mit den Stunden eines Kurse.
+
+        :param course: Kurs, zu dem die Stunden gesucht werden sollen
+        :return: Liste mit den Stunden, **None**, wenn der Kurs nicht gefunden wurde
+        """
+        lessons:list[Lesson] = []
+        sql:str = """SELECT les_time, les_topic FROM lesson
+            WHERE crs_name = ? ORDER BY les_time"""
+
+        if not isinstance(course, Course) or not course.exists(): return None
+
+        try:
+            self.connect()
+            if self.con and self.c:
+                self.c.execute(sql,(course.name,))
+                res = self.c.fetchall()
+                lessons = [Lesson(course, row[0], row[1] if row[1] else '') for row in res]
+        except Error as e: print(e)
+
+        return lessons
