@@ -48,7 +48,132 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="database-model.html">Datenbankmodell</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Paket: database</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#database.indb"><code class="docutils literal notranslate"><span class="pre">indb()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#uml-klassendiagramm">UML-Klassendiagramm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modul-data">Modul: data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#database.Data"><code class="docutils literal notranslate"><span class="pre">Data</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#database.Data.c"><code class="docutils literal notranslate"><span class="pre">Data.c</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Data.close"><code class="docutils literal notranslate"><span class="pre">Data.close()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Data.con"><code class="docutils literal notranslate"><span class="pre">Data.con</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Data.connect"><code class="docutils literal notranslate"><span class="pre">Data.connect()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#database.DataObject"><code class="docutils literal notranslate"><span class="pre">DataObject</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#database.DataObject.add"><code class="docutils literal notranslate"><span class="pre">DataObject.add()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.DataObject.exists"><code class="docutils literal notranslate"><span class="pre">DataObject.exists()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.DataObject.remove"><code class="docutils literal notranslate"><span class="pre">DataObject.remove()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.DataObject.to_dict"><code class="docutils literal notranslate"><span class="pre">DataObject.to_dict()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#modul-subject">Modul: subject</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#database.Subject"><code class="docutils literal notranslate"><span class="pre">Subject</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#database.Subject.abr"><code class="docutils literal notranslate"><span class="pre">Subject.abr</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Subject.add"><code class="docutils literal notranslate"><span class="pre">Subject.add()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Subject.exists"><code class="docutils literal notranslate"><span class="pre">Subject.exists()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Subject.name"><code class="docutils literal notranslate"><span class="pre">Subject.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Subject.remove"><code class="docutils literal notranslate"><span class="pre">Subject.remove()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Subject.to_dict"><code class="docutils literal notranslate"><span class="pre">Subject.to_dict()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#modul-person">Modul: person</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#database.Person"><code class="docutils literal notranslate"><span class="pre">Person</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#database.Person.birth_date"><code class="docutils literal notranslate"><span class="pre">Person.birth_date</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Person.db_birth"><code class="docutils literal notranslate"><span class="pre">Person.db_birth</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Person.fname"><code class="docutils literal notranslate"><span class="pre">Person.fname</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Person.id"><code class="docutils literal notranslate"><span class="pre">Person.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Person.lname"><code class="docutils literal notranslate"><span class="pre">Person.lname</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Person.to_dict"><code class="docutils literal notranslate"><span class="pre">Person.to_dict()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#modul-teacher">Modul: teacher</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#database.Teacher"><code class="docutils literal notranslate"><span class="pre">Teacher</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#database.Teacher.add"><code class="docutils literal notranslate"><span class="pre">Teacher.add()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Teacher.add_subject"><code class="docutils literal notranslate"><span class="pre">Teacher.add_subject()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Teacher.del_subject"><code class="docutils literal notranslate"><span class="pre">Teacher.del_subject()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Teacher.exists"><code class="docutils literal notranslate"><span class="pre">Teacher.exists()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Teacher.remove"><code class="docutils literal notranslate"><span class="pre">Teacher.remove()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Teacher.subjects"><code class="docutils literal notranslate"><span class="pre">Teacher.subjects</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#modul-student">Modul: student</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#database.Student"><code class="docutils literal notranslate"><span class="pre">Student</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#database.Student.add"><code class="docutils literal notranslate"><span class="pre">Student.add()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Student.exists"><code class="docutils literal notranslate"><span class="pre">Student.exists()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Student.grade"><code class="docutils literal notranslate"><span class="pre">Student.grade</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Student.remove"><code class="docutils literal notranslate"><span class="pre">Student.remove()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#modul-grade">Modul: grade</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#database.Grade"><code class="docutils literal notranslate"><span class="pre">Grade</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#database.Grade.add"><code class="docutils literal notranslate"><span class="pre">Grade.add()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Grade.exists"><code class="docutils literal notranslate"><span class="pre">Grade.exists()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Grade.leader"><code class="docutils literal notranslate"><span class="pre">Grade.leader</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Grade.name"><code class="docutils literal notranslate"><span class="pre">Grade.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Grade.remove"><code class="docutils literal notranslate"><span class="pre">Grade.remove()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Grade.to_dict"><code class="docutils literal notranslate"><span class="pre">Grade.to_dict()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#modul-course">Modul: course</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#database.Course"><code class="docutils literal notranslate"><span class="pre">Course</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#database.Course.add"><code class="docutils literal notranslate"><span class="pre">Course.add()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Course.add_student"><code class="docutils literal notranslate"><span class="pre">Course.add_student()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Course.exists"><code class="docutils literal notranslate"><span class="pre">Course.exists()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Course.leader"><code class="docutils literal notranslate"><span class="pre">Course.leader</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Course.name"><code class="docutils literal notranslate"><span class="pre">Course.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Course.remove"><code class="docutils literal notranslate"><span class="pre">Course.remove()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Course.students"><code class="docutils literal notranslate"><span class="pre">Course.students</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Course.subject"><code class="docutils literal notranslate"><span class="pre">Course.subject</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Course.to_dict"><code class="docutils literal notranslate"><span class="pre">Course.to_dict()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#modul-lesson">Modul: lesson</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#database.Lesson"><code class="docutils literal notranslate"><span class="pre">Lesson</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#database.Lesson.add"><code class="docutils literal notranslate"><span class="pre">Lesson.add()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Lesson.add_homework"><code class="docutils literal notranslate"><span class="pre">Lesson.add_homework()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Lesson.course"><code class="docutils literal notranslate"><span class="pre">Lesson.course</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Lesson.db_time"><code class="docutils literal notranslate"><span class="pre">Lesson.db_time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Lesson.exists"><code class="docutils literal notranslate"><span class="pre">Lesson.exists()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Lesson.homeworks"><code class="docutils literal notranslate"><span class="pre">Lesson.homeworks</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Lesson.remove"><code class="docutils literal notranslate"><span class="pre">Lesson.remove()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Lesson.set_present_status"><code class="docutils literal notranslate"><span class="pre">Lesson.set_present_status()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Lesson.students"><code class="docutils literal notranslate"><span class="pre">Lesson.students</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Lesson.time"><code class="docutils literal notranslate"><span class="pre">Lesson.time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Lesson.to_dict"><code class="docutils literal notranslate"><span class="pre">Lesson.to_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.Lesson.topic"><code class="docutils literal notranslate"><span class="pre">Lesson.topic</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#modul-school">Modul: school</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#database.School"><code class="docutils literal notranslate"><span class="pre">School</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#database.School.courses"><code class="docutils literal notranslate"><span class="pre">School.courses</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.School.courses_of"><code class="docutils literal notranslate"><span class="pre">School.courses_of()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.School.getStudent"><code class="docutils literal notranslate"><span class="pre">School.getStudent()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.School.getTeacher"><code class="docutils literal notranslate"><span class="pre">School.getTeacher()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.School.grades"><code class="docutils literal notranslate"><span class="pre">School.grades</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.School.grades_of"><code class="docutils literal notranslate"><span class="pre">School.grades_of()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.School.lessons"><code class="docutils literal notranslate"><span class="pre">School.lessons()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.School.students"><code class="docutils literal notranslate"><span class="pre">School.students()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.School.subjects"><code class="docutils literal notranslate"><span class="pre">School.subjects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.School.teachers"><code class="docutils literal notranslate"><span class="pre">School.teachers</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="frontend.html">Frontend</a></li>
@@ -80,9 +205,1199 @@
              
   <section id="paket-database">
 <h1>Paket: database<a class="headerlink" href="#paket-database" title="Link to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="database.indb">
+<span class="sig-prename descclassname"><span class="pre">database.</span></span><span class="sig-name descname"><span class="pre">indb</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.indb" title="Link to this definition"></a></dt>
+<dd><p>Initialisiert die Datenbank.</p>
+<div class="admonition important">
+<p class="admonition-title">Wichtig</p>
+<p>Die gasamte Datenbank wird dabei durch eine neue ersetzt. 
+Diese Funktion wird auch in Pytests verwendet. Sobald reale Daten existieren, sollten keine Pytests mehr durchgführt werden.</p>
+</div>
+</dd></dl>
+
 <section id="uml-klassendiagramm">
 <h2>UML-Klassendiagramm<a class="headerlink" href="#uml-klassendiagramm" title="Link to this heading"></a></h2>
 <img alt="_images/database.png" src="_images/database.png" />
+</section>
+<section id="modul-data">
+<h2>Modul: data<a class="headerlink" href="#modul-data" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="database.Data">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">database.</span></span><span class="sig-name descname"><span class="pre">Data</span></span><a class="headerlink" href="#database.Data" title="Link to this definition"></a></dt>
+<dd><p>Stellt eine Datenbankverbindung zur Verfügung.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="database.Data.c">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">c</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Cursor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#database.Data.c" title="Link to this definition"></a></dt>
+<dd><p>Verwaltet den Datenbankzeiger.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Verweist auf den Datenbankzeiger</p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>None</strong>, wenn dieser noch nicht gesetzt ist</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Data.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.Data.close" title="Link to this definition"></a></dt>
+<dd><p>Trennt die Datenbankverbindung wieder.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="database.Data.con">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">con</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Connection</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#database.Data.con" title="Link to this definition"></a></dt>
+<dd><p>Verwaltet die Datenbankverbindung.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Stellt die Databankverbindung bereit</p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>None</strong>, wenn keine Verbindung beteht</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Data.connect">
+<span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.Data.connect" title="Link to this definition"></a></dt>
+<dd><p>Stellt eine Verbindung zur Datenbank her.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="database.DataObject">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">database.</span></span><span class="sig-name descname"><span class="pre">DataObject</span></span><a class="headerlink" href="#database.DataObject" title="Link to this definition"></a></dt>
+<dd><p>Repräsentiert eine Datenbankentität.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="database.DataObject.add">
+<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.DataObject.add" title="Link to this definition"></a></dt>
+<dd><p>Fügt ein neues Objekt zur Datenbank hinzu.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p><div class="line-block">
+<div class="line">0 - erfolgreich</div>
+<div class="line">1 - Daten sind nicht Validiert oder nicht im gültigen Format</div>
+<div class="line">2 - Beziehende Referenzen sind nicht vorhanden</div>
+<div class="line">3 - Objekt existiert bereits</div>
+<div class="line">4 - Datenbankfehler</div>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.DataObject.exists">
+<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">exists</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.DataObject.exists" title="Link to this definition"></a></dt>
+<dd><p>Prüft, ob das aktuelle Objekt exitiert.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>True</strong>, wenn das Objekt bereits vorhanden ist</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.DataObject.remove">
+<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.DataObject.remove" title="Link to this definition"></a></dt>
+<dd><p>Löscht das akuelle Objekt aus der Datenbank.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p><div class="line-block">
+<div class="line">0 - erfolgreich</div>
+<div class="line">1 - Objekt ist nicht Vorhanden</div>
+<div class="line">2 - Objekt kann nicht gelöscht werden, da noch Referenzen vorhanden sind</div>
+<div class="line">3 - Datenbankfehler</div>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.DataObject.to_dict">
+<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.DataObject.to_dict" title="Link to this definition"></a></dt>
+<dd><p>Liefert die Attibute des Objektes für das Frontend.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]</span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p>Daten als Wörterbuch</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="modul-subject">
+<h2>Modul: subject<a class="headerlink" href="#modul-subject" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="database.Subject">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">database.</span></span><span class="sig-name descname"><span class="pre">Subject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">abr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.Subject" title="Link to this definition"></a></dt>
+<dd><p>Repräsentiert ein Unterichtsfach.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameter<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>abr</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Abkürzung in der Datenbank (3 Buchstaben)</p></li>
+<li><p><strong>name</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Langbezeichnung (muss mit Großbuchstaben beginnen)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="database.Subject.abr">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">abr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#database.Subject.abr" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Liefert die Abkürzung in der Datenbank</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Subject.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.Subject.add" title="Link to this definition"></a></dt>
+<dd><p>Fügt ein neues Fach zur Datenbank hinzu.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p><div class="line-block">
+<div class="line">0 - erfolgreich</div>
+<div class="line">1 - Ungrültige Daten</div>
+<div class="line">3 - Fach bereits vorhanden</div>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Subject.exists">
+<span class="sig-name descname"><span class="pre">exists</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.Subject.exists" title="Link to this definition"></a></dt>
+<dd><p>Prüft, ob das Unterrichtfach bereits existiert.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>True</strong>, wenn das Fach bereits vorhanden ist</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="database.Subject.name">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#database.Subject.name" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Liefert die Langbezeichnung des Faches</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Subject.remove">
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.Subject.remove" title="Link to this definition"></a></dt>
+<dd><p>Löscht ein Unterrichtsfach.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p><div class="line-block">
+<div class="line">0 - Erfolgreich</div>
+<div class="line">1 - Fach nicht vorhanden</div>
+<div class="line">2 - Noch Lehrer, die das Fach unterrichten oder Kurse mit dem Fach vorhanden</div>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Subject.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.Subject.to_dict" title="Link to this definition"></a></dt>
+<dd><p>Liefet die Kerndaten eines Unterrichtsfaches für das Frontend.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p>Wörterbuch des Faches</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="modul-person">
+<h2>Modul: person<a class="headerlink" href="#modul-person" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="database.Person">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">database.</span></span><span class="sig-name descname"><span class="pre">Person</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">birth_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.Person" title="Link to this definition"></a></dt>
+<dd><p>Repräsentiert eine Person.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameter<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fname</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Vorname der Person</p></li>
+<li><p><strong>lname</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Nachname der Person</p></li>
+<li><p><strong>birth_date</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Geburtdatum (JJJJ-MM-TT)</p></li>
+<li><p><strong>id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – ID der Person (Standard: 0)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="database.Person.birth_date">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">birth_date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">datetime</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#database.Person.birth_date" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Liefert das Geburtsdatum der Person</p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p>Geburtdatum als datetime-Objekt, <strong>None</strong>, wenn im Konstruktor das Geburtdatum nicht im korrekten Format angegeben wurde</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="database.Person.db_birth">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">db_birth</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#database.Person.db_birth" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Liefert das Geburtdatum einer Person</p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p>Geburtdatum (JJJJ-MM-TT) einer Person</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="database.Person.fname">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fname</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#database.Person.fname" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Liefert den Vornamen der Person</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="database.Person.id">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#database.Person.id" title="Link to this definition"></a></dt>
+<dd><p>Verwaltet die Personen-ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Gibt den gespeicherten Wert der ID zurück</p>
+</dd>
+<dt class="field-even">Setter<span class="colon">:</span></dt>
+<dd class="field-even"><p>Setzt die ID wenn diese bei Erstellung noch nicht bekannt war und in der Datenbank gesucht worden ist</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="database.Person.lname">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lname</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#database.Person.lname" title="Link to this definition"></a></dt>
+<dd><p>Verwaltet den Familiennamen einer Person</p>
+<dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Liefert den Familienname</p>
+</dd>
+<dt class="field-even">Setter<span class="colon">:</span></dt>
+<dd class="field-even"><p>Ändert den Familienname</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Person.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.Person.to_dict" title="Link to this definition"></a></dt>
+<dd><p>Liefet die Daten einer Person zur Verarbeitung im Frontend.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]</span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p>Personendaten</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="modul-teacher">
+<h2>Modul: teacher<a class="headerlink" href="#modul-teacher" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="database.Teacher">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">database.</span></span><span class="sig-name descname"><span class="pre">Teacher</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">birth_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.Teacher" title="Link to this definition"></a></dt>
+<dd><p>Repräsentiert einen Lehrer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameter<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fname</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Vorname des Lehrers</p></li>
+<li><p><strong>lname</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Nachnmame des Leherers</p></li>
+<li><p><strong>brith_date</strong> – Geburtsdatum (JJJJ-MM-TT) des Lehrers</p></li>
+<li><p><strong>id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – ID des Lehrers (Standard: 0)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Teacher.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.Teacher.add" title="Link to this definition"></a></dt>
+<dd><p>Fügt einen Lehrer zur Datenbank hinzu.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p><div class="line-block">
+<div class="line">0 - Erfolgreich</div>
+<div class="line">1 - Daten ungültig</div>
+<div class="line">3 - Lehrer bereits vorhanden</div>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Teacher.add_subject">
+<span class="sig-name descname"><span class="pre">add_subject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sub</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.Teacher.add_subject" title="Link to this definition"></a></dt>
+<dd><p>Fügt dem Lehrer ein neues Fach hinzu.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameter<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sub</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#database.Subject" title="database.subject.Subject"><code class="xref py py-class docutils literal notranslate"><span class="pre">Subject</span></code></a></span>) – zu hinzufügendes Fach</p>
+</dd>
+<dt class="field-even">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+</dd>
+<dt class="field-odd">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-odd"><p><div class="line-block">
+<div class="line">0 - Erfolreich</div>
+<div class="line">1 - Fach nicht gefunden</div>
+<div class="line">2 - Fach bereits vorhanden</div>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Teacher.del_subject">
+<span class="sig-name descname"><span class="pre">del_subject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sub</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.Teacher.del_subject" title="Link to this definition"></a></dt>
+<dd><p>Löscht ein Fach eines Lehrers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameter<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sub</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#database.Subject" title="database.subject.Subject"><code class="xref py py-class docutils literal notranslate"><span class="pre">Subject</span></code></a></span>) – Zu löschendes Fach</p>
+</dd>
+<dt class="field-even">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+</dd>
+<dt class="field-odd">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-odd"><p><div class="line-block">
+<div class="line">0 - Erfolgreich</div>
+<div class="line">1 - Fach oder Lehrer nicht gefunden</div>
+<div class="line">2 - der Lehrer leitet noch ein Kurs von dem Fach</div>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Teacher.exists">
+<span class="sig-name descname"><span class="pre">exists</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.Teacher.exists" title="Link to this definition"></a></dt>
+<dd><p>Prüft, ob ein Lehrer bereits vorhanden ist.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>True</strong>, wenn der Lehrer bereits vorhanden ist</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Teacher.remove">
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.Teacher.remove" title="Link to this definition"></a></dt>
+<dd><p>Löscht einen Lehrer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p><div class="line-block">
+<div class="line">0 - Erfolgreich</div>
+<div class="line">1 - Lehrer nicht vorhanden</div>
+<div class="line">2 - Lehrer leitet noch Klassen und/oder Kursee</div>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="database.Teacher.subjects">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">subjects</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#database.Subject" title="database.subject.Subject"><span class="pre">Subject</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#database.Teacher.subjects" title="Link to this definition"></a></dt>
+<dd><p>Liefert alle Fächer eines Lehrers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Fächerliste</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="modul-student">
+<h2>Modul: student<a class="headerlink" href="#modul-student" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="database.Student">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">database.</span></span><span class="sig-name descname"><span class="pre">Student</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">birth_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.Student" title="Link to this definition"></a></dt>
+<dd><p>Repräsentiert einen Schüler.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameter<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fname</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Vorname des Schülers</p></li>
+<li><p><strong>lname</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Nachname des Schülers</p></li>
+<li><p><strong>birth_date</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Geburtsdatum (JJJJ-MM-TT) des Schülers</p></li>
+<li><p><strong>id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – ID des Schülers (Standard: 0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Variablen<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>grade</strong> – Instaz der zugeörigen Klasse (Standard: None)</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Student.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.Student.add" title="Link to this definition"></a></dt>
+<dd><p>Fügt einen neuen Schüler in die Datenbank ein.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p><div class="line-block">
+<div class="line">0 - Erfolgreich</div>
+<div class="line">1 - Ungültige Daten</div>
+<div class="line">3 - Schüler bereits vorhanden</div>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Student.exists">
+<span class="sig-name descname"><span class="pre">exists</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.Student.exists" title="Link to this definition"></a></dt>
+<dd><p>Prüft, ob ein Schüler bereits existiert.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>True</strong>, wenn der Schüler bereits vorhanden ist</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="database.Student.grade">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">grade</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#database.Grade" title="database.grade.Grade"><span class="pre">Grade</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#database.Student.grade" title="Link to this definition"></a></dt>
+<dd><p>Verwaltet die Klasse des Schülers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Liefert die Klasse</p>
+</dd>
+<dt class="field-even">Setter<span class="colon">:</span></dt>
+<dd class="field-even"><p>Legt die Klasse fest</p>
+</dd>
+<dt class="field-odd">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>None</strong>, wenn dem Schüler keine Klasse zugewiesen ist</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Student.remove">
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.Student.remove" title="Link to this definition"></a></dt>
+<dd><p>Löscht einen Schüler.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p><div class="line-block">
+<div class="line">0 - Erfolgreich</div>
+<div class="line">1 - Schüler nicht vorhanden</div>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="modul-grade">
+<h2>Modul: grade<a class="headerlink" href="#modul-grade" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="database.Grade">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">database.</span></span><span class="sig-name descname"><span class="pre">Grade</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">leader</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.Grade" title="Link to this definition"></a></dt>
+<dd><p>Repräsentiert eine Schulklasse.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameter<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Name der Klasse</p></li>
+<li><p><strong>leader</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#database.Teacher" title="database.teacher.Teacher"><code class="xref py py-class docutils literal notranslate"><span class="pre">Teacher</span></code></a> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span>) – Lehrer-Instanz, des Klassenleiters (Standard: None)</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Es ist zu emphehlen, dass bei jährlich wechselden Klassennamen die Klassenstufen unter 10 mit einer führenden 0 
+z. B. 09a zu beginnen, da eine alphabetische Soritierung bei Klassenlisten vorgenommen wird.</p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Grade.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.Grade.add" title="Link to this definition"></a></dt>
+<dd><p>Legt eine neue Klasse an.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p><div class="line-block">
+<div class="line">0 - Erfolgreich</div>
+<div class="line">2 - Der Klassenleiter existiert nicht</div>
+<div class="line">3 - Klasse bereits vorhanden</div>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Grade.exists">
+<span class="sig-name descname"><span class="pre">exists</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.Grade.exists" title="Link to this definition"></a></dt>
+<dd><p>Prüft, ob eine Klasse existiert.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>True</strong>, wenn die Klasse bereits existiert</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="database.Grade.leader">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">leader</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#database.Teacher" title="database.teacher.Teacher"><span class="pre">Teacher</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#database.Grade.leader" title="Link to this definition"></a></dt>
+<dd><p>Verwaltet den Klassenleiter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Liefert den Klassenleiter</p>
+</dd>
+<dt class="field-even">Setter<span class="colon">:</span></dt>
+<dd class="field-even"><p>Legt den Klassenleiter fest</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="database.Grade.name">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#database.Grade.name" title="Link to this definition"></a></dt>
+<dd><p>Verwaltet den Klassennamen.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Liefert den Namen der Klasse</p>
+</dd>
+<dt class="field-even">Setter<span class="colon">:</span></dt>
+<dd class="field-even"><p>Ändert den Klassennamen</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Grade.remove">
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.Grade.remove" title="Link to this definition"></a></dt>
+<dd><p>Löscht eine Schulklasse.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p><div class="line-block">
+<div class="line">0 - Erfolgreich</div>
+<div class="line">1 - Klasse nicht vorhanden</div>
+</div>
+</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Beim Löschen einer Schulklassen bleiben die Schüler bestehen, die verlieren dabei lediglich die Klassenzuordnung.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Grade.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.Grade.to_dict" title="Link to this definition"></a></dt>
+<dd><p>Liefert die Klassendaten an das Frontend.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p>Klassenname als Wörterbuch</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="modul-course">
+<h2>Modul: course<a class="headerlink" href="#modul-course" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="database.Course">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">database.</span></span><span class="sig-name descname"><span class="pre">Course</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">leader</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subject</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.Course" title="Link to this definition"></a></dt>
+<dd><p>Respäsentiert einen Kurs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameter<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Kursname</p></li>
+<li><p><strong>leader</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#database.Teacher" title="database.teacher.Teacher"><code class="xref py py-class docutils literal notranslate"><span class="pre">Teacher</span></code></a> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span>) – Lehrerinstanz des Klassenleiters (Standard: None)</p></li>
+<li><p><strong>subject</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#database.Subject" title="database.subject.Subject"><code class="xref py py-class docutils literal notranslate"><span class="pre">Subject</span></code></a> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span>) – Instanz des Faches (Standard: None)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Variablen<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>students</strong> – Mitgliederlieste</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Course.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.Course.add" title="Link to this definition"></a></dt>
+<dd><p>Fügt einen neuen Kurs in die Datenbank ein.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p><div class="line-block">
+<div class="line">0 - Erfolgreich</div>
+<div class="line">2 - Leiter oder Fach existieren nicht</div>
+<div class="line">3 - Kurs ist bereits vorhanden</div>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Course.add_student">
+<span class="sig-name descname"><span class="pre">add_student</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">std</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.Course.add_student" title="Link to this definition"></a></dt>
+<dd><p>Fügt einen Schüler zur Datenbank hinzu.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameter<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>std</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#database.Student" title="database.student.Student"><code class="xref py py-class docutils literal notranslate"><span class="pre">Student</span></code></a></span>) – zu hinzufügender Schüler</p>
+</dd>
+<dt class="field-even">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+</dd>
+<dt class="field-odd">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-odd"><p><div class="line-block">
+<div class="line">0 - Erfolgreich</div>
+<div class="line">1 - Übertragenes Objekt ist kein Schüler</div>
+<div class="line">2 - Schüler ist nicht vorhanden</div>
+<div class="line">3 - Schüler ist bereits in dem Kurs eingetragen</div>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Course.exists">
+<span class="sig-name descname"><span class="pre">exists</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.Course.exists" title="Link to this definition"></a></dt>
+<dd><p>Prüft, ob der Kurs bereits vorhanden ist.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>True</strong>, wenn der Kurs bereits vorhanden ist</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="database.Course.leader">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">leader</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#database.Teacher" title="database.teacher.Teacher"><span class="pre">Teacher</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#database.Course.leader" title="Link to this definition"></a></dt>
+<dd><p>Verwaltet den Kursleiter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Liefert den Kursleiter</p>
+</dd>
+<dt class="field-even">Setter<span class="colon">:</span></dt>
+<dd class="field-even"><p>Wechselt den Kursleiter</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="database.Course.name">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#database.Course.name" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Liefet den Namen des Kurses</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Course.remove">
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.Course.remove" title="Link to this definition"></a></dt>
+<dd><p>Löscht einen Kurs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p><div class="line-block">
+<div class="line">0 - Erfolgreich</div>
+<div class="line">1 - Kurs nicht vorhanden</div>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="database.Course.students">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">students</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#database.Student" title="database.student.Student"><span class="pre">Student</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#database.Course.students" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Liefert alle Kursteilnehmer alphbetischer Ordnung</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="database.Course.subject">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">subject</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#database.Subject" title="database.subject.Subject"><span class="pre">Subject</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#database.Course.subject" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Liefert das Fach des Kurses</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Course.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.Course.to_dict" title="Link to this definition"></a></dt>
+<dd><p>Liefert die Kerndaten eines Kurses.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]</span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p>Wörterbuch des Kurses</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="modul-lesson">
+<h2>Modul: lesson<a class="headerlink" href="#modul-lesson" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="database.Lesson">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">database.</span></span><span class="sig-name descname"><span class="pre">Lesson</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">course</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">topic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.Lesson" title="Link to this definition"></a></dt>
+<dd><p>Repräsentiert eine Unterrichstunde.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameter<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>course</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#database.Course" title="database.course.Course"><code class="xref py py-class docutils literal notranslate"><span class="pre">Course</span></code></a></span>) – Zugehöriger Kurs</p></li>
+<li><p><strong>time</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Geplanter Unterrichtsbeginn (JJJJ-TT-MM HH:MM)</p></li>
+<li><p><strong>topic</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Thema der Stunde (Standard: „“)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Lesson.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.Lesson.add" title="Link to this definition"></a></dt>
+<dd><p>Fügt eine Unterrichtstunde zur Datenbank hinzu.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p><div class="line-block">
+<div class="line">0 - Erfolgreich</div>
+<div class="line">1 - Zeitformat ungültig</div>
+<div class="line">2 - Kurs nicht vorhanden</div>
+<div class="line">3 - Stunde bereits vorhanden</div>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Lesson.add_homework">
+<span class="sig-name descname"><span class="pre">add_homework</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.Lesson.add_homework" title="Link to this definition"></a></dt>
+<dd><p>Legt eine neue Hausaufabe an.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameter<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>task</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Zu erlegigende Aufgabe</p>
+</dd>
+<dt class="field-even">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+</dd>
+<dt class="field-odd">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-odd"><p><div class="line-block">
+<div class="line">0 - Erfolgreich</div>
+<div class="line">1 - Stunde wurde nicht gefunden</div>
+<div class="line">2 - Hausaufgabe bereits eingetragen</div>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="database.Lesson.course">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">course</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#database.Course" title="database.course.Course"><span class="pre">Course</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#database.Lesson.course" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Liefert den aktuellen Kurs</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="database.Lesson.db_time">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">db_time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#database.Lesson.db_time" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Liefert die Datenbankzeit der Stunde</p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p>Zeit (JJJJ-MM-TT HH:MM)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Lesson.exists">
+<span class="sig-name descname"><span class="pre">exists</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.Lesson.exists" title="Link to this definition"></a></dt>
+<dd><p>Prüft, ob eine Stunde bereits vorhanden ist.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>True</strong>, wenn die Stunde vorhanden ist</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="database.Lesson.homeworks">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">homeworks</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#database.Lesson.homeworks" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Liefert ale zu der Stunde aufgetragenen Hausaufgaben</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Lesson.remove">
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.Lesson.remove" title="Link to this definition"></a></dt>
+<dd><p>Löscht eine Stunde.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p><div class="line-block">
+<div class="line">0 - Erfolgreich</div>
+<div class="line">1 - Stunde nicht vorhanden</div>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Lesson.set_present_status">
+<span class="sig-name descname"><span class="pre">set_present_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">presents</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.Lesson.set_present_status" title="Link to this definition"></a></dt>
+<dd><p>Spreichert die zutreffenden Anwesenheitsstati ab.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameter<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>presents</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>]</span>) – Liste mit Anwesenheitsstati (<strong>True</strong> = anwesend) in identischer Reihenfolge der Liste der Kursteilnehmer</p>
+</dd>
+<dt class="field-even">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
+</dd>
+<dt class="field-odd">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-odd"><p><div class="line-block">
+<div class="line">0 - Erfolgreich</div>
+<div class="line">1 - Übermittelte Liste ist nicht korekt</div>
+<div class="line">2 - Stunde wurde nicht gefunden</div>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="database.Lesson.students">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">students</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#database.Student" title="database.student.Student"><span class="pre">Student</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#database.Lesson.students" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Liefert eine Liste der Studenten und dem Anwensenheitsstatus</p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p>Eine Liste aus Tupeln mit der Instanz des Schülers und einem boolischen Wert (<strong>True</strong> = anwesend)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="database.Lesson.time">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">datetime</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#database.Lesson.time" title="Link to this definition"></a></dt>
+<dd><p>Verwaltet den Unterrichtsbeginn.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Liefert den Unterrichtsbeginn</p>
+</dd>
+<dt class="field-even">Setter<span class="colon">:</span></dt>
+<dd class="field-even"><p>Ändert den Unterrichtsbeginn (JJJJ-MM-TT HH:MM)</p>
+</dd>
+<dt class="field-odd">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-odd"><p>datetime-Objekt des Unterrichtsbegins</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Lesson.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.Lesson.to_dict" title="Link to this definition"></a></dt>
+<dd><p>Liefert die Kerndaten einer Stunde für weiter Anfragen</p>
+<dl class="field-list simple">
+<dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span></p>
+</dd>
+<dt class="field-even">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-even"><p>Wörterbuch der Stunde</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="database.Lesson.topic">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">topic</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#database.Lesson.topic" title="Link to this definition"></a></dt>
+<dd><p>Vervaltet das Thema der Stunde.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Liefert das Thema</p>
+</dd>
+<dt class="field-even">Setter<span class="colon">:</span></dt>
+<dd class="field-even"><p>Legt des Thema fest</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="modul-school">
+<h2>Modul: school<a class="headerlink" href="#modul-school" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="database.School">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">database.</span></span><span class="sig-name descname"><span class="pre">School</span></span><a class="headerlink" href="#database.School" title="Link to this definition"></a></dt>
+<dd><p>Dient zur Verwaltung von Daten.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="database.School.courses">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">courses</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#database.Course" title="database.course.Course"><span class="pre">Course</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#database.School.courses" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Liefert eine Liste von allen in der Schule angebotenen Kursen</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.School.courses_of">
+<span class="sig-name descname"><span class="pre">courses_of</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">leader</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.School.courses_of" title="Link to this definition"></a></dt>
+<dd><p>Liefet eine Liste von Kursen eines Lehrers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameter<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>leader</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#database.Teacher" title="database.teacher.Teacher"><code class="xref py py-class docutils literal notranslate"><span class="pre">Teacher</span></code></a></span>) – Lehrerinstanz, bei der der Lehrer Kursleiter ist.</p>
+</dd>
+<dt class="field-even">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<a class="reference internal" href="#database.Course" title="database.course.Course"><code class="xref py py-class docutils literal notranslate"><span class="pre">Course</span></code></a>] | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+<dt class="field-odd">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Kursliste mit allen Kursen, bei denen der übergebene Lehrer der Kursleiter ist,
+<strong>None</strong>, wenn der Lehrer nicht existiert</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.School.getStudent">
+<span class="sig-name descname"><span class="pre">getStudent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.School.getStudent" title="Link to this definition"></a></dt>
+<dd><p>Sucht einen Schüler anhand der ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameter<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – ID des Schülers</p>
+</dd>
+<dt class="field-even">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#database.Student" title="database.student.Student"><code class="xref py py-class docutils literal notranslate"><span class="pre">Student</span></code></a> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+<dt class="field-odd">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Instanz des Schülers, <strong>None</strong>, wenn der Schüler nicht gefunden wurde</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.School.getTeacher">
+<span class="sig-name descname"><span class="pre">getTeacher</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.School.getTeacher" title="Link to this definition"></a></dt>
+<dd><p>Sucht einen Lehrer in der Datenbank.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameter<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – ID des Lehrers</p>
+</dd>
+<dt class="field-even">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#database.Teacher" title="database.teacher.Teacher"><code class="xref py py-class docutils literal notranslate"><span class="pre">Teacher</span></code></a> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+<dt class="field-odd">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Instanz des Lehrers, <strong>None</strong>, wenn kein Lehrer gefunden wurde</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="database.School.grades">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">grades</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#database.Grade" title="database.grade.Grade"><span class="pre">Grade</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#database.School.grades" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>liefert eine Liste aller Klassen</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.School.grades_of">
+<span class="sig-name descname"><span class="pre">grades_of</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">leader</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.School.grades_of" title="Link to this definition"></a></dt>
+<dd><p>Zeigt alle Klassen eines Lehrers</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameter<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>leader</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#database.Teacher" title="database.teacher.Teacher"><code class="xref py py-class docutils literal notranslate"><span class="pre">Teacher</span></code></a></span>) – Instanz des Klassenleiters</p>
+</dd>
+<dt class="field-even">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<a class="reference internal" href="#database.Grade" title="database.grade.Grade"><code class="xref py py-class docutils literal notranslate"><span class="pre">Grade</span></code></a>] | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+<dt class="field-odd">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Klassenliste alphabetischer Ordnung, <strong>None</strong>, wenn der Lehr nicht existiert</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.School.lessons">
+<span class="sig-name descname"><span class="pre">lessons</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">course</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.School.lessons" title="Link to this definition"></a></dt>
+<dd><p>Liefert eine Lieste mit den Stunden eines Kurse.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameter<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>course</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#database.Course" title="database.course.Course"><code class="xref py py-class docutils literal notranslate"><span class="pre">Course</span></code></a></span>) – Kurs, zu dem die Stunden gesucht werden sollen</p>
+</dd>
+<dt class="field-even">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<a class="reference internal" href="#database.Lesson" title="database.lesson.Lesson"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lesson</span></code></a>] | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+<dt class="field-odd">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Liste mit den Stunden, <strong>None</strong>, wenn der Kurs nicht gefunden wurde</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database.School.students">
+<span class="sig-name descname"><span class="pre">students</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grade</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.School.students" title="Link to this definition"></a></dt>
+<dd><p>Liefert eine Liste von Schülern aus einer Klasse.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameter<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>grade</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#database.Grade" title="database.grade.Grade"><code class="xref py py-class docutils literal notranslate"><span class="pre">Grade</span></code></a> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span>) – Klasse aus der die Schüler stammen, wird <strong>None</strong> übergeben, wird nach Schülern ohne Klassenzuordnung gesucht</p>
+</dd>
+<dt class="field-even">Rückgabetyp<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<a class="reference internal" href="#database.Student" title="database.student.Student"><code class="xref py py-class docutils literal notranslate"><span class="pre">Student</span></code></a>] | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+<dt class="field-odd">Rückgabe<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Liste mit Schülern aus der Klasse, kann die Klasse nicht gefunden werden, wird <strong>None</strong> zurückgegen</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="database.School.subjects">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">subjects</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#database.Subject" title="database.subject.Subject"><span class="pre">Subject</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#database.School.subjects" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Liefert die aktuelle Fachliste</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="database.School.teachers">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">teachers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#database.Teacher" title="database.teacher.Teacher"><span class="pre">Teacher</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#database.School.teachers" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Liefert eine Liste aller aktiver Lehrer.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 </section>
 
