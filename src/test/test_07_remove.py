@@ -1,4 +1,4 @@
-from database import School, Course, Lesson, Teacher, Grade, Student
+from database import School, Course, Lesson, Teacher, Grade, Student, Subject
 
 def  test_remove_reference():
     school = School()
@@ -67,3 +67,22 @@ def test_remove_teacher():
     assert isaac.remove() == 1
     assert maxm.remove() == 0
     assert school.teachers == [john]
+
+def test_remove_teacher_subject():
+    school = School()
+    eng = Subject('eng')
+    mat = Subject('mat')
+    deu = Subject('deu')
+    john = school.getTeacher(1)
+    isaac = Teacher('Isaac', 'Newton', '1643-01-04', 5)
+    deu1 = Course('DEU 1')
+    deu2 = Course('DEU 2')
+
+    assert isaac.del_subject(deu) == 1
+    assert john.del_subject(eng) == 1
+    assert john.del_subject(deu) == 2
+
+    assert deu1.remove() == 0
+    assert deu2.remove() == 0
+    assert john.del_subject(deu) == 0
+    assert john.subjects == [mat]

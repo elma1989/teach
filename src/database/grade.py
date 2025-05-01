@@ -137,6 +137,8 @@ class Grade(DataObject):
         :return:
              | 0 - Erfolgreich
              | 1 - Klasse nicht vorhanden
+        
+        .. note:: Beim Löschen einer Schulklassen bleiben die Schüler bestehen, die verlieren dabei lediglich die Klassenzuordnung.
         """
         sql:str = 'DELETE FROM grade WHERE grd_name = ?'
         success:bool = False

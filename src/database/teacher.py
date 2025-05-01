@@ -156,3 +156,42 @@ class Teacher(Person):
         finally: self.close()
 
         return 0 if success else 2
+    
+    def del_subject(self, sub:Subject) -> int:
+        """
+        Löscht ein Fach eines Lehrers.
+
+        :param sub: Zu löschendes Fach
+        :return:
+             | 0 - Erfolgreich
+             | 1 - Fach oder Lehrer nicht gefunden
+             | 2 - der Lehrer leitet noch ein Kurs von dem Fach
+        """
+        sql:list[str] = [
+            """SELECT sub_abr FROM course
+                WHERE teach_id = ? AND sub_abr = ?""",
+            'DELETE FROM teacher_subject WHERE teach_id = ? AND sub_abr = ?'
+        ]
+        act_crs:bool = False
+        success:bool = False
+        
+        if not self.exists(): return 1
+        if not isinstance(sub, Subject) or not sub.exists(): return 1
+        if not sub in self.subjects: return 1
+
+        try:
+            self.connect()
+            if self.con and self.c:
+                self.c.execute(FKON)
+                self.c.execute(sql[0],(self.id, sub.abr))
+                res = self.c.fetchone()
+                if res: act_crs = True
+                if not act_crs:
+                    self.c.execute(sql[1], (self.id, sub.abr))
+                    self.con.commit()
+                    success = True
+        except Error as e: print(e)
+        finally: self.close()
+
+        if act_crs: return 2
+        return 0 if success else 1
