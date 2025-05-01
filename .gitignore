@@ -3,3 +3,4 @@ src/database/__pycache__
 teach.db
 src/__pycache__
 src/test/__pycache__
+src/route/__pycache__
