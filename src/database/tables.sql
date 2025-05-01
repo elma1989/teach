@@ -45,7 +45,7 @@ CREATE TABLE lesson_homework(
     les_time DATETIME NOT NULL,
     les_homework TEXT NOT NULL,
     PRIMARY KEY (crs_name, les_time, les_homework),
-    FOREIGN KEY (crs_name, les_time) REFERENCES lesson(crs_name, les_time)
+    FOREIGN KEY (crs_name, les_time) REFERENCES lesson(crs_name, les_time) ON DELETE CASCADE
 );
 CREATE TABLE lesson_student(
     crs_name VARCHAR(20) NOT NULL,
@@ -53,5 +53,5 @@ CREATE TABLE lesson_student(
     std_id INTEGER NOT NULL REFERENCES student (std_id),
     les_student_present BOOLEAN NOT NULL DEFAULT false,
     PRIMARY KEY (crs_name, les_time, std_id),
-    FOREIGN KEY (crs_name, les_time) REFERENCES lesson(crs_name, les_time)
+    FOREIGN KEY (crs_name, les_time) REFERENCES lesson(crs_name, les_time) ON DELETE CASCADE
 );
