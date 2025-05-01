@@ -1,4 +1,4 @@
-from database import School, Course, Lesson, Teacher
+from database import School, Course, Lesson, Teacher, Grade
 
 def test_remove_lesson():
     school = School()
@@ -25,3 +25,17 @@ def test_remove_course():
     assert eng1.remove() == 1
     assert mat1.remove() == 0
     assert school.courses_of(john) == [deu1, deu2]
+
+def test_remove_grade():
+    school = School()
+    carl = school.getStudent(1)
+    lotte = school.getStudent(2)
+    cls09a = Grade('09a')
+    cls08a = Grade('08a')
+    cls10a = Grade('10a')
+
+    assert cls09a.remove() == 1
+    assert cls10a.remove() == 0
+    assert school.grades == [cls08a]
+    assert not carl.grade
+    assert not lotte.grade
