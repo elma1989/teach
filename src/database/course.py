@@ -143,7 +143,29 @@ class Course(DataObject):
         return 0 if success else 3
     
     def remove(self) -> int:
-        return 1
+        """
+        Löscht einen Kurs.
+
+        :return:
+             | 0 - Erfolgreich
+             | 1 - Kurs nicht vorhanden
+        """
+        sql:str = 'DELETE FROM course WHERE crs_name = ?'
+        success:bool = False
+
+        if not self.exists(): return 1
+
+        try:
+            self.connect()
+            if self.con and self.c:
+                self.c.execute(FKON)
+                self.c.execute(sql, (self.name,))
+                self.con.commit()
+                success = True
+        except Error as e:print(e)
+        finally: self.close()
+
+        return 0 if success else 1
     
     def to_dict(self) -> dict[str,Any]:
         """
