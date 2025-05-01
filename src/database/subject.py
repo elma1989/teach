@@ -1,5 +1,5 @@
 import re
-from database import DataObject, Error
+from database import DataObject, Error, FKON
 
 class Subject(DataObject):
     """
@@ -99,9 +99,37 @@ class Subject(DataObject):
         return 0 if success else 3
     
     def remove(self) -> int:
-        return 1
+        """
+        Löscht ein Unterrichtsfach.
+
+        :return:
+             | 0 - Erfolgreich
+             | 1 - Fach nicht vorhanden
+             | 2 - Noch Lehrer, die das Fach unterrichten oder Kurse mit dem Fach vorhanden
+        """
+        sql:str = 'DELETE FROM subject WHERE sub_abr = ?'
+        success:bool = False
+
+        if not self.exists(): return 1
+
+        try:
+            self.connect()
+            if self.con and self.c:
+                self.c.execute(FKON)
+                self.c.execute(sql,(self.abr,))
+                self.con.commit()
+                success = True
+        except Error as e: print(e)
+        finally: self.close()
+
+        return 0 if success else 2
     
     def to_dict(self) -> dict[str,str]:
+        """
+        Liefet die Kerndaten eines Unterrichtsfaches für das Frontend.
+
+        :return: Wörterbuch des Faches
+        """
         return {
             'abr':self.abr,
             'name':self.name

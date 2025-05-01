@@ -3,8 +3,10 @@ from database import School, Course, Lesson, Teacher, Grade, Student, Subject
 def  test_remove_reference():
     school = School()
     maxm = school.getTeacher(2)
+    deu = Subject('deu')
 
     assert maxm.remove() == 2
+    assert deu.remove() == 2
 
 def test_remove_lesson():
     school = School()
@@ -86,3 +88,10 @@ def test_remove_teacher_subject():
     assert deu2.remove() == 0
     assert john.del_subject(deu) == 0
     assert john.subjects == [mat]
+
+def test_remove_subject():
+    eng = Subject('eng')
+    deu = Subject('deu')
+
+    assert eng.remove() == 1
+    assert deu.remove() == 0

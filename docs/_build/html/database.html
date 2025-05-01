@@ -424,17 +424,16 @@ Diese Funktion wird auch in Pytests verwendet. Sobald reale Daten existieren, so
 <dl class="py method">
 <dt class="sig sig-object py" id="database.Subject.remove">
 <span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.Subject.remove" title="Link to this definition"></a></dt>
-<dd><p>Löscht das akuelle Objekt aus der Datenbank.</p>
+<dd><p>Löscht ein Unterrichtsfach.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
 </dd>
 <dt class="field-even">Rückgabe<span class="colon">:</span></dt>
 <dd class="field-even"><p><div class="line-block">
-<div class="line">0 - erfolgreich</div>
-<div class="line">1 - Objekt ist nicht Vorhanden</div>
-<div class="line">2 - Objekt kann nicht gelöscht werden, da noch Referenzen vorhanden sind</div>
-<div class="line">3 - Datenbankfehler</div>
+<div class="line">0 - Erfolgreich</div>
+<div class="line">1 - Fach nicht vorhanden</div>
+<div class="line">2 - Noch Lehrer, die das Fach unterrichten oder Kurse mit dem Fach vorhanden</div>
 </div>
 </p>
 </dd>
@@ -444,13 +443,13 @@ Diese Funktion wird auch in Pytests verwendet. Sobald reale Daten existieren, so
 <dl class="py method">
 <dt class="sig sig-object py" id="database.Subject.to_dict">
 <span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.Subject.to_dict" title="Link to this definition"></a></dt>
-<dd><p>Liefert die Attibute des Objektes für das Frontend.</p>
+<dd><p>Liefet die Kerndaten eines Unterrichtsfaches für das Frontend.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span></p>
 </dd>
 <dt class="field-even">Rückgabe<span class="colon">:</span></dt>
-<dd class="field-even"><p>Daten als Wörterbuch</p>
+<dd class="field-even"><p>Wörterbuch des Faches</p>
 </dd>
 </dl>
 </dd></dl>
