@@ -628,17 +628,16 @@ Diese Funktion wird auch in Pytests verwendet. Sobald reale Daten existieren, so
 <dl class="py method">
 <dt class="sig sig-object py" id="database.Teacher.remove">
 <span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.Teacher.remove" title="Link to this definition"></a></dt>
-<dd><p>Löscht das akuelle Objekt aus der Datenbank.</p>
+<dd><p>Löscht einen Lehrer.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Rückgabetyp<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
 </dd>
 <dt class="field-even">Rückgabe<span class="colon">:</span></dt>
 <dd class="field-even"><p><div class="line-block">
-<div class="line">0 - erfolgreich</div>
-<div class="line">1 - Objekt ist nicht Vorhanden</div>
-<div class="line">2 - Objekt kann nicht gelöscht werden, da noch Referenzen vorhanden sind</div>
-<div class="line">3 - Datenbankfehler</div>
+<div class="line">0 - Erfolgreich</div>
+<div class="line">1 - Lehrer nicht vorhanden</div>
+<div class="line">2 - Lehrer leitet noch Klassen und/oder Kursee</div>
 </div>
 </p>
 </dd>
