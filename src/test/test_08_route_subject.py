@@ -37,3 +37,26 @@ def test_subjects(url):
     assert rdeu.status_code == 201
     assert rsub2.status_code == 200
     assert data == subjects
+
+def test_single_subject(url):
+    suburl = url + '/subjects/'
+    mat = {
+        'abr':'MAT',
+        'name':'Mathematik'
+    }
+    deu = {
+        'abr':'DEU',
+        'name':'Deutsch'
+    }
+
+    rfail = requests.get(suburl + 'eng')
+    rmat = requests.get(suburl + 'mat')
+    rdeu = requests.get(suburl + 'deu')
+    matdat = rmat.json()
+    deudat = rdeu.json()
+
+    assert rfail.status_code == 404
+    assert rmat.status_code == 200
+    assert rdeu.status_code == 200
+    assert matdat == mat
+    assert deudat == deu
