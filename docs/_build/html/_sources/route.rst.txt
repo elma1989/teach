@@ -10,7 +10,7 @@ Modul: site
 
     :resheader Content-Type: text/html
 
-    :statuscode 200: Hauptseite wurde erfogreich geladen
+    :statuscode 200: Hauptseite wurde erfolgreich geladen
     :statuscode 404: index.html wurde nicht gefunden
 
 Modul: subject
@@ -36,7 +36,7 @@ Modul: subject
     :json string abr: Abkürzung (3 Buchstaben) des Faches
     :json string name: Langbezeichnung des Faches
 
-    :statuscode 201: Fach wurde erfogreich erstellt
+    :statuscode 201: Fach wurde erfolgreich erstellt
     :statuscode 400: Format der übertragenen Daten ist nicht Korrekt
     :statuscode 409: Fach ist bereits vorhanden
 
@@ -50,3 +50,30 @@ Modul: subject
     
     :statuscode 200: Fach wurde erfolgreich geladen
     :statuscode 404: Fach wurde nicht gefunden
+
+Modul: teacher
+==============
+
+.. http:get:: /teachers/
+
+    Listet alle verfügbaren Lehrer auf.
+
+    :resheader Content-Type: application/json
+    :statuscode 200: Lehrer wurden erfolgreich geladen
+    :statuscode 404: Noch kein Lehrer vorhanden
+
+.. http:post:: /teachers/
+
+    Erstellt einen neuen Lehrer.
+
+    :reqheader Content-Type: application/json
+    :resheader Content-Type: application/json
+    :resheader Location: /teachers/<id>
+
+    :json string fname: Vorname des Lehrers
+    :json string lname: Nachname des Lehrers
+    :json string birthDate: Geburtdatum (JJJJ-MM-TT) des Lehrers
+
+    :statuscode 201: Lehrer erfolgreich erstellt
+    :statuscode 400: Fehlende Daten oder Gebursdatum nicht im korrekten Format
+    :statuscode 409: Lehrer bereits vorhanden
