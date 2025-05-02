@@ -50,6 +50,7 @@
 <li class="toctree-l1"><a class="reference internal" href="database.html">Paket: database</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Paket: route</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#modul-site">Modul: site</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modul-subject">Modul: subject</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="frontend.html">Frontend</a></li>
@@ -97,6 +98,60 @@
 <dd class="field-even"><ul class="simple">
 <li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a></span> – Hauptseite wurde erfogreich geladen</p></li>
 <li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a></span> – index.html wurde nicht gefunden</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="modul-subject">
+<h2>Modul: subject<a class="headerlink" href="#modul-subject" title="Link to this heading"></a></h2>
+<dl class="http get">
+<dt class="sig sig-object http" id="get--subjects-">
+<span class="sig-name descname"><span class="pre">GET</span> </span><span class="sig-name descname"><span class="pre">/subjects/</span></span><a class="headerlink" href="#get--subjects-" title="Link to this definition"></a></dt>
+<dd><p>Listet alle verfügbaren Unterrichtsfächer auf.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Response Headers<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.rfc-editor.org/rfc/rfc7231#section-3.1.1.5">Content-Type</a></span> – application/json</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a></span> – Fächer wurden erfolgreich geladen</p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a></span> – Noch kein Fach vorhanden</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http post">
+<dt class="sig sig-object http" id="post--subjects-">
+<span class="sig-name descname"><span class="pre">POST</span> </span><span class="sig-name descname"><span class="pre">/subjects/</span></span><a class="headerlink" href="#post--subjects-" title="Link to this definition"></a></dt>
+<dd><p>Fügt ein neues Unterrichtsfach hinzu.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Request Headers<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.rfc-editor.org/rfc/rfc7231#section-3.1.1.5">Content-Type</a></span> – application/json</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.rfc-editor.org/rfc/rfc7231#section-3.1.1.5">Content-Type</a></span> – application/json</p></li>
+<li><p><span><a class="reference external" href="https://www.rfc-editor.org/rfc/rfc7231#section-7.1.2">Location</a></span> – /subjects/&lt;abr&gt;</p></li>
+</ul>
+</dd>
+<dt class="field-odd">JSON Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>abr</strong> (<em>string</em>) – Abkürzung (3 Buchstaben) des Faches</p></li>
+<li><p><strong>name</strong> (<em>string</em>) – Langbezeichnung des Faches</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.2">201 Created</a></span> – Fach wurde erfogreich erstellt</p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a></span> – Format der übertragenen Daten ist nicht Korrekt</p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.10">409 Conflict</a></span> – Fach ist bereits vorhanden</p></li>
 </ul>
 </dd>
 </dl>
