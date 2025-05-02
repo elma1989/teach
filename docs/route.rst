@@ -8,5 +8,7 @@ Modul: site
     
     Rendert die Hauptseite.
 
+    :resheader Content-Type: text/html
+
     :statuscode 200: Hauptseite wurde erfogreich geladen
     :statuscode 404: index.html wurde nicht gefunden
