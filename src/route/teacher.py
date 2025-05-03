@@ -33,3 +33,27 @@ def teacher(id):
 
     if not teacher: return {'message':'Teacher not found'}, 404
     return teacher.to_dict()
+
+@teacher_bp.route('/<int:id>/subjects', methods=['GET','POST'])
+def subjects(id):
+    school = School()
+    teacher = school.getTeacher(id)
+
+    if not teacher: return {'message':'Teacher not found'}, 404
+
+    if request.method == 'POST':
+        data = json.loads(request.data.decode())
+
+        if not data.get('abr'):
+            return {'message':'Data incomplete'}, 400
+        
+        res = teacher.add_subject(Subject(data['abr']))
+
+        if res == 1: return {'message':'Subject not found'}, 404
+        if res == 2: return {'message':'Teacher allready teaches this subject'}, 409
+        location = '/teachers/' + str(teacher.id) + '/subjects/' + data['abr']
+        return {'message':'Subject successfully added to Teacher'}, 201, {'Location':location}
+
+    subjects = teacher.subjects
+    if len(subjects) == 0: return {'message':'No Subjects'}, 204
+    return [subject.to_dict() for subject in subjects]

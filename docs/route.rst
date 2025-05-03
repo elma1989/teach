@@ -87,3 +87,30 @@ Modul: teacher
     :resheader Content-Type: application/json
     :statuscode 200: Daten wurden erfolgreich geladen
     :statuscode 404: Der Lehrer wurde nicht gefunden
+
+.. http:get:: /teachers/(int:id)/subjects
+
+    Listet alle Fächer eines Lehrers auf.
+
+    :param id: Id des Lehrers
+    :type id: int
+    :resheader Content-Type: application/json
+    :statuscode 200: Die Fächerliste wurde erfolgreich geladen
+    :statuscode 204: Der Lehrer hat noch keine Fächer
+    :statuscode 404: Der Lehrer wurde nicht gefunden
+
+.. http:post:: /teachers/(int:id)/subjects
+
+    Fügt dem Lehrer ein neues Fach hinzu.
+
+    :param id: Id des Lehrers
+    :type id: int
+    :reqheader Content-Type: application/json
+    :resheader Content-Type: application/json
+    :resheader Location: /teachers/<id>/subjects/<abr>
+    :json string abr: Abkürzung des Faches in der Datenbank
+
+    :statuscode 201: Fach wurde erfolgreich zum Lehrer hinzugefügt
+    :statuscode 400: Daten des Faches sind unvollständig
+    :statuscode 404: Der Lehrer oder das Fach wurde nicht gefunden
+    :statuscode 409: Der Lehrer unterrichtet das Fach bereits

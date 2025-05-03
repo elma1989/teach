@@ -65,3 +65,52 @@ def test_single_teacher(url):
     assert rmaxm.status_code == 200
     assert johndat == john
     assert maxmdat == maxm
+
+def test_teacher_subject(url):
+    suburl = url + '/teachers/'
+    failurl = suburl + '3/subjects'
+    johnurl = suburl + '1/subjects'
+    maxmurl = suburl + '2/subjects'
+    fail = {}
+    mat = {
+        'abr':'MAT',
+        'name':'Mathematik'
+    }
+    deu = {
+        'abr':'DEU',
+        'name':'Deutsch'
+    }
+    eng = {
+        'abr':'ENG',
+        'name':'Englisch'
+    }
+    
+    rfail = requests.get(failurl)
+    rjohnsub1 = requests.get(johnurl)
+    rmaxmsub1 = requests.get(maxmurl)
+    rjohnfail = requests.post(johnurl, json.dumps(fail))
+    rjohnmat1 = requests.post(johnurl, json.dumps(mat))
+    rjohnmat2 = requests.post(johnurl, json.dumps(mat))
+    rjohndeu = requests.post(johnurl, json.dumps(deu))
+    rjohneng = requests.post(johnurl, json.dumps(eng))
+    rmaxmmat = requests.post(maxmurl, json.dumps(mat))
+    rmaxmdeu = requests.post(maxmurl, json.dumps(deu))
+    rjohnsub2 = requests.get(johnurl)
+    rmaxmsub2 = requests.get(maxmurl)
+    johnsubdata = rjohnsub2.json()
+    maxmsubdata = rmaxmsub2.json()
+
+    assert rfail.status_code == 404
+    assert rjohnsub1.status_code == 204
+    assert rmaxmsub1.status_code == 204
+    assert rjohnfail.status_code == 400
+    assert rjohnmat1.status_code == 201
+    assert rjohnmat2.status_code == 409
+    assert rjohndeu.status_code == 201
+    assert rjohneng.status_code == 404
+    assert rmaxmmat.status_code == 201
+    assert rmaxmdeu.status_code == 201
+    assert rjohnsub2.status_code == 200
+    assert rmaxmsub2.status_code == 200
+    assert johnsubdata == [deu, mat]
+    assert maxmsubdata == [deu, mat]
