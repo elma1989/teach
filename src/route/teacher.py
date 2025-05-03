@@ -25,3 +25,11 @@ def index():
     teachers = school.teachers
     if len(teachers) == 0: return {'message':'No Teachers exist'}, 404
     return [teacher.to_dict() for teacher in teachers]
+
+@teacher_bp.route('/<int:id>')
+def teacher(id):
+    school = School()
+    teacher = school.getTeacher(id)
+
+    if not teacher: return {'message':'Teacher not found'}, 404
+    return teacher.to_dict()

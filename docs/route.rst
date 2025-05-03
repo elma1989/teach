@@ -77,3 +77,13 @@ Modul: teacher
     :statuscode 201: Lehrer erfolgreich erstellt
     :statuscode 400: Fehlende Daten oder Gebursdatum nicht im korrekten Format
     :statuscode 409: Lehrer bereits vorhanden
+
+.. http:get:: /teachers/(int:id)
+
+    Gibt die Daten eines einzelnen Lehrers aus.
+
+    :param id: Id des Lehrers
+    :type id: int
+    :resheader Content-Type: application/json
+    :statuscode 200: Daten wurden erfolgreich geladen
+    :statuscode 404: Der Lehrer wurde nicht gefunden
