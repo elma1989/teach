@@ -115,7 +115,7 @@ Modul: teacher
     :statuscode 404: Der Lehrer oder das Fach wurde nicht gefunden
     :statuscode 409: Der Lehrer unterrichtet das Fach bereits
 
-.. note:: Für das Erstellen einer Klasse oder eines Klassenleiters werden die URL
+.. note:: Für das Erstellen einer Klasse oder das Wechseln eines Klassenleiters werden die URLs
 
         :http:get: /teachers/(int:id)/grades
         :http:post: /teachers/(int:id)/grades
@@ -126,7 +126,7 @@ Modul: teacher
 
 .. http:get:: /teachers/(int:id)/grades
 
-    Listed alle Klassen eines Lehrers auf.
+    Listet alle Klassen eines Lehrers auf.
 
     :param id: Id des Lehrers
     :type id: int
@@ -167,3 +167,20 @@ Modul: teacher
 
     :statuscode 200: Wechsel des Klassenleiters wurde erfolgreich durchgeführt
     :statuscode 404: Neuer Klasssenleiter oder Klasse wurde nicht gefunden
+
+Modul: grade
+============
+
+.. http:get:: /grades/
+
+    Zeigt alle Klassen in alphabetischer Reihenfolge.
+
+    :resheader Content-Type: application/json
+    :statuscode 200: Klassenliste wurde erfolgreich geladen
+    :statuscode 404: Noch keine Klasse vorhanden
+
+    .. note:: Bei :http:statuscode:`404` muss mindestens eine Klasse über
+
+        :http:post:`/teachers/(int:id)/grades`
+        
+        erstellt werden!

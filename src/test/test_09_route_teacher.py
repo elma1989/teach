@@ -120,11 +120,13 @@ def test_teacher_grade(url):
     failurl = suburl + '3/grades'
     johnurl = suburl + '1/grades'
     maxmurl = suburl + '2/grades'
+    gradeurl = url + '/grades/'
     fail = {}
     cls10a = {'name':'10a'}
     cls09a = {'name':'09a'}
 
     rfail = requests.get(failurl)
+    rgrade = requests.get(gradeurl)
     rjohngrade1 = requests.get(johnurl)
     rmaxmgrade1 = requests.get(maxmurl)
     rjohnfail = requests.post(johnurl, json.dumps(fail))
@@ -137,6 +139,7 @@ def test_teacher_grade(url):
     cls09adat = rmaxmgrade2.json()
 
     assert rfail.status_code == 404
+    assert rgrade.status_code == 404
     assert rjohngrade1.status_code == 204
     assert rmaxmgrade1.status_code == 204
     assert rjohnfail.status_code == 400

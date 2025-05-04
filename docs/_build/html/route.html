@@ -52,6 +52,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#modul-site">Modul: site</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#modul-subject">Modul: subject</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#modul-teacher">Modul: teacher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modul-grade">Modul: grade</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="frontend.html">Frontend</a></li>
@@ -325,7 +326,7 @@
 
 <div class="admonition note">
 <p class="admonition-title">Bemerkung</p>
-<p>Für das Erstellen einer Klasse oder eines Klassenleiters werden die URL</p>
+<p>Für das Erstellen einer Klasse oder das Wechseln eines Klassenleiters werden die URLs</p>
 <dl class="field-list simple">
 <dt class="field-odd"><a class="reference external" href="http:get">http:get</a><span class="colon">:</span></dt>
 <dd class="field-odd"><p>/teachers/(int:id)/grades</p>
@@ -343,7 +344,7 @@ Bei weiteren Optionen einer Klasse wird direkt die Klassen-URL verwendet, da die
 <dl class="http get">
 <dt class="sig sig-object http" id="get--teachers-(int-id)-grades">
 <span class="sig-name descname"><span class="pre">GET</span> </span><span class="sig-name descname"><span class="pre">/teachers/</span></span><span class="sig-paren">(</span><em class="property"><span class="pre">int:</span> </em><em class="sig-param"><span class="pre">id</span></em><span class="sig-paren">)</span><span class="sig-name descname"><span class="pre">/grades</span></span><a class="headerlink" href="#get--teachers-(int-id)-grades" title="Link to this definition"></a></dt>
-<dd><p>Listed alle Klassen eines Lehrers auf.</p>
+<dd><p>Listet alle Klassen eines Lehrers auf.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -430,6 +431,34 @@ um eine korrekte alphabetische Sortierung der Klassen zu ermöglichen</p>
 </ul>
 </dd>
 </dl>
+</dd></dl>
+
+</section>
+<section id="modul-grade">
+<h2>Modul: grade<a class="headerlink" href="#modul-grade" title="Link to this heading"></a></h2>
+<dl class="http get">
+<dt class="sig sig-object http" id="get--grades-">
+<span class="sig-name descname"><span class="pre">GET</span> </span><span class="sig-name descname"><span class="pre">/grades/</span></span><a class="headerlink" href="#get--grades-" title="Link to this definition"></a></dt>
+<dd><p>Zeigt alle Klassen in alphabetischer Reihenfolge.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Response Headers<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.rfc-editor.org/rfc/rfc7231#section-3.1.1.5">Content-Type</a></span> – application/json</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a></span> – Klassenliste wurde erfolgreich geladen</p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a></span> – Noch keine Klasse vorhanden</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Bei <a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> muss mindestens eine Klasse über</p>
+<p><a class="reference internal" href="#post--teachers-(int-id)-grades" title="POST /teachers/(int:id)/grades"><code class="xref http http-post docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/teachers/(int:id)/grades</span></code></a></p>
+<p>erstellt werden!</p>
+</div>
 </dd></dl>
 
 </section>
