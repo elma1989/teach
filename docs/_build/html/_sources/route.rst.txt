@@ -151,3 +151,19 @@ Modul: teacher
     :statuscode 400: JSON-Feld 'name' ist nicht vorhanden
     :statuscode 404: Der Lehrer wurde nicht gefunden
     :statuscode 409: Klasse existiert bereits
+
+    .. note:: Bei jährlich wechselnden Klassennamen ist bei Klassenstufen unter 10 ein Klassename mit führender "0" zu empehlen,
+        um eine korrekte alphabetische Sortierung der Klassen zu ermöglichen
+
+.. http:put:: /teachers/(int:id)/grades/(name)
+
+    Führt einen Wechsel des Klassenleiters für eine Klasse durch.
+
+    :param id: Id des neuen Lehrers
+    :type id: int
+    :param name: Name der Klasse
+    :type name: string
+    :resheader Content-Type: application/json
+
+    :statuscode 200: Wechsel des Klassenleiters wurde erfolgreich durchgeführt
+    :statuscode 404: Neuer Klasssenleiter oder Klasse wurde nicht gefunden

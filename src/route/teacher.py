@@ -80,3 +80,14 @@ def grades(id):
     grades = school.grades_of(teacher)
     if len(grades) == 0: return {'message':'Teacher leads no Grades'}, 204
     return [grade.to_dict() for grade in grades]
+
+@teacher_bp.route('/<int:id>/grades/<name>', methods=['PUT'])
+def change_leader(id, name):
+    school = School()
+    teacher = school.getTeacher(id)
+    grade = Grade(name)
+
+    if not teacher or not grade.exists(): return {'message':'Teacher oder grade not found'}, 404
+
+    grade.leader = teacher
+    return {'message':'Leader successfully changed'}

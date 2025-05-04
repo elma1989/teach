@@ -147,3 +147,17 @@ def test_teacher_grade(url):
     assert rmaxmgrade2.status_code == 200
     assert cls10adat == [cls10a]
     assert cls09adat == [cls09a]
+
+def test_grade_change_leader(url):
+    suburl = url + '/teachers/'
+    failurl = suburl + '3/grades/10a'
+    johnfailurl = suburl + '1/grades/08a'
+    john09aurl = suburl + '1/grades/09a'
+
+    rfail = requests.put(failurl)
+    rjohnfail = requests.put(johnfailurl)
+    rjohn09a = requests.put(john09aurl)
+
+    assert rfail.status_code == 404
+    assert rjohnfail.status_code == 404
+    assert rjohn09a.status_code == 200
