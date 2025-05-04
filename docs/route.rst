@@ -179,8 +179,36 @@ Modul: grade
     :statuscode 200: Klassenliste wurde erfolgreich geladen
     :statuscode 404: Noch keine Klasse vorhanden
 
-    .. note:: Bei :http:statuscode:`404` muss mindestens eine Klasse über
+    .. note:: Bei :http:statuscode:`404` muss mindestens eine Klasse über :http:post:`/teachers/(int:id)/grades` erstellt werden!
 
-        :http:post:`/teachers/(int:id)/grades`
-        
-        erstellt werden!
+.. http:get:: /grades/(gradename)/students
+
+    Zeigt alle Schüler in einer Klasse.
+
+    :param gradename: Name der Klasse
+    :type gradename: string
+    :resheader Content-Type: application/json
+    :statuscode 200: Klassenliste wurde erfolgreich geleden
+    :statuscode 204: Klassenliste enthält noch keine Schüler
+    :statuscode 404: Klasse wurde nicht gefunden
+
+    .. note:: Wird für den Parameter 'gradename' der String 'none' übergeben, so wird nach Schülern ohne Klassenzuweisung gesucht. Dieser Fall kann eintreten, wenn eine Klasse gelöscht wurde und die Schüler noch nicht gelöscht worden sind.
+
+.. http:post:: /grades/(gradename)/students
+
+    Erstellt einen neuen Schüler in einer Klasse.
+
+    :param gradename: Name der Klasse
+    :type gradename: string
+    :reqheader Content-Type: application/json
+    :resheader Content-Type: application/json
+    :resheader Location: /grades/<gradename>/students/<id>
+
+    :json string fname: Vorname des Schülers
+    :json string lname: Nachname des Schülers
+    :json string birthDate: Geburtsdatum (JJJJ-MM-TT)
+
+    :statuscode 201: Schüler wurde erfolgreich erstellt
+    :statuscode 400: Fehlendes JSON-Feld oder ungültiges Geburtsdatum
+    :statuscode 404: Klasse wurde nicht gefunden
+    :statuscode 409: Der Schüler existiert bereits
