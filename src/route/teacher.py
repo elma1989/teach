@@ -1,6 +1,6 @@
 import json
 from flask import Blueprint, request
-from database import School, Subject, Teacher
+from database import School, Subject, Teacher, Grade
 
 teacher_bp = Blueprint('teacher', __name__, url_prefix='/teachers')
 
@@ -55,5 +55,28 @@ def subjects(id):
         return {'message':'Subject successfully added to Teacher'}, 201, {'Location':location}
 
     subjects = teacher.subjects
-    if len(subjects) == 0: return {'message':'No Subjects'}, 204
+    if len(subjects) == 0: return {'message':'Teacher has no subjects'}, 204
     return [subject.to_dict() for subject in subjects]
+
+@teacher_bp.route('/<int:id>/grades', methods=['GET','POST'])
+def grades(id):
+    school = School()
+    teacher = school.getTeacher(id)
+
+    if not teacher: return {'message':'Teacher not found'}, 404
+
+    if request.method == 'POST':
+        data = json.loads(request.data.decode())
+        
+        if not data.get('name'): return {'message':"JSON-field 'name' does not exist"}, 400
+
+        grade = Grade(data['name'], teacher)
+        res = grade.add()
+
+        if res == 3: return {'message':'Grade allready exists'}, 409
+        location = '/grades/' + grade.name
+        return {'message':'Grade successfully created'}, 201, {'Location':location}
+
+    grades = school.grades_of(teacher)
+    if len(grades) == 0: return {'message':'Teacher leads no Grades'}, 204
+    return [grade.to_dict() for grade in grades]

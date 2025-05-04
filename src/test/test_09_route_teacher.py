@@ -114,3 +114,36 @@ def test_teacher_subject(url):
     assert rmaxmsub2.status_code == 200
     assert johnsubdata == [deu, mat]
     assert maxmsubdata == [deu, mat]
+
+def test_teacher_grade(url):
+    suburl = url + '/teachers/'
+    failurl = suburl + '3/grades'
+    johnurl = suburl + '1/grades'
+    maxmurl = suburl + '2/grades'
+    fail = {}
+    cls10a = {'name':'10a'}
+    cls09a = {'name':'09a'}
+
+    rfail = requests.get(failurl)
+    rjohngrade1 = requests.get(johnurl)
+    rmaxmgrade1 = requests.get(maxmurl)
+    rjohnfail = requests.post(johnurl, json.dumps(fail))
+    rjohn10a1 = requests.post(johnurl, json.dumps(cls10a))
+    rjohn10a2 = requests.post(johnurl, json.dumps(cls10a))
+    rmaxm09a = requests.post(maxmurl, json.dumps(cls09a))
+    rjohngrade2 = requests.get(johnurl)
+    rmaxmgrade2 = requests.get(maxmurl)
+    cls10adat = rjohngrade2.json()
+    cls09adat = rmaxmgrade2.json()
+
+    assert rfail.status_code == 404
+    assert rjohngrade1.status_code == 204
+    assert rmaxmgrade1.status_code == 204
+    assert rjohnfail.status_code == 400
+    assert rjohn10a1.status_code == 201
+    assert rjohn10a2.status_code == 409
+    assert rmaxm09a.status_code == 201
+    assert rjohngrade2.status_code == 200
+    assert rmaxmgrade2.status_code == 200
+    assert cls10adat == [cls10a]
+    assert cls09adat == [cls09a]

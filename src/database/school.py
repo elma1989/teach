@@ -103,7 +103,7 @@ class School(Data):
         Zeigt alle Klassen eines Lehrers
 
         :param leader: Instanz des Klassenleiters
-        :return: Klassenliste alphabetischer Ordnung, **None**, wenn der Lehr nicht existiert
+        :return: Klassenliste alphabetischer Ordnung, **None**, wenn der Lehrer nicht existiert
         """
         grades:list[Grade] = []
         sql:str = 'SELECT grd_name FROM grade WHERE teach_id = ? ORDER BY grd_name'
