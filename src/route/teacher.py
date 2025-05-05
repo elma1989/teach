@@ -1,6 +1,6 @@
 import json
 from flask import Blueprint, request
-from database import School, Subject, Teacher, Grade
+from database import School, Subject, Teacher, Grade, Course
 
 teacher_bp = Blueprint('teacher', __name__, url_prefix='/teachers')
 
@@ -91,3 +91,30 @@ def change_leader(id, name):
 
     grade.leader = teacher
     return {'message':'Leader successfully changed'}
+
+@teacher_bp.route('/<int:id>/courses', methods=['GET','POST'])
+def course(id):
+    school = School()
+    leader = school.getTeacher(id)
+
+    if not leader: return {'message':'Course-Leader not found'}, 404
+
+    if request.headers.get('Content-Type') == 'application/json' and request.method == 'POST':
+        data = request.json
+        name = data.get('name')
+        sub = data.get('subject')
+
+        if not name or not sub: return {'message':'One or many of JSON-Fields not exists'}, 400
+
+        course = Course(name, leader, Subject(sub))
+        res = course.add()
+
+        if res == 2: return {'message':'Subject does not exists'}, 404
+        if res == 3: return {'message':'Course allready exists'}, 409
+        location = '/' + str(leader.id) + '/courses/' + course.name
+        return {'message':'Course successfully created'}, 201, {'Location':location}
+
+    
+    courses = school.courses_of(leader)
+    if len(courses) == 0: return {'message':'Leader does not have any courses'}, 204
+    return [course.to_dict() for course in courses]

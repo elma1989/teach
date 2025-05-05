@@ -168,6 +168,37 @@ Modul: teacher
     :statuscode 200: Wechsel des Klassenleiters wurde erfolgreich durchgeführt
     :statuscode 404: Neuer Klasssenleiter oder Klasse wurde nicht gefunden
 
+
+.. http:get:: /teachers/(int:id)/courses
+
+    Listet alle Kurse, die ein Lehrer unterichtet auf.
+
+    :param id: Id des Lehrers
+    :type id: int
+    :resheader Content-Type: application/json
+    
+    :statuscode 200: Die Kurse wurden erfolgreich geladen
+    :statuscode 204: Der Lehrer führt noch keine Kurse
+    :statuscode 404: Der Lehrer wurde nicht gefunden
+
+.. http:post:: /teachers/(int:id)/courses
+
+    Legt für einen Lehrer einen neuen Kurs an.
+
+    :param id: Id des Lehrers
+    :type id: int
+    :reqheader Content-Type: application/json
+    :resheader Content-Type: application/json
+    :resheader Location: /teachers/<id>/courses/<name>
+
+    :json sting name: Name des Kurses
+    :json string subject: Abkürzung des Faches in der Datenbank
+
+    :statuscode 201: Kurs wurde erfolgreich angelegt
+    :statuscode 400: Mindestens ein JSON-Feld fehlt
+    :statuscode 404: Lehrer oder Fach wurde nicht gefunden
+    :statuscode 409: Kurs ist bereits vorhanden
+
 Modul: grade
 ============
 
@@ -185,7 +216,7 @@ Modul: grade
 
     Ändert den Klasennamen (z. B. bei jählich wechselden Klassenstufen).
 
-    :param gradename: Bisherigier Klassenname
+    :param gradename: Bisheriger Klassenname
     :type gradename: string
     :reqheader Content-Type: application/json
     :resheader Content-Type: application/json
@@ -221,7 +252,7 @@ Modul: grade
 
     :json string fname: Vorname des Schülers
     :json string lname: Nachname des Schülers
-    :json string birthDate: Geburtsdatum (JJJJ-MM-TT)
+    :json string birthDate: Geburtsdatum (JJJJ-MM-TT) des Schülers
 
     :statuscode 201: Schüler wurde erfolgreich erstellt
     :statuscode 400: Fehlendes JSON-Feld oder ungültiges Geburtsdatum
