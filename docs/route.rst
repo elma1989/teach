@@ -181,6 +181,21 @@ Modul: grade
 
     .. note:: Bei :http:statuscode:`404` muss mindestens eine Klasse über :http:post:`/teachers/(int:id)/grades` erstellt werden!
 
+.. http:patch:: /grades/(gradename)
+
+    Ändert den Klasennamen (z. B. bei jählich wechselden Klassenstufen).
+
+    :param gradename: Bisherigier Klassenname
+    :type gradename: string
+    :reqheader Content-Type: application/json
+    :resheader Content-Type: application/json
+    :json string name: Neuer Klassenname
+
+    :statuscode 200: Klassenname wurde erfolgreich geändert
+    :statuscode 400: JSON-Feld 'name' ist nicht vorhanden
+    :statuscode 404: Bisherige Klasse wurde nicht gefunden
+    :statuscode 409: Neuer Klassenname ist nicht verfügbar
+
 .. http:get:: /grades/(gradename)/students
 
     Zeigt alle Schüler in einer Klasse.

@@ -12,6 +12,20 @@ def index():
     if len(grades) == 0: return {'message':'Grades not found'}, 404
     return [grade.to_dict() for grade in grades]
 
+@grade_bp.route('/<gradename>', methods=['PATCH'])
+def grade(gradename):
+    grade = Grade(gradename)
+
+    if not grade.exists(): return {'message':'Grade not found'}, 404
+
+    data = json.loads(request.data.decode())
+
+    if not data.get('name'): return {'message':"JSON-Field 'name' not exists"}, 400
+    grade.name = data['name']
+
+    if grade.name == gradename: return {'message':'Gradename allready exists'}, 409
+    return {'message':'Grade name successfully changed'}
+
 @grade_bp.route('/<gradename>/students', methods=['GET','POST'])
 def students(gradename):
     school = School()

@@ -459,6 +459,42 @@ um eine korrekte alphabetische Sortierung der Klassen zu ermöglichen</p>
 </div>
 </dd></dl>
 
+<dl class="http patch">
+<dt class="sig sig-object http" id="patch--grades-(gradename)">
+<span class="sig-name descname"><span class="pre">PATCH</span> </span><span class="sig-name descname"><span class="pre">/grades/</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">gradename</span></em><span class="sig-paren">)</span><a class="headerlink" href="#patch--grades-(gradename)" title="Link to this definition"></a></dt>
+<dd><p>Ändert den Klasennamen (z. B. bei jählich wechselden Klassenstufen).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gradename</strong> (<em>string</em>) – Bisherigier Klassenname</p></li>
+</ul>
+</dd>
+<dt class="field-even">Request Headers<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.rfc-editor.org/rfc/rfc7231#section-3.1.1.5">Content-Type</a></span> – application/json</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Response Headers<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.rfc-editor.org/rfc/rfc7231#section-3.1.1.5">Content-Type</a></span> – application/json</p></li>
+</ul>
+</dd>
+<dt class="field-even">JSON Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>name</strong> (<em>string</em>) – Neuer Klassenname</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a></span> – Klassenname wurde erfolgreich geändert</p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a></span> – JSON-Feld ‚name‘ ist nicht vorhanden</p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a></span> – Bisherige Klasse wurde nicht gefunden</p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.10">409 Conflict</a></span> – Neuer Klassenname ist nicht verfügbar</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="http get">
 <dt class="sig sig-object http" id="get--grades-(gradename)-students">
 <span class="sig-name descname"><span class="pre">GET</span> </span><span class="sig-name descname"><span class="pre">/grades/</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">gradename</span></em><span class="sig-paren">)</span><span class="sig-name descname"><span class="pre">/students</span></span><a class="headerlink" href="#get--grades-(gradename)-students" title="Link to this definition"></a></dt>

@@ -11,8 +11,26 @@ def test_grade_index(url):
     assert rgrades.status_code == 200
     assert data == [cls09a, cls10a]
 
+def test_grade_name(url):
+    suburl = url + '/grades/'
+    failurl = suburl + '08a'
+    url09a = suburl + '09a'
+    clsfail = {}
+    cls10 = {'name':'10a'}
+    cls8 = {'name':'08a'}
+
+    rfail = requests.patch(failurl,json.dumps(cls8))
+    rcls9fail = requests.patch(url09a,json.dumps(clsfail))
+    rcls9cls10 = requests.patch(url09a,json.dumps(cls10))
+    rcls9cls8 = requests.patch(url09a,json.dumps(cls8))
+
+    assert rfail.status_code == 404
+    assert rcls9fail.status_code == 400
+    assert rcls9cls10.status_code == 409
+    assert rcls9cls8.status_code == 200
+
 def test_grade_students(url):
-    urlfail = url + '/grades/08a/students'
+    urlfail = url + '/grades/09a/students'
     url10a = url + '/grades/10a/students'
     fail1 = {}
     fail2 = {
