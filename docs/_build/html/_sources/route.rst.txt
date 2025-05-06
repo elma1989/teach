@@ -124,6 +124,9 @@ Modul: teacher
         verwendet, da das ER-Diagramm genau einen Lehrer als Klassenleiter verlangt. 
         Bei weiteren Optionen einer Klasse wird direkt die Klassen-URL verwendet, da die Information über den Klassenleiter dann nicht notwendig ist.
 
+Klassen
+-------
+
 .. http:get:: /teachers/(int:id)/grades
 
     Listet alle Klassen eines Lehrers auf.
@@ -168,6 +171,8 @@ Modul: teacher
     :statuscode 200: Wechsel des Klassenleiters wurde erfolgreich durchgeführt
     :statuscode 404: Neuer Klasssenleiter oder Klasse wurde nicht gefunden
 
+Kurse
+------
 
 .. http:get:: /teachers/(int:id)/courses
 
@@ -225,6 +230,20 @@ Modul: teacher
     :statuscode 200: Wechsel erfolgreich ausgeführt
     :statuscode 404: Lehrer oder Kurs nicht gefunden
     :statuscode 409: Der neue Lehrer unterrichtet das Fach des Kurses nicht
+
+.. http:get:: /teachers/(int:id)/courses/(name)/students
+
+    Listet alle Kursteilnehmer auf.
+
+    :param id: Id des Kursleiters
+    :type id: int
+    :param name: Name des Kurses
+    :type name: string
+    :resheader Content-Type: application/json
+
+    :statuscode 200: Teilnehmerliste wurde erfolgreich geladen
+    :statuscode 204: Der Kurs hat noch keine Teilnehmer
+    :statuscode 404: Der Kurs bzw. der Kursleiter wurde nicht gefunden
 
 Modul: grade
 ============

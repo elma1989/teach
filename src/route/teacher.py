@@ -1,6 +1,6 @@
 import json
 from flask import Blueprint, request
-from database import School, Subject, Teacher, Grade, Course
+from database import School, Subject, Teacher, Grade, Course, Student
 
 teacher_bp = Blueprint('teacher', __name__, url_prefix='/teachers')
 
@@ -136,3 +136,17 @@ def single_course(id, name):
     if not course in school.courses_of(leader): return {'message':'Course in Leader-Courses not found'}, 404
     
     return course.to_dict()
+
+@teacher_bp.route('/<int:id>/courses/<name>/students')
+def course_students(id, name):
+    school = School()
+    leader = school.getTeacher(id)
+    course = Course(name)
+
+    if not leader: return {'message':'Leader not found'}, 404
+    if not course.exists(): return {'message': 'Course not found'}, 404
+    if not course in school.courses_of(leader): return {'message':'Course in Leader-Courses not found'}, 404
+
+    students = course.students
+    if len(students) == 0: return {'message':'This course has not members'}, 204
+    return [student.to_dict() for student in students]

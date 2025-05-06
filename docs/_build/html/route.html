@@ -51,7 +51,11 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Paket: route</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#modul-site">Modul: site</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#modul-subject">Modul: subject</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#modul-teacher">Modul: teacher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modul-teacher">Modul: teacher</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#klassen">Klassen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#kurse">Kurse</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#modul-grade">Modul: grade</a></li>
 </ul>
 </li>
@@ -341,6 +345,8 @@
 <p>verwendet, da das ER-Diagramm genau einen Lehrer als Klassenleiter verlangt.
 Bei weiteren Optionen einer Klasse wird direkt die Klassen-URL verwendet, da die Information über den Klassenleiter dann nicht notwendig ist.</p>
 </div>
+<section id="klassen">
+<h3>Klassen<a class="headerlink" href="#klassen" title="Link to this heading"></a></h3>
 <dl class="http get">
 <dt class="sig sig-object http" id="get--teachers-(int-id)-grades">
 <span class="sig-name descname"><span class="pre">GET</span> </span><span class="sig-name descname"><span class="pre">/teachers/</span></span><span class="sig-paren">(</span><em class="property"><span class="pre">int:</span> </em><em class="sig-param"><span class="pre">id</span></em><span class="sig-paren">)</span><span class="sig-name descname"><span class="pre">/grades</span></span><a class="headerlink" href="#get--teachers-(int-id)-grades" title="Link to this definition"></a></dt>
@@ -433,6 +439,9 @@ um eine korrekte alphabetische Sortierung der Klassen zu ermöglichen</p>
 </dl>
 </dd></dl>
 
+</section>
+<section id="kurse">
+<h3>Kurse<a class="headerlink" href="#kurse" title="Link to this heading"></a></h3>
 <dl class="http get">
 <dt class="sig sig-object http" id="get--teachers-(int-id)-courses">
 <span class="sig-name descname"><span class="pre">GET</span> </span><span class="sig-name descname"><span class="pre">/teachers/</span></span><span class="sig-paren">(</span><em class="property"><span class="pre">int:</span> </em><em class="sig-param"><span class="pre">id</span></em><span class="sig-paren">)</span><span class="sig-name descname"><span class="pre">/courses</span></span><a class="headerlink" href="#get--teachers-(int-id)-courses" title="Link to this definition"></a></dt>
@@ -547,6 +556,33 @@ um eine korrekte alphabetische Sortierung der Klassen zu ermöglichen</p>
 </dl>
 </dd></dl>
 
+<dl class="http get">
+<dt class="sig sig-object http" id="get--teachers-(int-id)-courses-(name)-students">
+<span class="sig-name descname"><span class="pre">GET</span> </span><span class="sig-name descname"><span class="pre">/teachers/</span></span><span class="sig-paren">(</span><em class="property"><span class="pre">int:</span> </em><em class="sig-param"><span class="pre">id</span></em><span class="sig-paren">)</span><span class="sig-name descname"><span class="pre">/courses/</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">name</span></em><span class="sig-paren">)</span><span class="sig-name descname"><span class="pre">/students</span></span><a class="headerlink" href="#get--teachers-(int-id)-courses-(name)-students" title="Link to this definition"></a></dt>
+<dd><p>Listet alle Kursteilnehmer auf.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<em>int</em>) – Id des Kursleiters</p></li>
+<li><p><strong>name</strong> (<em>string</em>) – Name des Kurses</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.rfc-editor.org/rfc/rfc7231#section-3.1.1.5">Content-Type</a></span> – application/json</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a></span> – Teilnehmerliste wurde erfolgreich geladen</p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5">204 No Content</a></span> – Der Kurs hat noch keine Teilnehmer</p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a></span> – Der Kurs bzw. der Kursleiter wurde nicht gefunden</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
 </section>
 <section id="modul-grade">
 <h2>Modul: grade<a class="headerlink" href="#modul-grade" title="Link to this heading"></a></h2>
