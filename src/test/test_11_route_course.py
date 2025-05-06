@@ -153,3 +153,39 @@ def test_mgm_students(url):
     assert rg_member2_mat1.status_code == 200
     data = rg_member2_mat1.json()
     assert data == [carl, lotte]
+
+def test_add_lesson(url):
+    suburl = url + '/teachers/'
+    header = {'Content-Type':'application/json'}
+    fail_teach_url = suburl + '4/courses/MAT%201/lessons'
+    fail_course_url = suburl + '1/courses/ENG%201/lessons'
+    mat1_url = suburl + '1/courses/MAT%201/lessons'
+
+    fail_data = {}
+    fail_time = {'time':'01.04.2025 08:00'}
+    les1 = {'time':'2025-04-01 08:00'}
+    resp_les1 = {
+        'course':'MAT 1',
+        'time':'2025-04-01 08:00',
+        'topic':''
+    }
+
+    rg_fail_teach = requests.get(fail_teach_url)
+    rg_fail_course = requests.get(fail_course_url)
+    rg_mat1_1 = requests.get(mat1_url)
+    rp_mat1_fail_data = requests.post(mat1_url, json.dumps(fail_data), headers=header)
+    rp_mat1_fail_time = requests.post(mat1_url, json.dumps(fail_time), headers=header)
+    rp_mat1_les1_1 = requests.post(mat1_url, json.dumps(les1), headers=header)
+    rp_mat1_les1_2 = requests.post(mat1_url, json.dumps(les1), headers=header)
+    rg_mat1_2 = requests.get(mat1_url)
+
+    assert rg_fail_teach.status_code == 404
+    assert rg_fail_course.status_code == 404
+    assert rg_mat1_1.status_code == 204
+    assert rp_mat1_fail_data.status_code == 400
+    assert rp_mat1_fail_time.status_code == 400
+    assert rp_mat1_les1_1.status_code == 201
+    assert rp_mat1_les1_2.status_code == 409
+    assert rg_mat1_2.status_code == 200
+    data = rg_mat1_2.json()
+    assert data == [resp_les1]

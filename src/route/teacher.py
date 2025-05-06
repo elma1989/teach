@@ -1,6 +1,6 @@
 import json
 from flask import Blueprint, request
-from database import School, Subject, Teacher, Grade, Course, Student
+from database import School, Subject, Teacher, Grade, Course, Lesson
 
 teacher_bp = Blueprint('teacher', __name__, url_prefix='/teachers')
 
@@ -55,7 +55,7 @@ def subjects(id):
         return {'message':'Subject successfully added to Teacher'}, 201, {'Location':location}
 
     subjects = teacher.subjects
-    if len(subjects) == 0: return {'message':'Teacher has no subjects'}, 204
+    if len(subjects) == 0: return '',204
     return [subject.to_dict() for subject in subjects]
 
 @teacher_bp.route('/<int:id>/grades', methods=['GET','POST'])
@@ -78,7 +78,7 @@ def grades(id):
         return {'message':'Grade successfully created'}, 201, {'Location':location}
 
     grades = school.grades_of(teacher)
-    if len(grades) == 0: return {'message':'Teacher leads no Grades'}, 204
+    if len(grades) == 0: return '', 204
     return [grade.to_dict() for grade in grades]
 
 @teacher_bp.route('/<int:id>/grades/<name>', methods=['PUT'])
@@ -116,7 +116,7 @@ def course(id):
 
     
     courses = school.courses_of(leader)
-    if len(courses) == 0: return {'message':'Leader does not have any courses'}, 204
+    if len(courses) == 0: return '', 204
     return [course.to_dict() for course in courses]
 
 @teacher_bp.route('/<int:id>/courses/<name>', methods=['GET','PUT'])
@@ -148,7 +148,7 @@ def course_students(id, name):
     if not course in school.courses_of(leader): return {'message':'Course in Leader-Courses not found'}, 404
 
     students = course.students
-    if len(students) == 0: return {'message':'This course has not members'}, 204
+    if len(students) == 0: return '',204
     return [student.to_dict() for student in students]
 
 @teacher_bp.route('/<int:id>/courses/<name>/students/<int:std_id>', methods=['PUT'])
@@ -166,3 +166,30 @@ def course_mgm_students(id, name, std_id):
     res = course.add_student(student)
     if res == 3: return {'message':'Student ist allready Member in this course'}, 409
     return {'message':'Student successfully joined in this course'}
+
+@teacher_bp.route('/<int:id>/courses/<name>/lessons', methods=['GET','POST'])
+def course_lessons(id, name):
+    school = School()
+    leader = school.getTeacher(id)
+    course = Course(name)
+
+    if not leader: return {'message':'Leader not found'}, 404
+    if not course.exists(): return {'message': 'Course not found'}, 404
+    if not course in school.courses_of(leader): return {'message':'Course in Leader-Courses not found'}, 404
+
+    if request.headers.get('Content-Type') == 'application/json' and request.method == 'POST':
+        data = request.json
+        time = data.get('time')
+
+        if not time: return {'message':"JSON-Field 'time' missing"}, 400
+        les = Lesson(course, time)
+        res = les.add()
+
+        if res == 1: return {'message':'Time-Format is not correct'}, 400
+        if res == 3: return {'message':'Lesson allready exists'}, 409
+        location = '/teachers/' + str(leader.id) + '/courses/' + course.name + '/lessons/' + les.db_time
+        return {'message':'Lesson succesfully created'}, 201, {'Location':location}
+
+    lessons = school.lessons(course)
+    if len(lessons) == 0: return '', 204
+    return [lesson.to_dict() for lesson in lessons]

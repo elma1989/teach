@@ -254,12 +254,46 @@ Kurse
     :param name: Name des Kurses
     :type name: string
     :param std_id: Id des Schülers
-    :type std_id: int    
+    :type std_id: int
     :resheader Content-Type: application/json
 
     :statuscode 200: Schüler erfolgreich zum Kurs hinugefügt
     :statuscode 404: Kurs, Kursleiter oder Schüler nicht gefunden
     :statuscode 409: Schüler ist bereits Mitglied im Kurs
+
+Unterrichsstunden
+-----------------
+
+.. http:get:: /teachers/(int:id)/courses/(name)/lessons
+
+    Zeigt alle Studen eines Faches.
+
+    :param id: Id des Kursleiters
+    :type id: int
+    :param name: Name des Kurses
+    :type name: string
+    :resheader Content-Type: application/json
+
+    :statuscode 200: Stunden wurde erfolgreich geladen
+    :statuscode 204: Noch keine Stunden in Kurs vorhanden
+    :statuscode 404: Kurs oder Kursleiter nicht gefunden
+
+.. http:post:: /teachers/(int:id)/courses/(name)/lessons
+
+    Fügt zum Kurs eine Stunde hinzu.
+
+    :param id: Id des Kursleiters
+    :type id: int
+    :param name: Name des Kurses
+    :type name: string
+    :reqheader Content-Type: application/json
+    :resheader Content-Type: application/json
+    :json string time: Geplanter Unterrichtsbeginn (JJJJ-MM-TT HH:MM)
+
+    :statuscode 201: Unterrichtsstunde wurde erfolgreich erstellt
+    :statuscode 400: JSON-Feld 'time' fehlt oder ist im falschen Format
+    :statuscode 404: Kurs oder Kursleiter nicht gefunden
+    :statuscode 409: Unterrichtsstunde wurde bereits angelegt
 
 Modul: grade
 ============
