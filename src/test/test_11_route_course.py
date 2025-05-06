@@ -59,3 +59,55 @@ def test_teacher_course(url):
     maxmdata = rmaxmcrs2.json()
     assert johndata == [mat1out]
     assert maxmdata == [deu1out]
+
+def test_teacher_single_course(url):
+    suburl = url + '/teachers/'
+    header = {'Content-Type':'application/json'}
+    failteachurl = suburl + '4/courses/MAT%201'
+    failcourseurl = suburl + '1/courses/ENG%201'
+    johnmaturl = suburl + '1/courses/MAT%201'
+    johndeuurl = suburl + '1/courses/DEU%201'
+    isaacurl = suburl + '3/courses/DEU%201' 
+
+    isaac = {
+        'fname':'Isaac',
+        'lname':'Newton',
+        'birthDate':'1643-01-04'
+    }
+    mat = {'abr':'mat'}
+    phy = {
+        'abr':'phy',
+        'name':'Physik'
+    }
+    mat1 = {
+        'name':'MAT 1',
+        'subject': {
+            'abr':'MAT',
+            'name':'Mathematik'
+        }
+    }
+
+    risaacadd = requests.post(suburl,json.dumps(isaac),headers=header)
+    assert risaacadd.status_code == 201
+    risaacadd = requests.post(url + '/subjects/',json.dumps(phy),headers=header)
+    assert risaacadd.status_code == 201
+    risaacadd = requests.post(suburl + '3/subjects',json.dumps(mat),headers=header)
+    assert risaacadd.status_code == 201
+    risaacadd = requests.post(suburl + '3/subjects',json.dumps(phy),headers=header)
+    assert risaacadd.status_code == 201
+
+    rfailteach = requests.get(failteachurl)
+    rfailcourse = requests.get(failcourseurl)
+    rgjohndeu = requests.get(johndeuurl)
+    rgjohnmat = requests.get(johnmaturl)
+    rpisaacdeu = requests.put(isaacurl)
+    rpjohndeu = requests.put(johndeuurl)
+
+    assert rfailteach.status_code == 404
+    assert rfailcourse.status_code == 404
+    assert rgjohndeu.status_code == 404
+    assert rgjohnmat.status_code == 200
+    assert rpisaacdeu.status_code == 409
+    assert rpjohndeu.status_code == 200
+    johnmatdata = rgjohnmat.json()
+    assert johnmatdata == mat1

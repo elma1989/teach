@@ -496,6 +496,57 @@ um eine korrekte alphabetische Sortierung der Klassen zu ermöglichen</p>
 </dl>
 </dd></dl>
 
+<dl class="http get">
+<dt class="sig sig-object http" id="get--teachers-(int-id)-courses-(name)">
+<span class="sig-name descname"><span class="pre">GET</span> </span><span class="sig-name descname"><span class="pre">/teachers/</span></span><span class="sig-paren">(</span><em class="property"><span class="pre">int:</span> </em><em class="sig-param"><span class="pre">id</span></em><span class="sig-paren">)</span><span class="sig-name descname"><span class="pre">/courses/</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#get--teachers-(int-id)-courses-(name)" title="Link to this definition"></a></dt>
+<dd><p>Liefert eine Detail-Ansicht eines Kurses.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<em>int</em>) – Id des Kursleiters (Lehrer)</p></li>
+<li><p><strong>name</strong> (<em>string</em>) – Name des Kurses</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.rfc-editor.org/rfc/rfc7231#section-3.1.1.5">Content-Type</a></span> – application/json</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a></span> – Kursdatenerfolgreich geladen</p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a></span> – Kurs oder Kursleiter nicht gefunden</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http put">
+<dt class="sig sig-object http" id="put--teachers-(int-id)-courses-(name)">
+<span class="sig-name descname"><span class="pre">PUT</span> </span><span class="sig-name descname"><span class="pre">/teachers/</span></span><span class="sig-paren">(</span><em class="property"><span class="pre">int:</span> </em><em class="sig-param"><span class="pre">id</span></em><span class="sig-paren">)</span><span class="sig-name descname"><span class="pre">/courses/</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#put--teachers-(int-id)-courses-(name)" title="Link to this definition"></a></dt>
+<dd><p>Führt einen Wechsel des Kursleiters durch.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<em>int</em>) – Id des neuen Kursleiters</p></li>
+<li><p><strong>name</strong> (<em>string</em>) – Name des Kurses</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.rfc-editor.org/rfc/rfc7231#section-3.1.1.5">Content-Type</a></span> – application/json</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a></span> – Wechsel erfolgreich ausgeführt</p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a></span> – Lehrer oder Kurs nicht gefunden</p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.10">409 Conflict</a></span> – Der neue Lehrer unterrichtet das Fach des Kurses nicht</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="modul-grade">
 <h2>Modul: grade<a class="headerlink" href="#modul-grade" title="Link to this heading"></a></h2>

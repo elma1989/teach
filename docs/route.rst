@@ -199,6 +199,33 @@ Modul: teacher
     :statuscode 404: Lehrer oder Fach wurde nicht gefunden
     :statuscode 409: Kurs ist bereits vorhanden
 
+.. http:get:: /teachers/(int:id)/courses/(name)
+
+    Liefert eine Detail-Ansicht eines Kurses.
+
+    :param id: Id des Kursleiters (Lehrer)
+    :type id: int
+    :param name: Name des Kurses
+    :type name: string
+    :resheader Content-Type: application/json
+
+    :statuscode 200: Kursdatenerfolgreich geladen
+    :statuscode 404: Kurs oder Kursleiter nicht gefunden
+
+.. http:put:: /teachers/(int:id)/courses/(name)
+
+    Führt einen Wechsel des Kursleiters durch.
+
+    :param id: Id des neuen Kursleiters
+    :type id: int
+    :param name: Name des Kurses
+    :type name: string
+    :resheader Content-Type: application/json
+
+    :statuscode 200: Wechsel erfolgreich ausgeführt
+    :statuscode 404: Lehrer oder Kurs nicht gefunden
+    :statuscode 409: Der neue Lehrer unterrichtet das Fach des Kurses nicht
+
 Modul: grade
 ============
 

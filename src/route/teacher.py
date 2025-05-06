@@ -118,3 +118,21 @@ def course(id):
     courses = school.courses_of(leader)
     if len(courses) == 0: return {'message':'Leader does not have any courses'}, 204
     return [course.to_dict() for course in courses]
+
+@teacher_bp.route('/<int:id>/courses/<name>', methods=['GET','PUT'])
+def single_course(id, name):
+    school = School()
+    leader = school.getTeacher(id)
+    course = Course(name)
+
+    if not leader: return {'message':'Leader not found'}, 404
+    if not course.exists(): return {'message': 'Course not found'}, 404
+
+    if request.method == 'PUT':
+        course.leader = leader
+        if course.leader != leader: return {'message':'This teacher does not teasch this subject'}, 409
+        return {'message':'Leader successfully changed'}
+
+    if not course in school.courses_of(leader): return {'message':'Course in Leader-Courses not found'}, 404
+    
+    return course.to_dict()
