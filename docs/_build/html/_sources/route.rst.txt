@@ -245,6 +245,22 @@ Kurse
     :statuscode 204: Der Kurs hat noch keine Teilnehmer
     :statuscode 404: Der Kurs bzw. der Kursleiter wurde nicht gefunden
 
+.. http:put:: /teachers/(int:id)/courses/(name)/students/(int:std_id)
+
+    Weist einen Schüler einen Kurse zu.
+
+    :param id: Id des Kursleiters
+    :type id: int
+    :param name: Name des Kurses
+    :type name: string
+    :param std_id: Id des Schülers
+    :type std_id: int    
+    :resheader Content-Type: application/json
+
+    :statuscode 200: Schüler erfolgreich zum Kurs hinugefügt
+    :statuscode 404: Kurs, Kursleiter oder Schüler nicht gefunden
+    :statuscode 409: Schüler ist bereits Mitglied im Kurs
+
 Modul: grade
 ============
 

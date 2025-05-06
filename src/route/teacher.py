@@ -150,3 +150,19 @@ def course_students(id, name):
     students = course.students
     if len(students) == 0: return {'message':'This course has not members'}, 204
     return [student.to_dict() for student in students]
+
+@teacher_bp.route('/<int:id>/courses/<name>/students/<int:std_id>', methods=['PUT'])
+def course_mgm_students(id, name, std_id):
+    school = School()
+    leader = school.getTeacher(id)
+    course = Course(name)
+    student = school.getStudent(std_id)
+
+    if not leader: return {'message':'Leader not found'}, 404
+    if not course.exists(): return {'message': 'Course not found'}, 404
+    if not course in school.courses_of(leader): return {'message':'Course in Leader-Courses not found'}, 404
+    if not student: return {'mesage':'Student not found'}, 404
+    
+    res = course.add_student(student)
+    if res == 3: return {'message':'Student ist allready Member in this course'}, 409
+    return {'message':'Student successfully joined in this course'}
