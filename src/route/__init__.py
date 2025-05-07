@@ -1,0 +1,1 @@
+from .subject import subject_bp as subject
