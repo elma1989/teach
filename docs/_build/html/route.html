@@ -9,7 +9,7 @@
   <title>Paket: route &mdash; Teach-App 1.0 Dokumentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=948e7bc5" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=e46fe9ae" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
@@ -50,6 +50,7 @@
 <li class="toctree-l1"><a class="reference internal" href="database.html">Paket: database</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Paket: route</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#modul-subject">Modul: subject</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modul-teacher">Modul: teacher</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="frontend.html">Frontend</a></li>
@@ -129,6 +130,61 @@
 <li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.2">201 Created</a></span> – Fach wurde erfolgreich erstellt</p></li>
 <li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a></span> – Forulardaten wurde nicht korrekt validiert</p></li>
 <li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.10">409 Conflict</a></span> – Fach ist bereits vorhanden</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="modul-teacher">
+<h2>Modul: teacher<a class="headerlink" href="#modul-teacher" title="Link to this heading"></a></h2>
+<dl class="http get">
+<dt class="sig sig-object http" id="get--teachers-">
+<span class="sig-name descname"><span class="pre">GET</span> </span><span class="sig-name descname"><span class="pre">/teachers/</span></span><a class="headerlink" href="#get--teachers-" title="Link to this definition"></a></dt>
+<dd><p>Listet alle Lehrer auf.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Response Headers<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.rfc-editor.org/rfc/rfc7231#section-3.1.1.5">Content-Type</a></span> – application/json</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a></span> – Lehrerliste wurde erfolgreich geladen</p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5">204 No Content</a></span> – Noch keine Lehrer vorhanden</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http post">
+<dt class="sig sig-object http" id="post--teachers-">
+<span class="sig-name descname"><span class="pre">POST</span> </span><span class="sig-name descname"><span class="pre">/teachers/</span></span><a class="headerlink" href="#post--teachers-" title="Link to this definition"></a></dt>
+<dd><p>Legt einen neuen Leher an.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Request Headers<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.rfc-editor.org/rfc/rfc7231#section-3.1.1.5">Content-Type</a></span> – application/x-www-form-urlencoded</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.rfc-editor.org/rfc/rfc7231#section-3.1.1.5">Content-Type</a></span> – application/json</p></li>
+<li><p><span><a class="reference external" href="https://www.rfc-editor.org/rfc/rfc7231#section-7.1.2">Location</a></span> – /teachers/&lt;teach_id&gt;</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Form Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>string fname</strong> – Vorname des Lehrers</p></li>
+<li><p><strong>string lname</strong> – Nachname des Lehrers</p></li>
+<li><p><strong>birth_date</strong> – Geburtsdatum (JJJJ-MM-TT) des Lehrers</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.2">201 Created</a></span> – Lehrer wurde erfolgreich erstellt</p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a></span> – Ein Formularfeld fehlt oder Geburtsdatum im falchem Format</p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.10">409 Conflict</a></span> – Lehrer ist bereits vorhanden</p></li>
 </ul>
 </dd>
 </dl>
