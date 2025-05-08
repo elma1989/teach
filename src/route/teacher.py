@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from database import School, Teacher
+from database import School, Teacher, Subject
 
 teacher_bp = Blueprint('teacher',__name__, url_prefix='/teachers')
 
@@ -32,3 +32,24 @@ def teacher(teach_id):
     if not teacher: return {'message':'Teacher not found'}, 404
 
     return teacher.to_dict()
+
+@teacher_bp.route('/<int:teach_id>/subjects', methods=['GET','POST'])
+def teacher_subject(teach_id):
+    school = School ()
+    teacher = school.getTeacher(teach_id)
+
+    if not teacher: return {'message':'Teacher not found'}, 404
+
+    if request.headers.get('Content-Type') == 'application/json' and request.method == 'POST':
+        data = request.json
+        abr = data.get('subAbr')
+        if not abr: return {'message':"JSON-Field 'subAbr' does not exist"}, 400
+        res = teacher.add_subject(Subject(abr))
+
+        if res == 1: return {'message':'Subject not found'}, 404
+        if res == 2: return {'message':'This teacher allready teaches that Subject'}, 409
+        return {'message':'Subject added to teacher'}, 201
+
+    subjects = teacher.subjects
+    if len(subjects) == 0: return '', 204
+    return [subject.to_dict() for subject in subjects]

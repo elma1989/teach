@@ -1,4 +1,4 @@
-import requests
+import requests,json
 
 def test_teacher_index(teachurl):
     fail = {}
@@ -95,3 +95,39 @@ def test_teacher_info(teachurl):
     maxmdata = rg_maxm.json()
     assert johndata == rjohn
     assert maxmdata == rmaxm
+
+def test_teacher_subject(teachurl):
+    fail_teacher_url = teachurl + '3/subjects'
+    john_url = teachurl + '1/subjects'
+    header = {'Content-Type':'application/json'}
+
+    mat = {'subAbr':'mat'}
+    deu = {'subAbr':'deu'}
+    eng = {'subAbr':'eng'}
+    rmat = {
+        'abr':'MAT',
+        'name':'Mathematik'
+    }
+    rdeu = {
+        'abr':'DEU',
+        'name':'Deutsch'
+    }
+
+    rg_fail_teacher = requests.get(fail_teacher_url)
+    rg_john1 = requests.get(john_url)
+    rp_john_eng = requests.post(john_url,json.dumps(eng), headers=header)
+    rp_john_mat1 = requests.post(john_url,json.dumps(mat), headers=header)
+    rp_john_mat2 = requests.post(john_url,json.dumps(mat), headers=header)
+    rp_john_deu = requests.post(john_url,json.dumps(deu), headers=header)
+    rg_john2 = requests.get(john_url)
+
+    assert rg_fail_teacher.status_code == 404
+    assert rg_john1.status_code == 204
+    assert rp_john_eng.status_code == 404
+    assert rp_john_mat1.status_code == 201
+    assert rp_john_mat2.status_code == 409
+    assert rp_john_deu.status_code == 201
+    assert rg_john2.status_code == 200
+
+    data = rg_john2.json()
+    assert data == [rdeu, rmat]
