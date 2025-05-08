@@ -22,3 +22,11 @@ def index():
     subjects = school.subjects
     if len(subjects) == 0: return '', 204
     return [subject.to_dict() for subject in subjects]
+
+@subject_bp.route('/<sub_abr>')
+def subject(sub_abr):
+    subject = Subject(sub_abr)
+
+    if not subject.exists(): return {'message':'Subject not found'}, 404
+
+    return subject.to_dict()

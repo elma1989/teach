@@ -25,6 +25,15 @@ Modul: subject
     :statuscode 400: Forulardaten wurde nicht korrekt validiert
     :statuscode 409: Fach ist bereits vorhanden
 
+.. http:get:: /subjects/(sub_abr)
+
+    Zeigt Details eines Faches.
+
+    :param string sub_abr: Abkürzung (3 Buchstaben) in der Datenbank
+    :resheader Content-Type: application/json
+    :statuscode 200: Fachdaten wurden erfolgreich geladen
+    :statuscode 404: Fach wurde nicht gefunden
+
 Modul: teacher
 ==============
 

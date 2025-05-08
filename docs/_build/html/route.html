@@ -135,6 +135,30 @@
 </dl>
 </dd></dl>
 
+<dl class="http get">
+<dt class="sig sig-object http" id="get--subjects-(sub_abr)">
+<span class="sig-name descname"><span class="pre">GET</span> </span><span class="sig-name descname"><span class="pre">/subjects/</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">sub_abr</span></em><span class="sig-paren">)</span><a class="headerlink" href="#get--subjects-(sub_abr)" title="Link to this definition"></a></dt>
+<dd><p>Zeigt Details eines Faches.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sub_abr</strong> (<em>string</em>) – Abkürzung (3 Buchstaben) in der Datenbank</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.rfc-editor.org/rfc/rfc7231#section-3.1.1.5">Content-Type</a></span> – application/json</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a></span> – Fachdaten wurden erfolgreich geladen</p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a></span> – Fach wurde nicht gefunden</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="modul-teacher">
 <h2>Modul: teacher<a class="headerlink" href="#modul-teacher" title="Link to this heading"></a></h2>
