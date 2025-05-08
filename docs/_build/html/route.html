@@ -82,6 +82,12 @@
              
   <section id="paket-route">
 <h1>Paket: route<a class="headerlink" href="#paket-route" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Werden variable Endpunkte direkt über Python verarbeitet, so werden die Variablen in <strong>snake_case</strong> geschrieben, da dieser Stil in Python an gängigsten ist.</p>
+<p>Können die benötigten Daten direkt über ein Webforular an den Server geschickt werden, so werden die Name-Tags in <strong>kebab-case</strong> geschrieben, da dieser Stil in HTML am gängigsten ist.</p>
+<p>Wird ein JSON-String erwartet, da URL dynamisch abhängig von einer zuvor getätigten Auswahl ist, so werden die JSON-Felder in <strong>camelCase</strong> geschrieben, da dieser Stil in JavaScript am gängigsten ist.</p>
+</div>
 <section id="modul-subject">
 <h2>Modul: subject<a class="headerlink" href="#modul-subject" title="Link to this heading"></a></h2>
 <dl class="http get">
