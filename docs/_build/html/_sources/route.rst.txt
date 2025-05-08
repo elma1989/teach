@@ -96,3 +96,28 @@ Modul: teacher
     :statuscode 400: JSON-Feld 'subAbr' fehlt
     :statuscode 404: Lehrer oder Fach nicht gefunden
     :statuscode 409: Der Lehrer unterrichtet das Fach bereits
+
+Modul: grade
+============
+
+.. http:get:: /grades/
+
+    Listet alle Klassen auf.
+
+    :resheader Content-Type: application/json
+    :statuscode 200: Klassen erfolgreich geladen
+    :statuscode 204: Noch keine Klassen vorhanden
+
+.. http:post:: /grades/
+
+    Erstellt eine neue Klasse.
+
+    :reqheader Content-Type: x-www-form-urlencoded
+    :resheader Content-Type: application/json
+    :resheader Location: /grades/<name>
+    :form string name: Name der Klasse
+    :form int teach-id: Id des Klassenleiters
+    :statuscode 201: Klasse wurde erfolgreich erstellt
+    :statuscode 400: Ein Forumarfeld felt
+    :statuscode 404: Der Klassenleiter wurde nicht gefunden
+    :statuscode 409: Die Klasse ist bereits vorhanden
