@@ -38,14 +38,23 @@ Modul: teacher
 
 .. http:post:: /teachers/
 
-    Legt einen neuen Leher an.
+    Legt einen neuen Lehrer an.
 
     :reqheader Content-Type: application/x-www-form-urlencoded
     :resheader Content-Type: application/json
     :resheader Location: /teachers/<teach_id>
     :form string fname: Vorname des Lehrers
     :form string lname: Nachname des Lehrers
-    :form birth_date: Geburtsdatum (JJJJ-MM-TT) des Lehrers
+    :form birth-date: Geburtsdatum (JJJJ-MM-TT) des Lehrers
     :statuscode 201: Lehrer wurde erfolgreich erstellt
     :statuscode 400: Ein Formularfeld fehlt oder Geburtsdatum im falchem Format
     :statuscode 409: Lehrer ist bereits vorhanden
+
+.. http:get:: /teachers/(int:teach_id)
+
+    Zeigt Details zu einem Lehrer
+
+    :param int teach_id: Id des Lehrers
+    :resheader Content-Type: application/json
+    :statuscode 200: Daten wurden erfolgreich geladen
+    :statuscode 404: Lehrer nicht gefunden

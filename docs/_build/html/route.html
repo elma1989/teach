@@ -160,7 +160,7 @@
 <dl class="http post">
 <dt class="sig sig-object http" id="post--teachers-">
 <span class="sig-name descname"><span class="pre">POST</span> </span><span class="sig-name descname"><span class="pre">/teachers/</span></span><a class="headerlink" href="#post--teachers-" title="Link to this definition"></a></dt>
-<dd><p>Legt einen neuen Leher an.</p>
+<dd><p>Legt einen neuen Lehrer an.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Request Headers<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -177,7 +177,7 @@
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>string fname</strong> – Vorname des Lehrers</p></li>
 <li><p><strong>string lname</strong> – Nachname des Lehrers</p></li>
-<li><p><strong>birth_date</strong> – Geburtsdatum (JJJJ-MM-TT) des Lehrers</p></li>
+<li><p><strong>birth-date</strong> – Geburtsdatum (JJJJ-MM-TT) des Lehrers</p></li>
 </ul>
 </dd>
 <dt class="field-even">Status Codes<span class="colon">:</span></dt>
@@ -185,6 +185,30 @@
 <li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.2">201 Created</a></span> – Lehrer wurde erfolgreich erstellt</p></li>
 <li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a></span> – Ein Formularfeld fehlt oder Geburtsdatum im falchem Format</p></li>
 <li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.10">409 Conflict</a></span> – Lehrer ist bereits vorhanden</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt class="sig sig-object http" id="get--teachers-(int-teach_id)">
+<span class="sig-name descname"><span class="pre">GET</span> </span><span class="sig-name descname"><span class="pre">/teachers/</span></span><span class="sig-paren">(</span><em class="property"><span class="pre">int:</span> </em><em class="sig-param"><span class="pre">teach_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#get--teachers-(int-teach_id)" title="Link to this definition"></a></dt>
+<dd><p>Zeigt Details zu einem Lehrer</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>teach_id</strong> (<em>int</em>) – Id des Lehrers</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.rfc-editor.org/rfc/rfc7231#section-3.1.1.5">Content-Type</a></span> – application/json</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a></span> – Daten wurden erfolgreich geladen</p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a></span> – Lehrer nicht gefunden</p></li>
 </ul>
 </dd>
 </dl>

@@ -5,23 +5,33 @@ def test_teacher_index(teachurl):
     fail_name = {
         'fname':'john',
         'lname':'doe',
-        'birth_date':'1990-01-01' 
+        'birth-date':'1990-01-01' 
     }
     fail_birth = {
         'fname':'John',
         'lname':'Doe',
-        'birth_date':'01.01.1990'
+        'birth-date':'01.01.1990'
     }
     john = {
         'fname':'John',
-        'lname':'Deo',
-        'birth_date':'1990-01-01',
-        'id': 1
+        'lname':'Doe',
+        'birth-date':'1990-01-01'
     }
     maxm = {
         'fname':'Max',
         'lname':'Mustermann',
-        'birth_date':'1991-12-31',
+        'birth-date':'1991-12-31'
+    }
+    rjohn = {
+        'fname':'John',
+        'lname':'Doe',
+        'birthDate':'1990-01-01',
+        'id': 1
+    }
+    rmaxm = {
+        'fname':'Max',
+        'lname':'Mustermann',
+        'birthDate':'1991-12-31',
         'id': 2
     }
 
@@ -43,4 +53,45 @@ def test_teacher_index(teachurl):
     assert rp_maxm.status_code == 201
     assert rg_teachers2.status_code == 200
     data = rg_teachers2.json()
-    assert data == [john, maxm]
+    assert data == [rjohn, rmaxm]
+
+def test_teacher_info(teachurl):
+    fail_teacher_url = teachurl + '3'
+    john_url = teachurl + '1'
+    maxm_url = teachurl + '2'
+    
+    john = {
+        'fname':'John',
+        'lname':'Doe',
+        'birth-date':'1990-01-01'
+    }
+    maxm = {
+        'fname':'Max',
+        'lname':'Mustermann',
+        'birth-date':'1991-12-31'
+    }
+    rjohn = {
+        'fname':'John',
+        'lname':'Doe',
+        'birthDate':'1990-01-01',
+        'id': 1
+    }
+    rmaxm = {
+        'fname':'Max',
+        'lname':'Mustermann',
+        'birthDate':'1991-12-31',
+        'id': 2
+    }
+
+    rg_fail_teacher = requests.get(fail_teacher_url)
+    rg_john = requests.get(john_url)
+    rg_maxm = requests.get(maxm_url)
+
+    assert rg_fail_teacher.status_code == 404
+    assert rg_john.status_code == 200
+    assert rg_maxm.status_code == 200
+
+    johndata = rg_john.json()
+    maxmdata = rg_maxm.json()
+    assert johndata == rjohn
+    assert maxmdata == rmaxm
