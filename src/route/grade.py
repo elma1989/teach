@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from database import School, Grade
+from database import School, Grade, Student
 
 grade_bp = Blueprint('grade', __name__, url_prefix='/grades')
 
@@ -23,3 +23,36 @@ def index():
     grades = school.grades
     if len(grades) == 0: return '', 204
     return [grade.to_dict() for grade in grades]
+
+@grade_bp.route('/<grade_name>/students', methods=['GET','POST'])
+def students(grade_name):
+    school = School()
+    students = []
+
+    if grade_name == 'none':
+        students = school.students(None)
+        if len(students) == 0: return '', 204
+        return [student.to_dict() for student in students]
+
+    grade = Grade(grade_name)
+    if not grade.exists(): return {'message':'Grade not found'}, 404
+
+    if request.headers.get('Content-Type') == 'application/json' and request.method == 'POST':
+        data = request.json
+        fname = data.get('fname')
+        lname = data.get('lname')
+        birth_date = data.get('birthDate')
+        if not fname or not lname or not birth_date: return {'message':'One of the JSON-Fields does not exist'}, 400
+        student = Student(fname, lname, birth_date)
+        res = student.add()
+
+        if res == 1: return {'message':'birthDate is not correct'}, 400
+        if res == 3: return {'message':'Student allready exists'}, 409
+
+        student.grade = grade
+        location = f'/grades/{grade.name.replace(' ','%20')}/students/{student.id}'
+        return student.to_dict(), 201, {'Location':location}
+
+    students = school.students(grade)
+    if len(students) == 0: return '', 204
+    return [student.to_dict() for student in students]

@@ -121,3 +121,29 @@ Modul: grade
     :statuscode 400: Ein Forumarfeld felt
     :statuscode 404: Der Klassenleiter wurde nicht gefunden
     :statuscode 409: Die Klasse ist bereits vorhanden
+
+.. http:get:: /grades/(grade_name)/students
+
+    Liefert eine Liste mit allen Mitgliedern einer Klasse.
+
+    :param string grade_name: Name der Klasse
+    :resheader Content-Type: application/json
+    :statuscode 200: Schülerliste erfolgreich geladen
+    :statuscode 204: Noch keine Schüler in der Klasse
+    :statuscode 404: Klasse wurde nicht gefunden
+
+.. http:post:: /grades/(grade_name)/students
+
+    Erstellt einen neuen Schüler.
+
+    :param string grade_name: Name der Klasse
+    :reqheader Content-Type: application/json
+    :resheader Content-Type: application/json
+    :resheader Location: /grades/<grade_name>/students/<student_id>
+    :json string fname: Vorname des Schülers
+    :json string lname: Nachname des Schülers
+    :json string birthDate: Geburtsdatum (JJJJ-MM-TT) des Schülers
+    :statuscode 201: Schüler erfolgreich erstellt
+    :statuscode 400: Fehlende JSON-Felder oder ungültiges Geburtsdatum
+    :statuscode 404: Klasse nicht gefunden
+    :statuscode 409: Schüler bereits vorhanden
