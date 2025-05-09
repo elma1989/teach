@@ -177,3 +177,13 @@ Modul: grade
     :statuscode 400: Fehlende JSON-Felder oder ungültiges Geburtsdatum
     :statuscode 404: Klasse nicht gefunden
     :statuscode 409: Schüler bereits vorhanden
+
+.. http:get:: /grades/(grade_name)/students/(int:student_id)
+
+    Liefert Details zu einen Schüler.
+
+    :param string grade_name: Name der Klasse
+    :param int student_id: Id des Schülers
+    :resheader Content-Type: application/json
+    :statuscode 200: Schüulerdaten erfolgreich geladen
+    :statuscode 404: Schüler oder Klasse nicht gefunden

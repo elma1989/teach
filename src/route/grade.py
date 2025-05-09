@@ -76,14 +76,14 @@ def students(grade_name):
     if len(students) == 0: return '', 204
     return [student.to_dict() for student in students]
 
-@grade_bp.route('/grades/<grade_name>/students/<int:student_id>')
+@grade_bp.route('/<grade_name>/students/<int:student_id>')
 def single_student(grade_name, student_id):
     school = School()
     grade = Grade(grade_name)
     student = school.getStudent(student_id)
 
-    if not grade.exists(): return {'message':'Grade not found'}, 404
-    if not student.exists(): return {'message':'Student not found'}, 404
+    if not grade: return {'message':'Grade not found'}, 404
+    if not student: return {'message':'Student not found'}, 404
     if not student in school.students(grade): return {'message':'Student in Grade not found'}, 404
 
     return student.to_dict()

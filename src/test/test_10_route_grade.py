@@ -120,3 +120,37 @@ def test_grade_info(url):
     assert rpat_cls08a.status_code == 204
     assert rpat_fail_leader.status_code == 404
     assert rpat_john.status_code == 204
+
+def test_grade_single_student(url):
+    fail_url = url + '/grades/10a/students/3'
+    lotte_10_url = url + '/grades/10a/students/2'
+    carl_url = url + '/grades/10a/students/1'
+    lotte_url = url + '/grades/08a/students/2'
+
+    rcarl = {
+        'fname':'Carl Friedrich',
+        'lname':'Gauß',
+        'birthDate':'1777-04-30',
+        'id':1
+    }
+    rlotte = {
+        'fname':'Lotte',
+        'lname':'Rie',
+        'birthDate':'2010-05-05',
+        'id':2
+    }
+
+    rg_fail = requests.get(fail_url)
+    rg_lotte_10 = requests.get(lotte_10_url)
+    rg_carl = requests.get(carl_url)
+    rg_lotte = requests.get(lotte_url)
+
+    assert rg_fail.status_code == 404
+    assert rg_lotte_10.status_code == 404
+    assert rg_carl.status_code == 200
+    assert rg_lotte.status_code == 200
+
+    data_carl = rg_carl.json()
+    data_lotte = rg_lotte.json()
+    assert data_carl == rcarl
+    assert data_lotte == rlotte
