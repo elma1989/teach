@@ -25,8 +25,10 @@ Modul: subject
     :reqheader Content-Type: application/x-www-form-urlencoded
     :resheader Content-Type: application/json
     :resheader Location: /subjects/<abr>
-    :form string abr: Abkürzung (3 Buchstaben) des Faches in der Datenbank
-    :form string name: Langbezeichnung des Faches
+    :form abr: Abkürzung (3 Buchstaben) des Faches in der Datenbank
+    :type abr: string
+    :form name: Langbezeichnung des Faches
+    :type name: string
     :statuscode 201: Fach wurde erfolgreich erstellt
     :statuscode 400: Forulardaten wurde nicht korrekt validiert
     :statuscode 409: Fach ist bereits vorhanden
@@ -58,8 +60,8 @@ Modul: teacher
     :reqheader Content-Type: application/x-www-form-urlencoded
     :resheader Content-Type: application/json
     :resheader Location: /teachers/<teach_id>
-    :form string fname: Vorname des Lehrers
-    :form string lname: Nachname des Lehrers
+    :form fname: Vorname des Lehrers
+    :form lname: Nachname des Lehrers
     :form birth-date: Geburtsdatum (JJJJ-MM-TT) des Lehrers
     :statuscode 201: Lehrer wurde erfolgreich erstellt
     :statuscode 400: Ein Formularfeld fehlt oder Geburtsdatum im falchem Format
@@ -115,12 +117,34 @@ Modul: grade
     :reqheader Content-Type: x-www-form-urlencoded
     :resheader Content-Type: application/json
     :resheader Location: /grades/<name>
-    :form string name: Name der Klasse
-    :form int teach-id: Id des Klassenleiters
+    :form name: Name der Klasse
+    :form teach-id: Id des Klassenleiters
     :statuscode 201: Klasse wurde erfolgreich erstellt
     :statuscode 400: Ein Forumarfeld felt
     :statuscode 404: Der Klassenleiter wurde nicht gefunden
     :statuscode 409: Die Klasse ist bereits vorhanden
+
+.. http:get:: /grades/(grade_name)
+
+    Prüft, eine Klasse verfügbar ist.
+
+    :param string grade_name: Name der Klasse
+    :resheader Content-Type: application/json
+    :statuscode 200: Klasse ist vorhanden
+    :statuscode 404: Klasse wurde nicht gefunden
+
+.. http:patch:: /grades/(grade_name)
+
+    Nimmt Änderungen an einer Klasse vor.
+
+    :param string grade_name: Name der Klasse
+    :reqheader Content-Type: application/json
+    :resheader Content-Type: application/json
+    :json string name: Neuer Name der Klasse
+    :json int leaderId: Id des neuen Klassenleiters
+    :statuscode 204: Vorgang abgeschlossen
+    :statuscode 404: Klasse oder Klassenleiter nicht gefunden
+    :statuscode 409: Neuer Klassenname ist nicht verfügbar
 
 .. http:get:: /grades/(grade_name)/students
 
@@ -131,6 +155,12 @@ Modul: grade
     :statuscode 200: Schülerliste erfolgreich geladen
     :statuscode 204: Noch keine Schüler in der Klasse
     :statuscode 404: Klasse wurde nicht gefunden
+
+    .. note:: Wird für 'grade_name' der String 'none' angegeben, so wird nach Schülern gesucht, die keiner Klasse zugewiesen sind.
+
+        Dieser Zustand kann entstehen, wenn eine Klasse mit noch vorhandenen Schülern gelöscher wird, da eine gemeinschaftliche Löschung nicht vorgesehen ist.
+
+        Für neue Schüler ist jedoch eine Klassenzuweisung notwendig, da möglichst wenig Schüler ohne Klassenzuweisung vorhanden seien sollen.
 
 .. http:post:: /grades/(grade_name)/students
 

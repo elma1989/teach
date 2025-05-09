@@ -128,8 +128,8 @@
 </dd>
 <dt class="field-odd">Form Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>string abr</strong> – Abkürzung (3 Buchstaben) des Faches in der Datenbank</p></li>
-<li><p><strong>string name</strong> – Langbezeichnung des Faches</p></li>
+<li><p><strong>abr</strong> – Abkürzung (3 Buchstaben) des Faches in der Datenbank</p></li>
+<li><p><strong>name</strong> – Langbezeichnung des Faches</p></li>
 </ul>
 </dd>
 <dt class="field-even">Status Codes<span class="colon">:</span></dt>
@@ -206,8 +206,8 @@
 </dd>
 <dt class="field-odd">Form Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>string fname</strong> – Vorname des Lehrers</p></li>
-<li><p><strong>string lname</strong> – Nachname des Lehrers</p></li>
+<li><p><strong>fname</strong> – Vorname des Lehrers</p></li>
+<li><p><strong>lname</strong> – Nachname des Lehrers</p></li>
 <li><p><strong>birth-date</strong> – Geburtsdatum (JJJJ-MM-TT) des Lehrers</p></li>
 </ul>
 </dd>
@@ -346,8 +346,8 @@
 </dd>
 <dt class="field-odd">Form Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>string name</strong> – Name der Klasse</p></li>
-<li><p><strong>int teach-id</strong> – Id des Klassenleiters</p></li>
+<li><p><strong>name</strong> – Name der Klasse</p></li>
+<li><p><strong>teach-id</strong> – Id des Klassenleiters</p></li>
 </ul>
 </dd>
 <dt class="field-even">Status Codes<span class="colon">:</span></dt>
@@ -356,6 +356,66 @@
 <li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a></span> – Ein Forumarfeld felt</p></li>
 <li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a></span> – Der Klassenleiter wurde nicht gefunden</p></li>
 <li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.10">409 Conflict</a></span> – Die Klasse ist bereits vorhanden</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt class="sig sig-object http" id="get--grades-(grade_name)">
+<span class="sig-name descname"><span class="pre">GET</span> </span><span class="sig-name descname"><span class="pre">/grades/</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">grade_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#get--grades-(grade_name)" title="Link to this definition"></a></dt>
+<dd><p>Prüft, eine Klasse verfügbar ist.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>grade_name</strong> (<em>string</em>) – Name der Klasse</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.rfc-editor.org/rfc/rfc7231#section-3.1.1.5">Content-Type</a></span> – application/json</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a></span> – Klasse ist vorhanden</p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a></span> – Klasse wurde nicht gefunden</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http patch">
+<dt class="sig sig-object http" id="patch--grades-(grade_name)">
+<span class="sig-name descname"><span class="pre">PATCH</span> </span><span class="sig-name descname"><span class="pre">/grades/</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">grade_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#patch--grades-(grade_name)" title="Link to this definition"></a></dt>
+<dd><p>Nimmt Änderungen an einer Klasse vor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>grade_name</strong> (<em>string</em>) – Name der Klasse</p></li>
+</ul>
+</dd>
+<dt class="field-even">Request Headers<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.rfc-editor.org/rfc/rfc7231#section-3.1.1.5">Content-Type</a></span> – application/json</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Response Headers<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.rfc-editor.org/rfc/rfc7231#section-3.1.1.5">Content-Type</a></span> – application/json</p></li>
+</ul>
+</dd>
+<dt class="field-even">JSON Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>name</strong> (<em>string</em>) – Neuer Name der Klasse</p></li>
+<li><p><strong>leaderId</strong> (<em>int</em>) – Id des neuen Klassenleiters</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5">204 No Content</a></span> – Vorgang abgeschlossen</p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a></span> – Klasse oder Klassenleiter nicht gefunden</p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.10">409 Conflict</a></span> – Neuer Klassenname ist nicht verfügbar</p></li>
 </ul>
 </dd>
 </dl>
@@ -384,6 +444,12 @@
 </ul>
 </dd>
 </dl>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Wird für ‚grade_name‘ der String ‚none‘ angegeben, so wird nach Schülern gesucht, die keiner Klasse zugewiesen sind.</p>
+<p>Dieser Zustand kann entstehen, wenn eine Klasse mit noch vorhandenen Schülern gelöscher wird, da eine gemeinschaftliche Löschung nicht vorgesehen ist.</p>
+<p>Für neue Schüler ist jedoch eine Klassenzuweisung notwendig, da möglichst wenig Schüler ohne Klassenzuweisung vorhanden seien sollen.</p>
+</div>
 </dd></dl>
 
 <dl class="http post">
