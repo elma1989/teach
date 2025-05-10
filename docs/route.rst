@@ -127,6 +127,16 @@ Kurse
     :statuscode 404: Lehrer oder Fach wurde nicht gefunden
     :statuscode 409: Kurs ist bereits vorhanden
 
+.. http:get:: /teachers/(int:teach_id)/courses/(course_name)
+
+    Liefert Details zu einem Kurs.
+
+    :param int teach_id: Id des Lehrers
+    :param string course_name: Name des Kurses
+    :resheader Content-Type: application/json
+    :statuscode 200: Kursdaten wurden erfolgreich geladen
+    :statuscode 404: Kursleiter oder Kurs nicht gefunden
+
 Modul: grade
 ============
 

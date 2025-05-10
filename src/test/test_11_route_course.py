@@ -60,3 +60,41 @@ def test_teacher_course(teachurl):
     maxm_courses = rg_maxm2.json()
     assert john_courses == [rmat1]
     assert maxm_courses == [rdeu1]
+
+def  test_single_course_get(teachurl):
+    fail_teach_url = teachurl + '3/courses/MAT%201'
+    fail_course_url = teachurl + '1/courses/ENG%201'
+    john_deu1_url = teachurl + '1/courses/DEU%201'
+    mat1_url = teachurl + '1/courses/MAT%201'
+    deu1_url = teachurl + '2/courses/DEU%201'
+    
+    rmat1 = {
+        'name':'MAT 1',
+        'subject':{
+            'abr':'MAT',
+            'name':'Mathematik'
+        }
+    }
+    rdeu1 = {
+        'name':'DEU 1',
+        'subject':{
+            'abr':'DEU',
+            'name':'Deutsch'
+        }
+    }
+
+    rg_teach_fail = requests.get(fail_teach_url)
+    rg_course_fail = requests.get(fail_course_url)
+    rg_john_deu1 = requests.get(john_deu1_url)
+    rg_mat1 = requests.get(mat1_url)
+    rg_deu1 = requests.get(deu1_url)
+
+    assert rg_teach_fail.status_code == 404
+    assert rg_course_fail.status_code == 404
+    assert rg_john_deu1.status_code == 404
+    assert rg_mat1.status_code == 200
+    assert rg_deu1.status_code == 200
+    mat1_dat = rg_mat1.json()
+    deu1_dat = rg_deu1.json()
+    assert mat1_dat == rmat1
+    assert deu1_dat == rdeu1
