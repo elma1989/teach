@@ -76,7 +76,7 @@ def students(grade_name):
     if len(students) == 0: return '', 204
     return [student.to_dict() for student in students]
 
-@grade_bp.route('/<grade_name>/students/<int:student_id>')
+@grade_bp.route('/<grade_name>/students/<int:student_id>', methods=['GET','PATCH'])
 def single_student(grade_name, student_id):
     school = School()
     grade = Grade(grade_name)
@@ -84,6 +84,15 @@ def single_student(grade_name, student_id):
 
     if not grade: return {'message':'Grade not found'}, 404
     if not student: return {'message':'Student not found'}, 404
+
+    if request.headers.get('COntent-Type') == 'application/json' and request.method == 'PATCH':
+        data = request.json
+        if data.get('gradeName'):
+            new_grade = Grade(data['gradeName'])
+            if not new_grade.exists(): return {'message':'New grade not found'}, 404
+            student.grade = new_grade
+        return '', 204
+
     if not student in school.students(grade): return {'message':'Student in Grade not found'}, 404
 
     return student.to_dict()

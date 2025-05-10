@@ -516,6 +516,41 @@
 </dl>
 </dd></dl>
 
+<dl class="http patch">
+<dt class="sig sig-object http" id="patch--grades-(grade_name)-students-(int-student_id)">
+<span class="sig-name descname"><span class="pre">PATCH</span> </span><span class="sig-name descname"><span class="pre">/grades/</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">grade_name</span></em><span class="sig-paren">)</span><span class="sig-name descname"><span class="pre">/students/</span></span><span class="sig-paren">(</span><em class="property"><span class="pre">int:</span> </em><em class="sig-param"><span class="pre">student_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#patch--grades-(grade_name)-students-(int-student_id)" title="Link to this definition"></a></dt>
+<dd><p>Nimmt Änderungen an einem Schüler vor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>grade_name</strong> (<em>string</em>) – Name der aktuellen Klasse</p></li>
+<li><p><strong>student_id</strong> (<em>int</em>) – Id des Schülers</p></li>
+</ul>
+</dd>
+<dt class="field-even">Request Headers<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.rfc-editor.org/rfc/rfc7231#section-3.1.1.5">Content-Type</a></span> – application/json</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Response Headers<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.rfc-editor.org/rfc/rfc7231#section-3.1.1.5">Content-Type</a></span> – application/json</p></li>
+</ul>
+</dd>
+<dt class="field-even">JSON Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>gradeName</strong> (<em>string</em>) – Name der neuen Klasse</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5">204 No Content</a></span> – Vorgang abgeschlossen</p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a></span> – Alte/neue Klasse oder Schüler nicht gefunden</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 </section>
 

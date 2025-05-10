@@ -187,3 +187,15 @@ Modul: grade
     :resheader Content-Type: application/json
     :statuscode 200: Schüulerdaten erfolgreich geladen
     :statuscode 404: Schüler oder Klasse nicht gefunden
+
+.. http:patch:: /grades/(grade_name)/students/(int:student_id)
+
+    Nimmt Änderungen an einem Schüler vor.
+
+    :param string grade_name: Name der aktuellen Klasse
+    :param int student_id: Id des Schülers
+    :reqheader Content-Type: application/json
+    :resheader Content-Type: application/json
+    :json string gradeName: Name der neuen Klasse
+    :statuscode 204: Vorgang abgeschlossen
+    :statuscode 404: Alte/neue Klasse oder Schüler nicht gefunden

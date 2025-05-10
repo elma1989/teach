@@ -126,6 +126,10 @@ def test_grade_single_student(url):
     lotte_10_url = url + '/grades/10a/students/2'
     carl_url = url + '/grades/10a/students/1'
     lotte_url = url + '/grades/08a/students/2'
+    header = {'Content-Type':'application/json'}
+
+    pl09a = {'gradeName':'09a'}
+    pl10a = {'gradeName':'10a'}
 
     rcarl = {
         'fname':'Carl Friedrich',
@@ -144,11 +148,15 @@ def test_grade_single_student(url):
     rg_lotte_10 = requests.get(lotte_10_url)
     rg_carl = requests.get(carl_url)
     rg_lotte = requests.get(lotte_url)
+    rpat_lotte_9 = requests.patch(lotte_url, json.dumps(pl09a), headers=header)
+    rpat_lotte_10 = requests.patch(lotte_url, json.dumps(pl10a), headers=header)
 
     assert rg_fail.status_code == 404
     assert rg_lotte_10.status_code == 404
     assert rg_carl.status_code == 200
     assert rg_lotte.status_code == 200
+    assert rpat_lotte_9.status_code == 404
+    assert rpat_lotte_10.status_code == 204
 
     data_carl = rg_carl.json()
     data_lotte = rg_lotte.json()
