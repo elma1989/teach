@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from database import School, Teacher, Subject
+from database import School, Teacher, Subject, Course
 
 teacher_bp = Blueprint('teacher',__name__, url_prefix='/teachers')
 
@@ -44,12 +44,42 @@ def teacher_subject(teach_id):
         data = request.json
         abr = data.get('subAbr')
         if not abr: return {'message':"JSON-Field 'subAbr' does not exist"}, 400
-        res = teacher.add_subject(Subject(abr))
+        subject = Subject(abr)
+        res = teacher.add_subject(subject)
 
         if res == 1: return {'message':'Subject not found'}, 404
         if res == 2: return {'message':'This teacher allready teaches that Subject'}, 409
-        return {'message':'Subject added to teacher'}, 201
+        location = f'/subjects/{subject.abr}'
+        return {'message':'Subject added to teacher'}, 201, {'Location':location}
 
     subjects = teacher.subjects
     if len(subjects) == 0: return '', 204
     return [subject.to_dict() for subject in subjects]
+
+@teacher_bp.route('/<int:teach_id>/courses', methods=['GET','POST'])
+def course(teach_id):
+    school = School()
+    teacher = school.getTeacher(teach_id)
+
+    if not teacher: return {'messsage':'Teacher not found'}, 404
+
+    if request.headers.get('Content-Type') == 'application/json' and request.method == 'POST':
+        data = request.json
+        crs_name = data.get('courseName')
+        sub_abr = data.get('subAbr')
+        if not crs_name or not sub_abr: return {'message':"'courseName' or 'subAbr' not in JSON"}, 400
+        subject = Subject(sub_abr)
+
+        if not subject.exists(): return {'message':'Subject not found'}, 404
+        if not subject in teacher.subjects: return {'message':'Subject in Teacher Subjects not found'}, 404
+
+        course = Course(crs_name, teacher, subject)
+        res = course.add()
+
+        if res == 3: return {'message':'Course allready exists'}, 409
+        location = f'/teachers/{teacher.id}/courses/{course.name.replace(' ','%20')}'
+        return course.to_dict(), 201, {'Location':location}
+
+    courses = school.courses_of(teacher)
+    if len(courses) == 0: return '', 204
+    return [course.to_dict() for course in courses]

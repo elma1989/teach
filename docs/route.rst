@@ -93,11 +93,39 @@ Modul: teacher
     :param int teach_id: Id des Lehrers
     :reqheader Content-Type: application/json
     :resheader Content-Type: application/json
+    :resheader Location: /subjects/<subAbr>
     :json sting subAbr: Abkürzung (3 Buchstaben) in der Datenbank
     :statuscode 201: Fach wurde erfolgreich anglegt
     :statuscode 400: JSON-Feld 'subAbr' fehlt
     :statuscode 404: Lehrer oder Fach nicht gefunden
     :statuscode 409: Der Lehrer unterrichtet das Fach bereits
+
+Kurse
+-----
+
+.. http:get:: /teachers/(int:teach_id)/courses
+
+    Liefert die Kurse eines Lehrers.
+
+    :param int teach_id: Id des Lehrers
+    :resheader Content-Type: application/json
+    :statuscode 200: Kursliste erfolgreich geladen
+    :statuscode 204: Lehrer hat noch keine Kurse
+    :statuscode 404: Lehrer wurde nicht gefunden
+
+.. http:post:: /teachers/(int:teach_id)/courses
+
+    Legt einen neuen Kurse für einen Lehrer an.
+
+    :param int teach_id: Id des Lehrers
+    :reqheader Content-Type: application/json
+    :resheader Content-Type: application/json
+    :resheader Location: /teachers/<teach_id>/courses/<courseName>
+    :json string courseName: Name des Kurses
+    :json string subAbr: Abkürzung (3 Buchstaben) des Faches in der Datenbank
+    :statuscode 201: Kurs wurde erfolgreich erstellt
+    :statuscode 404: Lehrer oder Fach wurde nicht gefunden
+    :statuscode 409: Kurs ist bereits vorhanden
 
 Modul: grade
 ============

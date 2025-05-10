@@ -99,6 +99,7 @@ def test_teacher_info(teachurl):
 def test_teacher_subject(teachurl):
     fail_teacher_url = teachurl + '3/subjects'
     john_url = teachurl + '1/subjects'
+    maxm_url = teachurl + '2/subjects'
     header = {'Content-Type':'application/json'}
 
     mat = {'subAbr':'mat'}
@@ -119,6 +120,7 @@ def test_teacher_subject(teachurl):
     rp_john_mat1 = requests.post(john_url,json.dumps(mat), headers=header)
     rp_john_mat2 = requests.post(john_url,json.dumps(mat), headers=header)
     rp_john_deu = requests.post(john_url,json.dumps(deu), headers=header)
+    rp_maxm_deu = requests.post(maxm_url,json.dumps(deu), headers=header)
     rg_john2 = requests.get(john_url)
 
     assert rg_fail_teacher.status_code == 404
@@ -127,6 +129,7 @@ def test_teacher_subject(teachurl):
     assert rp_john_mat1.status_code == 201
     assert rp_john_mat2.status_code == 409
     assert rp_john_deu.status_code == 201
+    assert rp_maxm_deu.status_code == 201
     assert rg_john2.status_code == 200
 
     data = rg_john2.json()
