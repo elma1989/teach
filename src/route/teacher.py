@@ -104,3 +104,28 @@ def single_course(teach_id, course_name):
     if not course in school.courses_of(teacher): return {'message':'Course in Teachers Courses not found'}, 404
 
     return course.to_dict()
+
+@teacher_bp.route('/<int:teach_id>/courses/<course_name>/members', methods=['GET','POST'])
+def course_members(teach_id, course_name):
+    school = School()
+    teacher = school.getTeacher(teach_id)
+    course = Course(course_name)
+
+    if not teacher: return {'messsage':'Teacher not found'}, 404
+    if not course.exists(): return {'message':'Course not found'}, 404
+    if not course in school.courses_of(teacher): return {'message':'Course in Teachers Courses not found'}, 404
+
+    if request.headers.get('Content-Type') == 'application/json' and request.method == 'POST':
+        data = request.json
+        if not data.get('newMemberId'): return {'message':"'newMemberId' missing"}, 400
+        student = school.getStudent(data['newMemberId'])
+        if not student: return {'message':'Student not found'}, 404
+        res = course.add_student(student)
+
+        if res == 3: return {'message':'Student in this course allready exists'}, 409
+        location = f'/grades/{student.grade.name}/students/{student.id}'
+        return student.to_dict(), 201, {'Location':location}
+
+    students = course.students
+    if len(students) == 0: return '', 204
+    return [student.to_dict() for student in students]

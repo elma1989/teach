@@ -149,6 +149,32 @@ Kurse
     :statuscode 204: Vorgang abgeschlossen
     :statuscode 404: bisheriger/neuer Kursleiter oder Kurs nicht gefunden
 
+.. http:get:: /teachers/(int:teach_id)/courses/(course_name)/members
+
+    Listet alle Kursteilnehmer auf.
+
+    :param int teach_id: Id des Lehrers
+    :param string course_name: Name des Kurses
+    :resheader Content-Type: application/json
+    :statuscode 200: Kursliste wurde erfolgreich geladen
+    :statuscode 204: Noch keine Teilnehmer im Kurs
+    :statuscode 404: Kurs oder Kursleiter nicht gefunden
+
+.. http:post:: /teachers/(int:teach_id)/courses/(course_name)/members
+
+    Erstellt eine Mitgleidschaft für einen Schüler in einem Kurs.
+
+    :param int teach_id: Id des Lehrers
+    :param string course_name: Name des Kurses
+    :reqheader Content-Type: application/json
+    :resheader Content-Type: application/json
+    :resheader Location: /grades/<grade_name>/students/<student_id>
+    :json int newMemberId: Id des Schülers, der Mitglied werden soll
+    :statuscode 201: Kursmitgliedschaft wurde erfolgreich erstellt
+    :statuscode 400: 'newMemberId' fehlt
+    :statuscode 404: Kurs, Kursleiter oder Schüler nicht gefunden
+    :statuscode 409: Der Schüler ist bereits Mitglied in dem Kurs
+
 Modul: grade
 ============
 
