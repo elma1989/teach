@@ -98,3 +98,34 @@ def  test_single_course_get(teachurl):
     deu1_dat = rg_deu1.json()
     assert mat1_dat == rmat1
     assert deu1_dat == rdeu1
+
+def test_course_change_leader(teachurl):
+    john_deu1_url = teachurl + '1/courses/DEU%201'
+    maxm_deu1_url = teachurl + '2/courses/DEU%201'
+    header = {'Content-Type':'application/json'}
+
+    pl_fail_teacher = {'newLeaderId':3}
+    pl_john = {'newLeaderId':1}
+    rdeu1 = {
+        'name':'DEU 1',
+        'subject':{
+            'abr':'DEU',
+            'name':'Deutsch'
+        }
+    }
+
+    rg_john_deu1 = requests.get(john_deu1_url)
+    rg_maxm_deu1 = requests.get(maxm_deu1_url)
+    rpat_fail_teacher = requests.patch(maxm_deu1_url, json.dumps(pl_fail_teacher), headers=header)
+    rpat_john = requests.patch(maxm_deu1_url, json.dumps(pl_john), headers=header)
+    rg_john_deu2 = requests.get(john_deu1_url)
+    rg_maxm_deu2 = requests.get(maxm_deu1_url)
+
+    assert rg_john_deu1.status_code == 404
+    assert rg_maxm_deu1.status_code == 200
+    assert rpat_fail_teacher.status_code == 404
+    assert rpat_john.status_code == 204
+    assert rg_john_deu2.status_code == 200
+    assert rg_maxm_deu2.status_code == 404
+    data = rg_john_deu2.json()
+    assert data == rdeu1

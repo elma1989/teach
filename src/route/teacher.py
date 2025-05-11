@@ -84,7 +84,7 @@ def course(teach_id):
     if len(courses) == 0: return '', 204
     return [course.to_dict() for course in courses]
 
-@teacher_bp.route('/<int:teach_id>/courses/<course_name>')
+@teacher_bp.route('/<int:teach_id>/courses/<course_name>', methods=['GET','PATCH'])
 def single_course(teach_id, course_name):
     school = School()
     teacher = school.getTeacher(teach_id)
@@ -92,6 +92,15 @@ def single_course(teach_id, course_name):
 
     if not teacher: return {'messsage':'Teacher not found'}, 404
     if not course.exists(): return {'message':'Course not found'}, 404
+
+    if request.headers.get('Content-Type') == 'application/json' and request.method == 'PATCH':
+        data = request.json
+        if data.get('newLeaderId'):
+            teacher = school.getTeacher(data['newLeaderId'])
+            if not teacher: return {'message':'New teacher not found'}, 404
+            course.leader = teacher
+        return '', 204
+
     if not course in school.courses_of(teacher): return {'message':'Course in Teachers Courses not found'}, 404
 
     return course.to_dict()

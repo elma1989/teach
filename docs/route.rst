@@ -137,6 +137,18 @@ Kurse
     :statuscode 200: Kursdaten wurden erfolgreich geladen
     :statuscode 404: Kursleiter oder Kurs nicht gefunden
 
+.. http:patch:: /teachers/(int:teach_id)/courses/(course_name)
+
+    Wechselt den Kursleiter.
+
+    :param int teach_id: Id des Lehrers (bisheriger Kursleiter)
+    :param string course_name: Name des Kurses
+    :reqheader Content-Type: application/json
+    :resheader Content-Type: application/json
+    :json int newLeaderId: Id des neuen Kursleiters
+    :statuscode 204: Vorgang abgeschlossen
+    :statuscode 404: bisheriger/neuer Kursleiter oder Kurs nicht gefunden
+
 Modul: grade
 ============
 
