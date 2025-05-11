@@ -175,6 +175,36 @@ Kurse
     :statuscode 404: Kurs, Kursleiter oder Schüler nicht gefunden
     :statuscode 409: Der Schüler ist bereits Mitglied in dem Kurs
 
+Stunden
+-------
+
+.. http:get:: /teachers/(int:teach_id)/courses/(course_name)/lessons
+
+    Listet alle Unterrichtsstunden eines Kurses auf.
+
+    :param int teach_id: Id des Lehrers
+    :param string course_name: Name des Kurses
+    :resheader Content-Type: application/json
+    :statuscode 200: Stundenliste wurde erfolgreich geladen
+    :statuscode 204: Zu dem Kurse sind noch keine Stunden geplant wurden
+    :statuscode 404: Kurs oder Kursleiter nicht gefunden
+
+.. http:post:: /teachers/(int:teach_id)/courses/(course_name)/lessons
+
+    Legt eine neue Unterrichtsstunde an.
+
+    :param int teach_id: Id des Lehrers
+    :param string course_name: Name des Kurses
+    :reqheader Content-Type: application/json
+    :resheader Content-Type: application/json
+    :resheader Location: /teachrs/<int:teach_id>/courses/<course_name>/lessons/<time>
+    :json string time: Geplanter Unterrichtsbiginn (JJJJ-MM-TT'T'HH:MM)
+    :statuscode 201: Unterrichtsstunde wurde erfolgreich erstellt
+    :statuscode 400: Zeit fehlt oder ist im falschem Format
+    :statuscode 404: Kurs oder Kursleiter nicht gefunden
+    :statuscode 409: Unterrichtsstunde bereits vorhanden
+
+
 Modul: grade
 ============
 

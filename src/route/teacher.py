@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from database import School, Teacher, Subject, Course
+from database import School, Teacher, Subject, Course, Lesson
 
 teacher_bp = Blueprint('teacher',__name__, url_prefix='/teachers')
 
@@ -129,3 +129,29 @@ def course_members(teach_id, course_name):
     students = course.students
     if len(students) == 0: return '', 204
     return [student.to_dict() for student in students]
+
+@teacher_bp.route('/<int:teach_id>/courses/<course_name>/lessons', methods=['GET','POST'])
+def course_lessons(teach_id, course_name):
+    school = School()
+    teacher = school.getTeacher(teach_id)
+    course = Course(course_name)
+
+    if not teacher: return {'messsage':'Teacher not found'}, 404
+    if not course.exists(): return {'message':'Course not found'}, 404
+    if not course in school.courses_of(teacher): return {'message':'Course in Teachers Courses not found'}, 404
+
+    if request.headers.get('Content-Type') == 'application/json' and request.method == 'POST':
+        data = request.json
+        if not data.get('time'): return {'message':"'time' missing"}, 400
+        time = data['time'].replace('T',' ')
+        lesson = Lesson(course, time)
+        res = lesson.add()
+
+        if res == 1: return {'message':'Time-Format ist not correct'}, 400
+        if res == 3: return {'message':'Lesson allready exists'}, 409
+        location = f'/teachers/{teacher.id}/courses/{course.name.replace(' ','%20')}/lessons/{lesson.db_time.replace(' ', '%20')}'
+        return lesson.to_dict(), 201, {'Location':location}
+
+    lessons = school.lessons(course)
+    if len(lessons) == 0: return '', 204
+    return [lesson.to_dict() for lesson in lessons]
