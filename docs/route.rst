@@ -204,6 +204,31 @@ Stunden
     :statuscode 404: Kurs oder Kursleiter nicht gefunden
     :statuscode 409: Unterrichtsstunde bereits vorhanden
 
+.. http:get:: /teachers/(int:teach_id)/courses/(course_name)/lessons/(les_time)
+
+    Listet alle Unterrichtsstunden eines Kurses auf.
+
+    :param int teach_id: Id des Lehrers
+    :param string course_name: Name des Kurses
+    :param string les_time: geplanter Unterrichtsbeginn
+    :resheader Content-Type: application/json
+    :statuscode 200: Daten der Unterrichtsstunde wurden erfolgreich geladen
+    :statuscode 404: Kurs, Kursleiter oder Unterrichtsstunde wurde nicht gefunden
+
+.. http:patch:: /teachers/(int:teach_id)/courses/(course_name)/lessons/(les_time)
+
+    Nimmt Änderungen für eine Unterrichtsstude vor.
+
+    :param int teach_id: Id des Lehrers
+    :param string course_name: Name des Kurses
+    :param string les_time: geplanter Unterrichtsbeginn
+    :reqheader Content-Type: application/json
+    :resheader Content-Type: application/json
+    :json string topic: Thema der Stunde
+    :json string newTime: Neue geplante Zeit der Stunde
+    :statuscode 204: Vorgang abgeschlossen
+    :statuscode 400: Zeit im falschem Foramt
+    :statuscode 404: Kurs, Kursleiter oder Unterrichtsstunde wurde nicht gefunden
 
 Modul: grade
 ============

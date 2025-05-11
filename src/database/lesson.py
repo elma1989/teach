@@ -46,7 +46,7 @@ class Lesson(DataObject):
     
     @time.setter
     def time(self,time:str) -> None:
-        sql:str = """UPDATE lasson SET les_time = ?
+        sql:str = """UPDATE lesson SET les_time = ?
             WHERE crs_name = ? AND les_time = ?"""
         new_time:datetime|None = None
 
@@ -60,6 +60,7 @@ class Lesson(DataObject):
                     self.con.commit()
                     self.__time = new_time
             except Error as e: print(e)
+            except ValueError as f:print(f)
             finally: self.close()
 
     @property
@@ -70,6 +71,17 @@ class Lesson(DataObject):
         :getter: Liefert das Thema
         :setter: Legt des Thema fest
         """
+        sql:str = 'SELECT les_topic FROM lesson WHERE crs_name = ? AND les_time = ?'
+
+        if self.exists() and len(self.__topic) == 0:
+            try:
+                self.connect()
+                if self.con and self.c:
+                    self.c.execute(sql, (self.course.name, self.db_time))
+                    res = self.c.fetchone()
+                    if res and res[0]: self.__topic = res[0]
+            except Error as e: print(e)
+            finally: self.close()
         return self.__topic
 
     @topic.setter
