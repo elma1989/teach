@@ -87,3 +87,37 @@ def test_single_lesson(teachurl):
     assert rg_les2.status_code == 200
     data = rg_les2.json()
     assert data == rles2
+
+def test_lesson_homeworks(teachurl):
+    fail_teach_url = teachurl + '3/courses/MAT%201/lessons/2025-04-01%2008:00/homeworks'
+    fail_course_url = teachurl + '1/courses/ENG%201/lessons/2025-04-01%2008:00/homeworks'
+    fail_teach_course_url = teachurl + '2/courses/DEU%201/lessons/2025-04-01%2008:00/homeworks'
+    fail_time_url = teachurl + '1/courses/MAT%201/lessons/2025-04-01%2009:00/homeworks'
+    les_url = teachurl + '1/courses/MAT%201/lessons/2025-04-01%2009:30/homeworks'
+    header = {'Content-Type':'application/json'}
+
+    pl_fail = {}
+    pl_les = {'task':'LGS lösen'}
+    les_hw = ['LGS lösen']
+
+    rg_fail_teach = requests.get(fail_teach_url)
+    rg_fail_course = requests.get(fail_course_url)
+    rg_fail_teach_course = requests.get(fail_teach_course_url)
+    rg_fail_time = requests.get(fail_time_url)
+    rg_les = requests.get(les_url)
+    rp_les_fail = requests.post(les_url, json.dumps(pl_fail), headers=header)
+    rp_les = requests.post(les_url, json.dumps(pl_les), headers=header)
+    rp_les_2 = requests.post(les_url, json.dumps(pl_les), headers=header)
+    rg_les2 = requests.get(les_url)
+    
+    assert rg_fail_teach.status_code == 404
+    assert rg_fail_course.status_code == 404
+    assert rg_fail_teach_course.status_code == 404
+    assert rg_fail_time.status_code == 404
+    assert rg_les.status_code == 204
+    assert rp_les_fail.status_code == 400
+    assert rp_les.status_code == 201
+    assert rp_les_2.status_code == 409
+    assert rg_les2.status_code == 200
+    data = rg_les2.json()
+    assert data == les_hw

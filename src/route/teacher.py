@@ -181,3 +181,28 @@ def course_single_lesson(teach_id, course_name, les_time):
     if not lesson in school.lessons(course): return {'message':'Lesson in this course not found'}, 404
 
     return lesson.to_dict()
+
+@teacher_bp.route('/<int:teach_id>/courses/<course_name>/lessons/<les_time>/homeworks', methods=['GET','POST'])
+def lesson_homeworks(teach_id, course_name, les_time):
+    school = School()
+    teacher = school.getTeacher(teach_id)
+    course = Course(course_name)
+
+    if not teacher: return {'messsage':'Teacher not found'}, 404
+    if not course.exists(): return {'message':'Course not found'}, 404
+    if not course in school.courses_of(teacher): return {'message':'Course in Teachers Courses not found'}, 404
+
+    lesson = Lesson(course, les_time)
+    if not lesson.exists(): return {'message':'Lesson not found'}, 404
+
+    if request.headers.get('Content-Type') == 'application/json' and request.method == 'POST':
+        data = request.json
+        if not data.get('task'): return {'message':'Task missing'}, 400
+        res  = lesson.add_homework(data['task'])
+
+        if res == 3: {'message':'Homework allready exists'}, 409
+        return '', 201
+
+    tasks = lesson.homeworks
+    if len(tasks) == 0: return '',204
+    return [task for task in tasks]

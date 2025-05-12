@@ -230,6 +230,33 @@ Stunden
     :statuscode 400: Zeit im falschem Foramt
     :statuscode 404: Kurs, Kursleiter oder Unterrichtsstunde wurde nicht gefunden
 
+.. http:get:: /teachers/(int:teach_id)/courses/(course_name)/lessons/(les_time)/homeworks
+
+    Listet alle Hausaufgaben einer Unterrichtsstunde auf.
+
+    :param int teach_id: Id des Lehrers
+    :param string course_name: Name des Kurses
+    :param string les_time: geplanter Unterrichtsbeginn
+    :resheader Content-Type: application/json
+    :statuscode 200: Hausaufgaben wurden erfolgreich geladen
+    :statuscode 204: Für diese Stunde worden keine Hausaufgabe aufgegeben
+    :statuscode 404: Kurs, Kursleiter oder Unterrichtsstunde wurde nicht gefunden
+
+.. http:post:: /teachers/(int:teach_id)/courses/(course_name)/lessons/(les_time)/homeworks
+
+    Erstellt eine Hausaufgabe.
+
+    :param int teach_id: Id des Lehrers
+    :param string course_name: Name des Kurses
+    :param string les_time: geplanter Unterrichtsbeginn
+    :reqheader Content-Type: application/json
+    :resheader Content-Type: application/json
+    :json string task: Zu erledigende Hausaufgabe
+    :statuscode 201: Hausaufgabe wurde erfolgreich gespeichert
+    :statuscode 400: Aufgabe fehlt
+    :statuscode 404: Kurs, Kursleiter oder Unterrichtsstunde wurde nicht gefunden
+    :statuscode 409: Hausaufgabe bereits vorhanden
+
 Modul: grade
 ============
 
