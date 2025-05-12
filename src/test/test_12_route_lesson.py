@@ -121,3 +121,40 @@ def test_lesson_homeworks(teachurl):
     assert rg_les2.status_code == 200
     data = rg_les2.json()
     assert data == les_hw
+
+def test_lesson_presents_get(teachurl):
+    fail_teach_url = teachurl + '3/courses/MAT%201/lessons/2025-04-01%2008:00/presents'
+    fail_course_url = teachurl + '1/courses/ENG%201/lessons/2025-04-01%2008:00/presents'
+    fail_teach_course_url = teachurl + '2/courses/DEU%201/lessons/2025-04-01%2008:00/presents'
+    fail_time_url = teachurl + '1/courses/MAT%201/lessons/2025-04-01%2009:00/presents'
+    les_url = teachurl + '1/courses/MAT%201/lessons/2025-04-01%2009:30/presents'
+
+    expect_res = [
+        {
+            'id':1,
+            'fname':'Carl Friedrich',
+            'lname':'Gauß',
+            'birthDate':'1777-04-30',
+            'present': False
+        }, {
+            'id':2,
+            'fname':'Lotte',
+            'lname':'Rie',
+            'birthDate':'2010-05-05',
+            'present': False
+        }
+    ]
+
+    rg_fail_teach = requests.get(fail_teach_url)
+    rg_fail_course = requests.get(fail_course_url)
+    rg_fail_teacher_course = requests.get(fail_teach_course_url)
+    rg_fail_time = requests.get(fail_time_url)
+    rg_les = requests.get(les_url)
+
+    assert rg_fail_teach.status_code == 404
+    assert rg_fail_course.status_code == 404
+    assert rg_fail_teacher_course.status_code == 404
+    assert rg_fail_time.status_code == 404
+    assert rg_les.status_code == 200
+    data = rg_les.json()
+    assert data == expect_res

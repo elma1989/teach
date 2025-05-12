@@ -199,10 +199,34 @@ def lesson_homeworks(teach_id, course_name, les_time):
         data = request.json
         if not data.get('task'): return {'message':'Task missing'}, 400
         res  = lesson.add_homework(data['task'])
-
-        if res == 3: {'message':'Homework allready exists'}, 409
+        
+        if res == 2: return {'message':'Homework allready exists'}, 409
         return '', 201
 
     tasks = lesson.homeworks
     if len(tasks) == 0: return '',204
     return [task for task in tasks]
+
+@teacher_bp.route('/<int:teach_id>/courses/<course_name>/lessons/<les_time>/presents')
+def lesson_presents(teach_id, course_name, les_time):
+    school = School()
+    teacher = school.getTeacher(teach_id)
+    course = Course(course_name)
+
+    if not teacher: return {'messsage':'Teacher not found'}, 404
+    if not course.exists(): return {'message':'Course not found'}, 404
+    if not course in school.courses_of(teacher): return {'message':'Course in Teachers Courses not found'}, 404
+
+    lesson = Lesson(course, les_time)
+    if not lesson.exists(): return {'message':'Lesson not found'}, 404
+
+    presents = lesson.students
+    return [
+        {
+            'id': present[0].id,
+            'fname': present[0].fname,
+            'lname': present[0].lname,
+            'birthDate': present[0].db_birth,
+            'present': present[1]
+        } for present in presents
+    ]

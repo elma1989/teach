@@ -257,6 +257,17 @@ Stunden
     :statuscode 404: Kurs, Kursleiter oder Unterrichtsstunde wurde nicht gefunden
     :statuscode 409: Hausaufgabe bereits vorhanden
 
+.. http:get:: /teachers/(int:teach_id)/courses/(course_name)/lessons/(les_time)/presents
+
+    Zeigt die Anwesenheitsliste zu einer Stunde.
+
+    :param int teach_id: Id des Lehrers
+    :param string course_name: Name des Kurses
+    :param string les_time: geplanter Unterrichtsbeginn
+    :resheader Content-Type: application/json
+    :statuscode 200: Anwesenheitsliste wurden erfolgreich geladen
+    :statuscode 404: Kurs, Kursleiter oder Unterrichtsstunde wurde nicht gefunden
+
 Modul: grade
 ============
 
