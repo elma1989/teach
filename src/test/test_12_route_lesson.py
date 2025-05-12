@@ -158,3 +158,16 @@ def test_lesson_presents_get(teachurl):
     assert rg_les.status_code == 200
     data = rg_les.json()
     assert data == expect_res
+
+def test_lesson_presents_put(teachurl):
+    les_url = teachurl + '1/courses/MAT%201/lessons/2025-04-01%2009:30/presents'
+    headers = {'Content-Type':'application/json'}
+
+    pl_fail = {}
+    pl_students = [True, True]
+        
+    rput_fail = requests.put(les_url, json.dumps(pl_fail), headers=headers)
+    rput_students = requests.put(les_url, json.dumps(pl_students), headers=headers)
+
+    assert rput_fail.status_code == 400
+    assert rput_students.status_code == 204

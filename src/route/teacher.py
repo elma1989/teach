@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from database import School, Teacher, Subject, Course, Lesson
+from database import School, Teacher, Subject, Course, Lesson, Student
 
 teacher_bp = Blueprint('teacher',__name__, url_prefix='/teachers')
 
@@ -207,7 +207,7 @@ def lesson_homeworks(teach_id, course_name, les_time):
     if len(tasks) == 0: return '',204
     return [task for task in tasks]
 
-@teacher_bp.route('/<int:teach_id>/courses/<course_name>/lessons/<les_time>/presents')
+@teacher_bp.route('/<int:teach_id>/courses/<course_name>/lessons/<les_time>/presents', methods=['GET','PUT'])
 def lesson_presents(teach_id, course_name, les_time):
     school = School()
     teacher = school.getTeacher(teach_id)
@@ -219,6 +219,12 @@ def lesson_presents(teach_id, course_name, les_time):
 
     lesson = Lesson(course, les_time)
     if not lesson.exists(): return {'message':'Lesson not found'}, 404
+
+    if request.headers.get('Content-Type') == 'application/json' and request.method == 'PUT':
+        datas = request.json
+        if not isinstance(datas, list): return {'message':'No data list'}, 400
+        lesson.set_present_status(datas)
+        return '', 204
 
     presents = lesson.students
     return [

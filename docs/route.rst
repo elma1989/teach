@@ -268,6 +268,19 @@ Stunden
     :statuscode 200: Anwesenheitsliste wurden erfolgreich geladen
     :statuscode 404: Kurs, Kursleiter oder Unterrichtsstunde wurde nicht gefunden
 
+.. http:put:: /teachers/(int:teach_id)/courses/(course_name)/lessons/(les_time)/presents
+
+    Zeigt die Anwesenheitsliste zu einer Stunde.
+
+    :param int teach_id: Id des Lehrers
+    :param string course_name: Name des Kurses
+    :param string les_time: geplanter Unterrichtsbeginn
+    :reqheader Content-Type: application/json
+    :resheader Content-Type: application/json
+    :statuscode 204: Anwesenheitsliste wurden erfolgreich geladen gespeichert
+    :statuscode 400: Anwesenheitsliste ist nicht vom Typ Liste
+    :statuscode 404: Kurs, Kursleiter oder Unterrichtsstunde wurde nicht gefunden
+
 Modul: grade
 ============
 
