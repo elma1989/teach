@@ -42,6 +42,15 @@ Modul: subject
     :statuscode 200: Fachdaten wurden erfolgreich geladen
     :statuscode 404: Fach wurde nicht gefunden
 
+.. http:delete:: /subjects/(sub_abr)
+
+    Löscht ein Fach.
+
+    :param string sub_abr: Abkürzung (3 Buchstaben) in der Datenbank
+    :statuscode 204: Fach erfolgreich gelöscht
+    :statuscode 404: Fach wurde nicht gefunden
+    :statuscode 409: Noch Kurse oder Lehrer mit dem Fach vorhanden
+
 Modul: teacher
 ==============
 

@@ -23,10 +23,14 @@ def index():
     if len(subjects) == 0: return '', 204
     return [subject.to_dict() for subject in subjects]
 
-@subject_bp.route('/<sub_abr>')
+@subject_bp.route('/<sub_abr>', methods=['GET','DELETE'])
 def subject(sub_abr):
     subject = Subject(sub_abr)
 
     if not subject.exists(): return {'message':'Subject not found'}, 404
+
+    if request.method == 'DELETE':
+        if subject.remove() == 2: return {'message':'There courses or teachers, who just teaches this subject'}, 409
+        return '', 204
 
     return subject.to_dict()

@@ -1,12 +1,21 @@
 import requests
+from database import indb
 
 def test_remove_with_reference(url):
     john_url = url + '/teachers/1'
     maxm_url = url + '/teachers/2'
+    mat_url = url + '/subjects/MAT'
+    deu_url = url + '/subjects/DEU'
+
     rd_john = requests.delete(john_url)
     rd_maxm = requests.delete(maxm_url)
+    rd_mat = requests.delete(mat_url)
+    rd_deu = requests.delete(deu_url)
+
     assert rd_john.status_code == 409
     assert rd_maxm.status_code == 409
+    assert rd_mat.status_code == 409
+    assert rd_deu.status_code == 409
 
 def test_delete_lesson(teachurl):
     les_url = teachurl + '1/courses/MAT%201/lessons/2025-04-01%2009:30'
@@ -45,3 +54,15 @@ def test_delete_teacher(teachurl):
     rd_maxm = requests.delete(maxm_url)
     assert rd_john.status_code == 204
     assert rd_maxm.status_code == 204
+
+def test_delet_subject(url):
+    mat_url = url + '/subjects/MAT'
+    deu_url = url + '/subjects/DEU'
+
+    rd_mat = requests.delete(mat_url)
+    rd_deu = requests.delete(deu_url)
+
+    assert rd_mat.status_code == 204
+    assert rd_deu.status_code == 204
+
+    indb()
