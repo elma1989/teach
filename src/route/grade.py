@@ -80,7 +80,7 @@ def students(grade_name):
     if len(students) == 0: return '', 204
     return [student.to_dict() for student in students]
 
-@grade_bp.route('/<grade_name>/students/<int:student_id>', methods=['GET','PATCH'])
+@grade_bp.route('/<grade_name>/students/<int:student_id>', methods=['GET','PATCH','DELETE'])
 def single_student(grade_name, student_id):
     school = School()
     grade = Grade(grade_name)
@@ -98,5 +98,9 @@ def single_student(grade_name, student_id):
         return '', 204
 
     if not student in school.students(grade): return {'message':'Student in Grade not found'}, 404
+
+    if request.method == 'DELETE':
+        student.remove()
+        return '', 204
 
     return student.to_dict()

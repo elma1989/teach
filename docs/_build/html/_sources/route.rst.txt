@@ -408,3 +408,12 @@ Modul: grade
     :json string gradeName: Name der neuen Klasse
     :statuscode 204: Vorgang abgeschlossen
     :statuscode 404: Alte/neue Klasse oder Schüler nicht gefunden
+
+.. http:delete:: /grades/(grade_name)/students/(int:student_id)
+
+    Löscht einen Schüler.
+
+    :param string grade_name: Name der Klasse
+    :param int student_id: Id des Schülers
+    :statuscode 204: Schüler erfolgreich gelöscht
+    :statuscode 404: Schüler oder Klasse nicht gefunden

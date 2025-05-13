@@ -14,6 +14,14 @@ def test_delete_course(teachurl):
     assert rd_deu1.status_code == 204
 
 
+def test_delete_student(url):
+    carl_url =  url + '/grades/10a/students/1'
+    lotte_url = url + '/grades/10a/students/2'
+    rd_carl = requests.delete(carl_url)
+    rd_lotte = requests.delete(lotte_url)
+    assert rd_carl.status_code == 204
+    assert rd_lotte.status_code == 204
+
 def test_delete_grade(url):
     cls08a_url = url + '/grades/08a'
     cls10a_url = url + '/grades/10a'
