@@ -227,7 +227,17 @@ Stunden
     :json string topic: Thema der Stunde
     :json string newTime: Neue geplante Zeit der Stunde
     :statuscode 204: Vorgang abgeschlossen
-    :statuscode 400: Zeit im falschem Foramt
+    :statuscode 400: Zeit im falschem Format
+    :statuscode 404: Kurs, Kursleiter oder Unterrichtsstunde wurde nicht gefunden
+
+.. http:delete:: /teachers/(int:teach_id)/courses/(course_name)/lessons/(les_time)
+
+    Löscht eine Unterrichtsstunde.
+
+    :param int teach_id: Id des Lehrers
+    :param string course_name: Name des Kurses
+    :param string les_time: geplanter Unterrichtsbeginn
+    :statuscode 204: Unterrichtsstunde wurde erfolgreich gelöscht
     :statuscode 404: Kurs, Kursleiter oder Unterrichtsstunde wurde nicht gefunden
 
 .. http:get:: /teachers/(int:teach_id)/courses/(course_name)/lessons/(les_time)/homeworks

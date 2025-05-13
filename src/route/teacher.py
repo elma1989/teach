@@ -156,7 +156,7 @@ def course_lessons(teach_id, course_name):
     if len(lessons) == 0: return '', 204
     return [lesson.to_dict() for lesson in lessons]
 
-@teacher_bp.route('/<int:teach_id>/courses/<course_name>/lessons/<les_time>', methods=['GET','PATCH'])
+@teacher_bp.route('/<int:teach_id>/courses/<course_name>/lessons/<les_time>', methods=['GET','PATCH','DELETE'])
 def course_single_lesson(teach_id, course_name, les_time):
     school = School()
     teacher = school.getTeacher(teach_id)
@@ -179,6 +179,10 @@ def course_single_lesson(teach_id, course_name, les_time):
         return '', 204
 
     if not lesson in school.lessons(course): return {'message':'Lesson in this course not found'}, 404
+
+    if request.method == 'DELETE':
+        lesson.remove()
+        return '', 204
 
     return lesson.to_dict()
 
