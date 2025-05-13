@@ -435,6 +435,26 @@
 </dl>
 </dd></dl>
 
+<dl class="http delete">
+<dt class="sig sig-object http" id="delete--teachers-(int-teach_id)-courses-(course_name)">
+<span class="sig-name descname"><span class="pre">DELETE</span> </span><span class="sig-name descname"><span class="pre">/teachers/</span></span><span class="sig-paren">(</span><em class="property"><span class="pre">int:</span> </em><em class="sig-param"><span class="pre">teach_id</span></em><span class="sig-paren">)</span><span class="sig-name descname"><span class="pre">/courses/</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">course_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#delete--teachers-(int-teach_id)-courses-(course_name)" title="Link to this definition"></a></dt>
+<dd><p>Löscht einem Kurs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>teach_id</strong> (<em>int</em>) – Id des Lehrers</p></li>
+<li><p><strong>course_name</strong> (<em>string</em>) – Name des Kurses</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5">204 No Content</a></span> – Kurs wurde erfolgreich gelöscht</p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a></span> – Kursleiter oder Kurs nicht gefunden</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="http get">
 <dt class="sig sig-object http" id="get--teachers-(int-teach_id)-courses-(course_name)-members">
 <span class="sig-name descname"><span class="pre">GET</span> </span><span class="sig-name descname"><span class="pre">/teachers/</span></span><span class="sig-paren">(</span><em class="property"><span class="pre">int:</span> </em><em class="sig-param"><span class="pre">teach_id</span></em><span class="sig-paren">)</span><span class="sig-name descname"><span class="pre">/courses/</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">course_name</span></em><span class="sig-paren">)</span><span class="sig-name descname"><span class="pre">/members</span></span><a class="headerlink" href="#get--teachers-(int-teach_id)-courses-(course_name)-members" title="Link to this definition"></a></dt>

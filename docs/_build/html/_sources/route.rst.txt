@@ -149,6 +149,15 @@ Kurse
     :statuscode 204: Vorgang abgeschlossen
     :statuscode 404: bisheriger/neuer Kursleiter oder Kurs nicht gefunden
 
+.. http:delete:: /teachers/(int:teach_id)/courses/(course_name)
+
+    Löscht einem Kurs.
+
+    :param int teach_id: Id des Lehrers
+    :param string course_name: Name des Kurses
+    :statuscode 204: Kurs wurde erfolgreich gelöscht
+    :statuscode 404: Kursleiter oder Kurs nicht gefunden
+
 .. http:get:: /teachers/(int:teach_id)/courses/(course_name)/members
 
     Listet alle Kursteilnehmer auf.
