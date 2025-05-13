@@ -3,9 +3,19 @@ Paket: route
 
 .. note:: Werden variable Endpunkte direkt über Python verarbeitet, so werden die Variablen in **snake_case** geschrieben, da dieser Stil in Python an gängigsten ist.
 
-    Können die benötigten Daten direkt über ein Webforular an den Server geschickt werden, so werden die Name-Tags in **kebab-case** geschrieben, da dieser Stil in HTML am gängigsten ist.
+    Können die benötigten Daten direkt über ein Webformular an den Server geschickt werden, so werden die Name-Tags in **kebab-case** geschrieben, da dieser Stil in HTML am gängigsten ist.
 
     Wird ein JSON-String erwartet, da URL dynamisch abhängig von einer zuvor getätigten Auswahl ist, so werden die JSON-Felder in **camelCase** geschrieben, da dieser Stil in JavaScript am gängigsten ist.
+
+Modul: page
+===========
+
+.. http:get:: /
+
+    Rendert die Hauptseite.
+
+    :resheader Content-Type: text/html; charset=utf-8
+    :statuscode 200: Hauptseite wurde geladen
 
 Modul: subject
 ==============

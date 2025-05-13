@@ -49,6 +49,7 @@
 <li class="toctree-l1"><a class="reference internal" href="database-model.html">Datenbankmodell</a></li>
 <li class="toctree-l1"><a class="reference internal" href="database.html">Paket: database</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Paket: route</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#modul-page">Modul: page</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#modul-subject">Modul: subject</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#modul-teacher">Modul: teacher</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#kurse">Kurse</a></li>
@@ -90,9 +91,30 @@
 <div class="admonition note">
 <p class="admonition-title">Bemerkung</p>
 <p>Werden variable Endpunkte direkt über Python verarbeitet, so werden die Variablen in <strong>snake_case</strong> geschrieben, da dieser Stil in Python an gängigsten ist.</p>
-<p>Können die benötigten Daten direkt über ein Webforular an den Server geschickt werden, so werden die Name-Tags in <strong>kebab-case</strong> geschrieben, da dieser Stil in HTML am gängigsten ist.</p>
+<p>Können die benötigten Daten direkt über ein Webformular an den Server geschickt werden, so werden die Name-Tags in <strong>kebab-case</strong> geschrieben, da dieser Stil in HTML am gängigsten ist.</p>
 <p>Wird ein JSON-String erwartet, da URL dynamisch abhängig von einer zuvor getätigten Auswahl ist, so werden die JSON-Felder in <strong>camelCase</strong> geschrieben, da dieser Stil in JavaScript am gängigsten ist.</p>
 </div>
+<section id="modul-page">
+<h2>Modul: page<a class="headerlink" href="#modul-page" title="Link to this heading"></a></h2>
+<dl class="http get">
+<dt class="sig sig-object http" id="get--">
+<span class="sig-name descname"><span class="pre">GET</span> </span><span class="sig-name descname"><span class="pre">/</span></span><a class="headerlink" href="#get--" title="Link to this definition"></a></dt>
+<dd><p>Rendert die Hauptseite.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Response Headers<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.rfc-editor.org/rfc/rfc7231#section-3.1.1.5">Content-Type</a></span> – text/html; charset=utf-8</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a></span> – Hauptseite wurde geladen</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
 <section id="modul-subject">
 <h2>Modul: subject<a class="headerlink" href="#modul-subject" title="Link to this heading"></a></h2>
 <dl class="http get">
