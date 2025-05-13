@@ -347,6 +347,14 @@ Modul: grade
     :statuscode 404: Klasse oder Klassenleiter nicht gefunden
     :statuscode 409: Neuer Klassenname ist nicht verfügbar
 
+.. http:delete:: /grades/(grade_name)
+
+    Löscht eine Klasse.
+
+    :param string grade_name: Name der Klasse
+    :statuscode 204: Klasse rerfolgreich gelöscht
+    :statuscode 404: Klasse wurde nicht gefunden
+
 .. http:get:: /grades/(grade_name)/students
 
     Liefert eine Liste mit allen Mitgliedern einer Klasse.

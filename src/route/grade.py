@@ -24,7 +24,7 @@ def index():
     if len(grades) == 0: return '', 204
     return [grade.to_dict() for grade in grades]
 
-@grade_bp.route('/<grade_name>', methods=['GET','PATCH'])
+@grade_bp.route('/<grade_name>', methods=['GET','PATCH','DELETE'])
 def grade(grade_name):
     school = School()
     grade = Grade(grade_name)
@@ -39,6 +39,10 @@ def grade(grade_name):
         if data.get('leaderId'):
             leader = school.getTeacher(data['leaderId'])
             if not leader: return {'message':'Leader not found'}, 404
+        return '', 204
+    
+    if request.method == 'DELETE':
+        grade.remove()
         return '', 204
 
     return grade.to_dict()
