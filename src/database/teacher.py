@@ -111,7 +111,7 @@ class Teacher(Person):
         :return:
              | 0 - Erfolgreich
              | 1 - Lehrer nicht vorhanden
-             | 2 - Lehrer leitet noch Klassen und/oder Kursee
+             | 2 - Lehrer leitet noch Klassen und/oder Kurse
         """
         sql:str = 'DELETE FROM teacher WHERE  teach_id = ?'
         success:bool = False

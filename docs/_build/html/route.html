@@ -249,6 +249,26 @@
 </dl>
 </dd></dl>
 
+<dl class="http delete">
+<dt class="sig sig-object http" id="delete--teachers-(int-teach_id)">
+<span class="sig-name descname"><span class="pre">DELETE</span> </span><span class="sig-name descname"><span class="pre">/teachers/</span></span><span class="sig-paren">(</span><em class="property"><span class="pre">int:</span> </em><em class="sig-param"><span class="pre">teach_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#delete--teachers-(int-teach_id)" title="Link to this definition"></a></dt>
+<dd><p>Löscht einem Lehrer</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>teach_id</strong> (<em>int</em>) – Id des Lehrers</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5">204 No Content</a></span> – Lehrer wurde erfolgreich gelöscht</p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a></span> – Lehrer nicht gefunden</p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.10">409 Conflict</a></span> – Der Lehrer kann nicht gelöscht werden, weil er noch Kurse oder Klassen leitet</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="http get">
 <dt class="sig sig-object http" id="get--techers-(int-teach_id)-subjects">
 <span class="sig-name descname"><span class="pre">GET</span> </span><span class="sig-name descname"><span class="pre">/techers/</span></span><span class="sig-paren">(</span><em class="property"><span class="pre">int:</span> </em><em class="sig-param"><span class="pre">teach_id</span></em><span class="sig-paren">)</span><span class="sig-name descname"><span class="pre">/subjects</span></span><a class="headerlink" href="#get--techers-(int-teach_id)-subjects" title="Link to this definition"></a></dt>

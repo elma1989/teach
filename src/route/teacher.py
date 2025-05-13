@@ -24,12 +24,16 @@ def index():
     if len(teachers) == 0: return '', 204
     return [teacher.to_dict() for teacher in teachers]
 
-@teacher_bp.route('/<int:teach_id>')
+@teacher_bp.route('/<int:teach_id>', methods=['GET','DELETE'])
 def teacher(teach_id):
     school = School ()
     teacher = school.getTeacher(teach_id)
 
     if not teacher: return {'message':'Teacher not found'}, 404
+
+    if request.method == 'DELETE':
+        if teacher.remove() == 2: return {'message':'Teacher just leads some courses and/or grades'}, 409
+        return '', 204
 
     return teacher.to_dict()
 

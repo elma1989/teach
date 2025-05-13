@@ -76,6 +76,15 @@ Modul: teacher
     :statuscode 200: Daten wurden erfolgreich geladen
     :statuscode 404: Lehrer nicht gefunden
 
+.. http:delete:: /teachers/(int:teach_id)
+
+    Löscht einem Lehrer
+
+    :param int teach_id: Id des Lehrers
+    :statuscode 204: Lehrer wurde erfolgreich gelöscht
+    :statuscode 404: Lehrer nicht gefunden
+    :statuscode 409: Der Lehrer kann nicht gelöscht werden, weil er noch Kurse oder Klassen leitet
+
 .. http:get:: /techers/(int:teach_id)/subjects
 
     Zeigt alle Fächer eines Lehrer.
